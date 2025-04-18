@@ -34,5 +34,5 @@ public class Admin {
 
     //till User class is made
     //Methods to be added:
-    //addRooms, viewEvents, viewAttendees, viewOrganizers, login, register, toString, equals
+    //addRooms, viewEvents, viewAttendees, viewOrganizers, login, register, toString, equals//
 }
