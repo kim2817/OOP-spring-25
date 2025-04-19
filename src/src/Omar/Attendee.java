@@ -1,5 +1,9 @@
 package Omar;
 
+import Jasmin.Event;
+import Karma.Category;
+import x3mara.Wallet;
+
 import java.util.UUID;
 
 public class Attendee {
@@ -29,7 +33,7 @@ public class Attendee {
         return city;
     }
 
-    public Wallet getBalance() {
+    public double getBalance() {
         return balance.getBalance();
     }
     public void Attendeedeposit(double money){

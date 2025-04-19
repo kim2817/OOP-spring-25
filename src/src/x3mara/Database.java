@@ -1,7 +1,10 @@
 package x3mara;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class Database {
     private static HashMap<String, Object> data = new HashMap<>();
@@ -37,5 +40,28 @@ public class Database {
             throw new RuntimeException("Invalid Object");
         }
         data.remove(((HasID)o).getID());
+    }
+
+    public static void scanInput(File source) {
+        Scanner in;
+        try{
+            in = new Scanner(source);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        String s = in.next();
+        while(!s.equals("*")){
+            System.out.println(s);
+            switch (s){
+                case "Wallet":
+                    create(new Wallet(in.nextDouble()));
+                    break;
+                case "Room":
+                    create(new Room(in.next(),in.nextInt(),in.nextDouble(),in.next()));
+                    break;
+            }
+            s = in.next();
+        }
+        in.close();
     }
 }

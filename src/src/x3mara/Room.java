@@ -35,7 +35,6 @@ public class Room implements HasID{
     public void setRoomCapacity(int roomCapacity) {
         this.roomCapacity = roomCapacity;
     }
-
     public double getRentPrice() {
         return rentPrice;
     }

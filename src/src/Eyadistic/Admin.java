@@ -19,10 +19,10 @@ public class Admin extends User{
     //Constructors//
     Admin(){}
 
-    @Override
-    protected void login() {
-
-    }
+//    @Override
+//    protected void login() {
+//
+//    }
 
     Admin(String role, String workingHours){
         this.role = role;
