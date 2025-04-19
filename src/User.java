@@ -1,5 +1,5 @@
 import java.util.*;
-public class User {
+abstract public class User {
     private String email;
     private String username;
     private String contactNo;
@@ -63,16 +63,7 @@ public class User {
                 '}';
     }
 
-    void login(){
-    Scanner cin = new Scanner(System.in);
-
-
-
-
-
-
-    cin.close();
-    }
+    abstract void login();
 
 
 
