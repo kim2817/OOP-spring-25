@@ -1,4 +1,12 @@
 package Jasmin;
+import Karma.Category;
+import Eyadistic.Admin;
+import Omar.Attendee;
+import x3mara.Database;
+import x3mara.Room;
+import x3mara.Schedule;
+import x3mara.TimeSlot;
+import Yahia.Organizer;
 
 public class Event {
     static int totEvents =0;
@@ -109,17 +117,17 @@ public class Event {
 
     }
 
-    @Override
-    public String toString(){
-        String s;
-//        s="Event ID:"+eventID+"\nEvent name:"+ eventName + "\nEvent Category:"+ eventCat+"\nEvent Room:"+ eventRoom +
-//        "\nEvent organizer:" +
-
-        return s;
-    }
-    public boolean equal(Event event){
-
-        return
-    }
+//    @Override
+//    public String toString(){
+//        String s;
+////        s="Event ID:"+eventID+"\nEvent name:"+ eventName + "\nEvent Category:"+ eventCat+"\nEvent Room:"+ eventRoom +
+////        "\nEvent organizer:" +
+//
+//        return s;
+//    }
+//    public boolean equal(Event event){
+//
+//        return
+//    }
 
 }
