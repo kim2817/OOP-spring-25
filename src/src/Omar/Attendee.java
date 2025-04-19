@@ -2,7 +2,7 @@ package Omar;
 
 import java.util.UUID;
 
-class Attendee {
+public class Attendee {
     private String id;
     private int age;
     private String city;
