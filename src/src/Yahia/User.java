@@ -55,7 +55,7 @@ abstract public class User {
                 '}';
     }
 
-    abstract void login();
+    protected abstract void login();
 
 
 

@@ -2,18 +2,18 @@ package Omar;
 
 import java.util.UUID;
 
-class Attendee {
+public class Attendee {
     private String id;
     private int age;
     private String city;
     private Wallet balance;
     private int[][] Purchasedtickets;
 
-    Attendee() {
+    public Attendee() {
         this.id = UUID.randomUUID().toString();
     }
 
-    Attendee(int age, String city, int[][] Purchasedtickets, double balance) {
+    public Attendee(int age, String city, int[][] Purchasedtickets, double balance) {
         this.id = UUID.randomUUID().toString();
         this.age = age;
         this.city = city;
