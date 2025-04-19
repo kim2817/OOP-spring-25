@@ -123,12 +123,12 @@ public class Event {
     public String toString(){
         String s;
         s="Event ID:"+eventID+"\nEvent name:"+ eventName + "\nEvent Category:"+ eventCat.toString() +
-                "\nEvent Room:"+ eventRoom.toString() + "\nEvent organizer:" + eventOrg.toString()+
+                "\nEvent Room:"+ eventRoom.toString() + "\nEvent organizer:" + eventOrg.toString();
 
 
         return s;
     }
-    public boolean equal(Event event){
+    public boolean equals(Event event){
 
         return(this.eventID.equals(event.eventID));
     }
