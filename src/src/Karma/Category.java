@@ -1,8 +1,9 @@
 package Karma;
 import Eyadistic.Admin;
 import Yahia.User;
+import x3mara.HasID;
 
-public class Category {
+public class Category implements HasID {
     private String catID; //store the ID of each category
     private String catName; // name of the category
     public static int totCats = 0;
@@ -43,5 +44,8 @@ public class Category {
     }
 
 
-
+    @Override
+    public String getID() {
+        return catID;
+    }
 }
