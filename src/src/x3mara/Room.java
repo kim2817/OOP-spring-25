@@ -1,5 +1,6 @@
 package x3mara;
 
+import java.util.Arrays;
 import java.util.Date;
 
 public class Room implements HasID{
@@ -62,7 +63,7 @@ public class Room implements HasID{
         Database.delete(this);
     }
     static public void listRooms(){
-
+        System.out.println(Arrays.toString(Database.readAll(new Room())));
     }
 
     @Override
