@@ -5,7 +5,7 @@ import Jasmin.Event;
 import java.util.Scanner;
 
 
-public class Organizer extends Userw {
+public class Organizer extends User {
 
     private String organizerName;
     private String contactInfo;
