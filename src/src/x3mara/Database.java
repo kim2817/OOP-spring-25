@@ -1,8 +1,12 @@
 package x3mara;
 
+import Omar.Attendee;
+import Yahia.gender;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -58,6 +62,9 @@ public class Database {
                     break;
                 case "Room":
                     create(new Room(in.next(),in.nextInt(),in.nextDouble(),in.next()));
+                    break;
+                case "Attendee":
+                    create(new Attendee(in.next(),in.next(),in.next(),in.next(),new Date(in.nextLong()),in.next(),(in.nextBoolean()?gender.male:gender.female),in.nextInt(),in.next(),new int[0][0],in.nextDouble()));
                     break;
             }
             s = in.next();
