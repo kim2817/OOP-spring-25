@@ -100,6 +100,13 @@ public class Admin extends User{
                 '}';
     }
 
+    public boolean equals(Object o){
+        if (o instanceof Admin){
+            return (this.role == ((Admin) o).getRole()) && (this.workingHours == ((Admin) o).getWorkingHours());
+        }
+        else return false;
+    }
+
     //Methods to be added:
-    //login, register, equals//
+    //login, register//
 }
