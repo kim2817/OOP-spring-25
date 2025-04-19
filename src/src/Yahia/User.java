@@ -14,6 +14,10 @@ abstract public class User implements HasID {
     protected gender gen;
     protected String ID;
 
+    protected User (){
+
+    }
+
     public String getUsername() {
         return username;
     }

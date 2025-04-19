@@ -1,26 +1,23 @@
 package Yahia;
 
-import java.util.Date;
 import Jasmin.Event;
+
+import java.util.Arrays;
 import java.util.Scanner;
+import x3mara.*;
 
 
 public class Organizer extends User {
 
     private String organizerName;
-    private String contactInfo;
-    private int numOfEvents;
-    private Event[] currentEvents = new Event[numOfEvents];
-    private double balance;
-
 
     public Organizer(){
-
+    ID = "O" + System.nanoTime();
     }
 
-    public Organizer(String organizerName, String contactInfo, double balance) {
+    public Organizer(String organizerName, String contactNo, double balance) {
         this.organizerName = organizerName;
-        this.contactInfo = contactInfo;
+        this.contactNo = this.contactNo;
         this.balance = balance;
     }
 
@@ -28,7 +25,7 @@ public class Organizer extends User {
         return organizerName;
     }
     public String getContactInfo() {
-        return contactInfo;
+        return contactNo;
     }
     public void viewCurrentEvents() {
         for(int i=0;i<numOfEvents;i++){
@@ -67,11 +64,26 @@ public class Organizer extends User {
         //if yes then call room setter with targetRoomID and change its isAvailable
         cin.close();
     }
+
+    public void create(){
+        Database.create(this);
+    }
+    public void update(){
+        Database.update(this);
+    }
+    public void delete(){
+        Database.delete(this);
+    }
+
+    static public void listEvents(){
+        System.out.println(Arrays.toString(Database.readAll(new Event())));
+    }
+
     public void showAvailableRooms(){
 
     }
-    public void register(){
 
+    public void register(){
 
     }
 
@@ -79,7 +91,7 @@ public class Organizer extends User {
     public String toString() {
         return "organizer{" +
                 "organizerName='" + organizerName + '\'' +
-                ", contactInfo='" + contactInfo + '\'' +
+                ", contactInfo='" + contactNo + '\'' +
                 ", balance=" + balance +
                 '}';
     }
