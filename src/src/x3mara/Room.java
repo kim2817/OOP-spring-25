@@ -35,7 +35,6 @@ public class Room implements HasID{
     public void setRoomCapacity(int roomCapacity) {
         this.roomCapacity = roomCapacity;
     }
-
     public double getRentPrice() {
         return rentPrice;
     }
@@ -68,7 +67,7 @@ public class Room implements HasID{
 
     @Override
     public String toString() {
-        return "ID: " + roomID + "; Name: " + roomName + "; Capacity: " + roomCapacity + "; Rent Price: " + rentPrice + "; Location: " + roomLocation + "; Booked Slots: " + bookedSlots;
+        return "{ID: " + roomID + "; Name: " + roomName + "; Capacity: " + roomCapacity + "; Rent Price: " + rentPrice + "; Location: " + roomLocation + "; Booked Slots: " + bookedSlots + "}";
     }
     @Override
     public boolean equals(Object obj) {

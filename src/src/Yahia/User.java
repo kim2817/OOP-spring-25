@@ -72,6 +72,6 @@ abstract public class User implements HasID {
     @Override
     abstract public String toString();
 
-    protected abstract void login();
+//    protected abstract void login();
 
 }
