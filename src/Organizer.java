@@ -1,7 +1,7 @@
 import java.util.*;
 
 
-public class organizer {
+public class Organizer {
 
     private String organizerName;
     private String contactInfo;
@@ -9,11 +9,11 @@ public class organizer {
     private Event[] currentEvents = new Event[numOfEvents];
     private double balance;
 
-    organizer(){
+    Organizer(){
 
     }
 
-    public organizer(String organizerName, String contactInfo, double balance) {
+    public Organizer(String organizerName, String contactInfo, double balance) {
         this.organizerName = organizerName;
         this.contactInfo = contactInfo;
         this.balance = balance;
@@ -63,7 +63,7 @@ public class organizer {
         cin.close();
     }
     public void showAvailableRooms(){
-      //print all rooms with its value of isavailable = true
+
     }
     public void register(){
 
