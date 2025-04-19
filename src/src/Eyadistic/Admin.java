@@ -14,7 +14,6 @@ import java.util.Map;
 
 public class Admin extends User{
 
-
     //Attributes
     private String role;
     private String workingHours;
@@ -23,11 +22,6 @@ public class Admin extends User{
 
     //Constructors//
     Admin(){}
-
-//    @Override
-//    protected void login() {
-//
-//    }
 
     Admin(String role, String workingHours){
         this.role = role;
