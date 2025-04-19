@@ -1,3 +1,5 @@
+package Omar;
+
 import java.util.UUID;
 
 class Attendee {
@@ -64,10 +66,12 @@ class Attendee {
 
     }
 
+   @Override
     public String toString() {
         return  "Attendee[age=" + age + ", city=" + city + ", balance=" + balance.getBalance() + "]";
     }
 
+    @Override
     public boolean equals(Object o) {
         if (o instanceof Attendee) {
             return this.age == ((Attendee) o).age && this.city.equals(((Attendee) o).city);

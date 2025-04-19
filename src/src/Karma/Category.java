@@ -1,14 +1,16 @@
+package Karma;
+
 public class Category {
     private int catID; //store the ID of each category
     private String catName;  // name of the category
 
     //constructors
-    Category() {              // no arg constructor for initializing (unnecessary but may help later)
+    public Category() {              // no arg constructor for initializing (unnecessary but may help later)
         this.catID = -1;    // so we detect unassigned category IDs later
         this.catName = "";  // to avoid null pointer exceptions later
     }
 
-    Category(String catName) {
+     public Category(String catName) {
         this.catName = catName;
     }
 
@@ -26,15 +28,15 @@ public class Category {
         // IF EXISTS, CATEGORY WON'T BE ADDED
         this.catName = catName;
     }
-
-    // CRUD
-    public void createCat(String catName, User obj) {
-        if (!(obj instanceof Admin)) {
-            throw new AccessDenied("You do not have permission to use this method. \n Only Admins are allowed to create categories");
-        }
-        // EYAD's method
-
-    }
+//
+//    // CRUD
+//    public void createCat(String catName, User obj) {
+//        if (!(obj instanceof Admin)) {
+//            throw new AccessDenied("You do not have permission to use this method. \n Only Admins are allowed to create categories");
+//        }
+//        // EYAD's method
+//
+//    }
 
 
 }
