@@ -2,6 +2,7 @@ package Eyadistic;
 import Yahia.User;
 import Yahia.gender;
 import x3mara.*;
+import Jasmin.Event;
 
 import java.util.Date;
 
@@ -53,49 +54,14 @@ public class Admin extends User{
     o.setRentPrice(rentPrice);
     }
 
-    @Override
-    public String getEmail() {
-        return "";
+    public void viewEvents(){
+
     }
 
     public void setID(String ID) {
         this.ID = ID;
     }
 
-    @Override
-    public String getUsername() {
-        return "";
-    }
-
-    @Override
-    public String getContactNo() {
-        return "";
-    }
-
-    @Override
-    public String getPassword() {
-        return "";
-    }
-
-    @Override
-    public gender getGen() {
-        return null;
-    }
-
-    @Override
-    public double getBalance() {
-        return 0;
-    }
-
-    @Override
-    public Date getDateOfBirth() {
-        return null;
-    }
-
-    @Override
-    public String getAddress() {
-        return "";
-    }
     @Override
     public String getID() {
         return ID;
@@ -106,19 +72,19 @@ public class Admin extends User{
        return "Admin{" +
                 "email='" + this.email + '\'' +
                 ", username='" + this.username + '\'' +
-                ", role='" + this.role + '\'' +
-                ", workingHours='" + this.workingHours + '\'' +
+                ", role='" + getRole() + '\'' +
+                ", workingHours='" + getWorkingHours() + '\'' +
                 ", contactNo='" + this.contactNo + '\'' +
                 ", password='" +  this.password + '\'' +
                 ", dateOfBirth=" + this.dateOfBirth +
                 ", address='" + this.address + '\'' +
                 ", balance=" + this.balance +
                 ", gen=" + this.gen +
-                ", ID='" + this.ID + '\'' +
+                ", ID='" + getID() + '\'' +
                 '}';
     }
 
     //till User class is made
     //Methods to be added:
-    //addRooms, viewEvents, viewAttendees, viewOrganizers, login, register, toString, equals//
+    //viewEvents, viewAttendees, viewOrganizers, login, register, toString, equals//
 }
