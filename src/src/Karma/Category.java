@@ -1,3 +1,4 @@
+import Eyadistic;
 public class Category {
     private int catID; //store the ID of each category
     private String catName;  // name of the category
