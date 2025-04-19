@@ -1,8 +1,17 @@
 package Jasmin;
+import java.util.Date;
+import Karma.Category;
+import Eyadistic.Admin;
+import Omar.Attendee;
+import x3mara.Database;
+import x3mara.Room;
+import x3mara.Schedule;
+import x3mara.TimeSlot;
+import Yahia.Organizer;
 
 public class Event {
     static int totEvents =0;
-    private int eventID;
+    private String eventID;
     private String eventName;
     private Category eventCat;
     private Room eventRoom;
@@ -18,9 +27,9 @@ public class Event {
         totEvents++;
     }
     public void Event(String eventName, Category eventCat, Room eventRoom, Organizer eventOrg ,
-                      double ticketPrice, double eventDuration, Schedule eventDate, eventTime TimeSlot ){
-        this.eventID= //ID GENERATION
-                this.eventName= eventName;
+                      double ticketPrice, double eventDuration, Schedule eventDate,TimeSlot eventTime  ){
+        this.eventID= "E"+System.nanoTime();
+        this.eventName= eventName;
         this.eventCat= eventCat;
         this.eventRoom= eventRoom;
         this.eventOrg= eventOrg;
@@ -30,9 +39,10 @@ public class Event {
         this.eventTime= eventTime;
         this.eventAttendees = new Attendee[100];
         totEvents++;
+
     }
 
-    public int getEventID(){
+    public String getEventID(){
         return eventID;
     }
     public String getEventName(){
@@ -100,7 +110,7 @@ public class Event {
     public void updateEvent(int eventID ,String eventName, Category eventCat, Room eventRoom,
                             Organizer eventOrg , double ticketPrice, double eventDuration, Schedule eventDate,
                             TimeSlot eventTime, Attendee [] eventAttendees){
-        //search for eventID in hashmap then
+        //search for eventID in hashmap
     }
     public void listEvents(){
 
@@ -112,14 +122,15 @@ public class Event {
     @Override
     public String toString(){
         String s;
-//        s="Event ID:"+eventID+"\nEvent name:"+ eventName + "\nEvent Category:"+ eventCat+"\nEvent Room:"+ eventRoom +
-//        "\nEvent organizer:" +
+        s="Event ID:"+eventID+"\nEvent name:"+ eventName + "\nEvent Category:"+ eventCat.toString() +
+                "\nEvent Room:"+ eventRoom.toString() + "\nEvent organizer:" + eventOrg.toString();
+
 
         return s;
     }
-    public boolean equal(Event event){
+    public boolean equals(Event event){
 
-        return
+        return(this.eventID.equals(event.eventID));
     }
 
 }

@@ -1,21 +1,25 @@
 package Karma;
+import Eyadistic.Admin;
+import Yahia.User;
 
 public class Category {
-    private int catID; //store the ID of each category
-    private String catName;  // name of the category
+    private String catID; //store the ID of each category
+    private String catName; // name of the category
+    public static int totCats = 0;
 
     //constructors
     public Category() {              // no arg constructor for initializing (unnecessary but may help later)
-        this.catID = -1;    // so we detect unassigned category IDs later
-        this.catName = "";  // to avoid null pointer exceptions later
+        totCats++;
+
     }
 
      public Category(String catName) {
         this.catName = catName;
+        this.catID = "C" + System.nanoTime();
     }
 
     //getters & setters
-    public int getCatID() {
+    public String getCatID() {
         return catID;
     }
 
@@ -28,15 +32,16 @@ public class Category {
         // IF EXISTS, CATEGORY WON'T BE ADDED
         this.catName = catName;
     }
-//
-//    // CRUD
-//    public void createCat(String catName, User obj) {
-//        if (!(obj instanceof Admin)) {
-//            throw new AccessDenied("You do not have permission to use this method. \n Only Admins are allowed to create categories");
-//        }
-//        // EYAD's method
-//
-//    }
+
+    // CRUD
+    public void createCat(String catName, User obj) {
+        if (!(obj instanceof Admin)) {
+            throw new AccessDenied("You do not have permission to use this method. \n Only Admins are allowed to create categories");
+        }
+
+
+    }
+
 
 
 }
