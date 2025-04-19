@@ -21,7 +21,7 @@ public class Admin extends User{
 
 
     //Constructors//
-    Admin(){}
+    public Admin(){}
 
     public Admin(String email, String username, String contactNo, String password,
                     Date dateOfBirth, String address, gender gen, String role, String workingHours) {
