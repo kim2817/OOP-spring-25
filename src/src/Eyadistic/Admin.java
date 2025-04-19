@@ -6,10 +6,7 @@ import Yahia.gender;
 import x3mara.*;
 import Jasmin.Event;
 
-import javax.xml.crypto.Data;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 
 public class Admin extends User{
@@ -102,7 +99,7 @@ public class Admin extends User{
 
     public boolean equals(Object o){
         if (o instanceof Admin){
-            return (this.role == ((Admin) o).getRole()) && (this.workingHours == ((Admin) o).getWorkingHours());
+            return (this.role.equals(((Admin) o).getRole()) && (this.workingHours.equals(((Admin) o).getWorkingHours())));
         }
         else return false;
     }
