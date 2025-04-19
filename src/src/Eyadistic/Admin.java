@@ -1,10 +1,15 @@
 package Eyadistic;
+import Yahia.Organizer;
 import Yahia.User;
+import Omar.Attendee;
 import Yahia.gender;
 import x3mara.*;
 import Jasmin.Event;
 
+import javax.xml.crypto.Data;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class Admin extends User{
@@ -55,7 +60,15 @@ public class Admin extends User{
     }
 
     public void viewEvents(){
+        Database.readAll(new Event());
+    }
 
+    public void viewOrganizers(){
+        Database.readAll(new Organizer());
+    }
+
+    public void viewAttendee(){
+        Database.readAll(new Attendee());
     }
 
     public void setID(String ID) {
@@ -84,7 +97,6 @@ public class Admin extends User{
                 '}';
     }
 
-    //till User class is made
     //Methods to be added:
-    //viewEvents, viewAttendees, viewOrganizers, login, register, toString, equals//
+    //login, register, equals//
 }
