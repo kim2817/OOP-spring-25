@@ -5,13 +5,14 @@ import Jasmin.Event;
 import java.util.Scanner;
 
 
-public class Organizer {
+public class Organizer extends Userw {
 
     private String organizerName;
     private String contactInfo;
     private int numOfEvents;
     private Event[] currentEvents = new Event[numOfEvents];
     private double balance;
+
 
     public Organizer(){
 
