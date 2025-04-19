@@ -1,8 +1,9 @@
 package Yahia;
 
 import java.util.Date;
+import x3mara.*;
 
-abstract public class User {
+abstract public class User implements HasID {
     private String email;
     private String username;
     private String contactNo;
