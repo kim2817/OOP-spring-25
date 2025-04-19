@@ -1,3 +1,3 @@
-public interface hasID {
+public interface HasID {
     public String getID();
 }

@@ -23,6 +23,7 @@ public class Schedule {
             if(!hashMap.get(slot)){
                 throw new IllegalStateException("what the fuck?");
             }
+            if(ret.length() != 1) ret.append("; ");
             ret.append((String)(slot[0] + " @ " + slot[1]));
         }
         ret.append("}");

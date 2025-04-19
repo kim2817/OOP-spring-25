@@ -1,6 +1,6 @@
 import java.util.Date;
 
-public class Room implements hasID{
+public class Room implements HasID {
     private final String roomID;
     private String roomName;
     private int roomCapacity;

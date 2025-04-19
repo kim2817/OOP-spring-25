@@ -1,4 +1,4 @@
-public class Wallet implements hasID {
+public class Wallet implements HasID {
     private final String walletID;
     private double balance;
     public Wallet(){
