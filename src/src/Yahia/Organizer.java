@@ -2,34 +2,33 @@ package Yahia;
 
 import Jasmin.Event;
 
+
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Scanner;
 import x3mara.*;
 
 
 public class Organizer extends User {
 
-    private String organizerName;
-
     public Organizer(){
     ID = "O" + System.nanoTime();
     }
 
-    public Organizer(String organizerName, String contactNo, double balance) {
-        this.organizerName = organizerName;
+    public Organizer( String contactNo, double balance) {
+
         this.contactNo = this.contactNo;
         this.balance = balance;
+        ID = "O" + System.nanoTime();
     }
 
-    public String getOrganizerName() {
-        return organizerName;
-    }
     public String getContactInfo() {
         return contactNo;
     }
     public void viewCurrentEvents() {
 
     }
+
     public void manageEventDetails(){
         String targetID;
         Scanner cin = new Scanner(System.in);
@@ -40,6 +39,7 @@ public class Organizer extends User {
         //if target id was not found return error message
         cin.close();
     }
+
     public void viewEventStats(){
         String targetID;
         Scanner cin = new Scanner(System.in);
@@ -50,6 +50,7 @@ public class Organizer extends User {
         //if target id was not found return error message
         cin.close();
     }
+
     public void rentRoom(){
         String targetRoomID;
         Scanner cin = new Scanner(System.in);
@@ -77,8 +78,11 @@ public class Organizer extends User {
         System.out.println(Arrays.toString(Database.readAll(new Event())));
     }
 
-    public void showAvailableRooms(){
+    public void showAvailableRooms(Date date, TimeSlot timeSlot){
+        for(int i = 0;i < (Database.readAll((new Room()))).length;i++){
 
+
+        }
     }
 
     public void register(){
@@ -87,10 +91,16 @@ public class Organizer extends User {
 
     @Override
     public String toString() {
-        return "organizer{" +
-                "organizerName='" + organizerName + '\'' +
-                ", contactInfo='" + contactNo + '\'' +
+        return "Organizer{" +
+                "email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", contactNo='" + contactNo + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", password='" + password + '\'' +
+                ", address='" + address + '\'' +
                 ", balance=" + balance +
+                ", gen=" + gen +
+                ", ID='" + ID + '\'' +
                 '}';
     }
 
