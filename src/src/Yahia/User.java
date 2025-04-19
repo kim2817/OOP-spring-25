@@ -12,49 +12,19 @@ abstract public class User implements HasID {
     private String address;
     private double balance;
     private gender gen;
+    private String ID;
 
-    public String getEmail() {
-        return email;
-    }
-    public String getUsername() {
-        return username;
-    }
-    public String getContactNo() {
-        return contactNo;
-    }
-    public String getPassword() {
-        return password;
-    }
-    public gender getGen() {
-        return gen;
-    }
-    public double getBalance() {
-        return balance;
-    }
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
-    public String getAddress() {
-        return address;
-    }
-
-    public User(){
-
-    }
+    abstract public String getEmail();
+    abstract public String getUsername();
+    abstract public String getContactNo();
+    abstract public String getPassword();
+    abstract public gender getGen();
+    abstract public double getBalance();
+    abstract public Date getDateOfBirth();
+    abstract public String getAddress();
 
     @Override
-    public String toString() {
-        return "User{" +
-                "email='" + email + '\'' +
-                ", username='" + username + '\'' +
-                ", contactNo='" + contactNo + '\'' +
-                ", password='" + password + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
-                ", address='" + address + '\'' +
-                ", balance=" + balance +
-                ", gen=" + gen +
-                '}';
-    }
+    abstract public String toString();
 
     protected abstract void login();
 
