@@ -4,7 +4,7 @@ public class Wallet implements HasID {
     private final String walletID;
     private double balance;
     public Wallet(){
-        this(0.0);
+        walletID = "W" + System.nanoTime();
     }
     public Wallet(double balance){
         walletID = "W" + System.nanoTime(); // change to user id
@@ -31,5 +31,10 @@ public class Wallet implements HasID {
     }
     public String getID() {
         return walletID;
+    }
+
+    @Override
+    public String toString() {
+        return "{ID: " + walletID + "; Balance: " + balance + "}";
     }
 }
