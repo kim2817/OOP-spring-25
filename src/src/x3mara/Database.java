@@ -1,5 +1,6 @@
 package x3mara;
 
+import Eyadistic.Admin;
 import Omar.Attendee;
 import Yahia.gender;
 
@@ -65,6 +66,9 @@ public class Database {
                     break;
                 case "Attendee":
                     create(new Attendee(in.next(),in.next(),in.next(),in.next(),new Date(in.nextLong()),in.next(),(in.nextBoolean()?gender.male:gender.female),in.nextInt(),in.next(),new int[0][0],in.nextDouble()));
+                    break;
+                case "Admin":
+                    create(new Admin(in.next(),in.next(),in.next(),in.next(),new Date(in.nextLong()),in.next(),(in.nextBoolean()?gender.male:gender.female),in.next(),in.next()));
                     break;
             }
             s = in.next();
