@@ -72,6 +72,11 @@ abstract public class User implements HasID {
     @Override
     abstract public String toString();
 
-//    protected abstract void login();
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
+    //    protected abstract void login();
 
 }
