@@ -1,29 +1,47 @@
 package Omar;
+import Yahia.gender;
+import x3mara.HasID;
+import Yahia.User;
+import java.util.Date;
+import Karma.*;
+import x3mara.*;
+import Jasmin.*;
+import java.util.Scanner;
 
-import Jasmin.Event;
-import Karma.Category;
-import x3mara.Wallet;
-
-import java.util.UUID;
-
-public class Attendee {
-    private String id;
+public class Attendee extends User implements HasID {
+    private String ID;
     private int age;
     private String city;
     private Wallet balance;
     private int[][] Purchasedtickets;
+    private Category[] interest = new Category[3];
 
     public Attendee() {
-        this.id = UUID.randomUUID().toString();
+        this.ID = "A" + System.nanoTime();
     }
 
-    public Attendee(int age, String city, int[][] Purchasedtickets, double balance) {
-        this.id = UUID.randomUUID().toString();
+    public Attendee(String email, String username, String contactNo, String password,
+                    Date dateOfBirth, String address, gender gen,
+                    int age, String city, int[][] Purchasedtickets, double walletBalance) {
+        this.email = email;
+        this.username = username;
+        this.contactNo = contactNo;
+        this.password = password;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
+        this.gen = gen;
+        this.ID = "A" + System.nanoTime();
         this.age = age;
         this.city = city;
-        this.balance = new Wallet(balance);
+        this.balance = new Wallet(walletBalance);
         this.Purchasedtickets = Purchasedtickets;
     }
+
+    @Override
+    public String getID() {
+        return ID;
+    }
+
 
     public int getAge() {
         return age;
@@ -44,25 +62,44 @@ public class Attendee {
         return Purchasedtickets;
     }
 
-    public Category chooseInterest() {
-        return new Category();
+    public void chooseInterest() {
+        System.out.println(Database.readAll(new Category()));
+        System.out.println("Please type Category ID");
+        Scanner input = new Scanner(System.in);
+        for (int i = 0 ; i<3 ;i++){
+            String tempID = input.next();
+            interest[i] = (Category) Database.read(tempID);
+        }
+
     }
 
-    public Event showEvents() {
-        return new Event();
+    public void showEvents() {
+        System.out.println(Database.readAll(new Event()));
+        System.out.println("Please type Event ID");
     }
 
     public void chooseEvent() {
-        ///
+        Scanner input = new Scanner(System.in);
+        System.out.println("Please type Event ID");
+        String tempID = input.next();
+         Event chosenEvent =(Event)  Database.read(tempID);
+        try{
+            System.out.println(chosenEvent);
+            System.out.println("number of tickets");
+            int temmmp = input.nextInt();
+            buyTickets(temmmp,tempID,(chosenEvent.getTicketPrice()));
+        }catch (Exception ex){
+            System.out.println("Something wrong happened here -_-");
+        }
     }
 
-    public void buyTickets(int noOfTickets, int eventID, int price) {
+    public void buyTickets(int noOfTickets, String eventID, double price) {
         double total = price * noOfTickets;
         if (balance.isSufficient(total)) {
             balance.withdraw(total);
-            System.out.println("You have purchased" + noOfTickets + "for eventID" + eventID);
+            System.out.println("You have purchased " + noOfTickets + " ticket(s) for event ID " + eventID);
         } else {
-            System.out.println("Insufficient balance");
+            throw new RuntimeException("Not enough moneym,get a job");
         }
     }
 
@@ -70,7 +107,8 @@ public class Attendee {
 
     }
 
-   @Override
+
+    @Override
     public String toString() {
         return  "Attendee[age=" + age + ", city=" + city + ", balance=" + balance.getBalance() + "]";
     }
