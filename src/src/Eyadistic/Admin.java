@@ -17,15 +17,24 @@ public class Admin extends User{
     //Attributes
     private String role;
     private String workingHours;
-    private String ID = "a" + System.nanoTime();
+    private String ID;
 
 
     //Constructors//
     Admin(){}
 
-    Admin(String role, String workingHours){
-        this.role = role;
+    public Admin(String email, String username, String contactNo, String password,
+                    Date dateOfBirth, String address, gender gen, String role, String workingHours) {
+        this.email = email;
+        this.username = username;
+        this.contactNo = contactNo;
+        this.password = password;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
+        this.gen = gen;
+        this.ID = "a" + System.nanoTime();
         this.workingHours = workingHours;
+        this.role = role;
     }
 
 
@@ -66,7 +75,7 @@ public class Admin extends User{
     }
 
     public void setID(String ID) {
-        this.ID = ID;
+        this.ID = "a" + System.nanoTime();
     }
 
     @Override
