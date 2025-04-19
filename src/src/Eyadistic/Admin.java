@@ -46,7 +46,11 @@ public class Admin extends User{
         this.workingHours = workingHours;
     }
 
-    public void addRooms(String roomName, String roomCapacity, int rentPrice, double bookedSlots, Schedule[] bookedList){
+    public void addRooms(String roomName, String roomCapacity, int rentPrice, double bookedSlots, Schedule[] bookedList, Room o){
+    Database.create(o);
+    o.setRoomName(roomName);
+    o.setroo
+
     }
 
     @Override
@@ -99,16 +103,18 @@ public class Admin extends User{
 
     @Override
     public String toString(){
-       return "User{" +
-                "email='" + getEmail() + '\'' +
-                ", username='" + getUsername() + '\'' +
-                ", contactNo='" + getContactNo() + '\'' +
-                ", password='" + getPassword() + '\'' +
-                ", dateOfBirth=" + getDateOfBirth() +
-                ", address='" + getAddress() + '\'' +
-                ", balance=" + getBalance() +
-                ", gen=" + getGen() +
-                ", ID='" + getID() + '\'' +
+       return "Admin{" +
+                "email='" + this.email + '\'' +
+                ", username='" + this.username + '\'' +
+                ", role='" + this.role + '\'' +
+                ", workingHours='" + this.workingHours + '\'' +
+                ", contactNo='" + this.contactNo + '\'' +
+                ", password='" +  this.password + '\'' +
+                ", dateOfBirth=" + this.dateOfBirth +
+                ", address='" + this.address + '\'' +
+                ", balance=" + this.balance +
+                ", gen=" + this.gen +
+                ", ID='" + this.ID + '\'' +
                 '}';
     }
 
