@@ -1,5 +1,8 @@
 package Eyadistic;
 import Yahia.User;
+import x3mara.Schedule;
+import x3mara.Database;
+
 
 public class Admin extends User{
 
@@ -7,6 +10,7 @@ public class Admin extends User{
     //Attributes
     private String role;
     private String workingHours;
+    private String ID = "a" + System.nanoTime();
 
 
     //Constructors//
@@ -40,8 +44,16 @@ public class Admin extends User{
         this.workingHours = workingHours;
     }
 
-    public void addRooms(String roomName, String roomCapacity, int rentPrice, double bookedSlots){}
-
+    public void addRooms(String roomName, String roomCapacity, int rentPrice, double bookedSlots, Schedule[] bookedList){
+    }
+    @Override
+    public String toString(){
+        return "Wok";
+    }
+    @Override
+    public String getID() {
+        return ID;
+    }
     //till User class is made
     //Methods to be added:
     //addRooms, viewEvents, viewAttendees, viewOrganizers, login, register, toString, equals//
