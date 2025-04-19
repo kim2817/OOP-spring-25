@@ -1,4 +1,4 @@
-public class Admin {
+public class Admin extends User{
 
 
     //Attributes
@@ -31,6 +31,8 @@ public class Admin {
     public void setWorkingHours(String workingHours) {
         this.workingHours = workingHours;
     }
+
+    public void addRooms(String roomName, String roomCapacity, int rentPrice, double bookedSlots){}
 
     //till User class is made
     //Methods to be added:
