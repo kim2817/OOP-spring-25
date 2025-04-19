@@ -28,9 +28,7 @@ public class Organizer extends User {
         return contactNo;
     }
     public void viewCurrentEvents() {
-        for(int i=0;i<numOfEvents;i++){
-            System.out.println(currentEvents[i]);
-        }
+
     }
     public void manageEventDetails(){
         String targetID;
