@@ -46,11 +46,11 @@ public class Admin extends User{
         this.workingHours = workingHours;
     }
 
-    public void addRooms(String roomName, String roomCapacity, int rentPrice, double bookedSlots, Schedule[] bookedList, Room o){
+    public void addRooms(Room o, String roomName, int roomCapacity, double rentPrice){
     Database.create(o);
     o.setRoomName(roomName);
-    o.setroo
-
+    o.setRoomCapacity(roomCapacity);
+    o.setRentPrice(rentPrice);
     }
 
     @Override
