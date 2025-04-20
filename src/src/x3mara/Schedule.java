@@ -1,32 +1,32 @@
 package x3mara;
 
 import java.util.HashMap;
-import java.util.Date;
+import Karma.DateTime;
 
 public class Schedule {
-    private HashMap<Object[],Boolean> hashMap;
+    private HashMap<DateTime,Boolean> hashMap;
     Schedule(){
         hashMap = new HashMap<>();
     }
-    boolean isAvailable(Date date, TimeSlot timeSlot){
-        return hashMap.get(new Object[]{date,timeSlot}) == null;
+    boolean isAvailable(DateTime dateTime){
+        return hashMap.get(dateTime) == null;
     }
-    void add(Date date, TimeSlot timeSlot){
-        hashMap.put(new Object[]{date, timeSlot}, true);
+    void add(DateTime dateTime){
+        hashMap.put(dateTime, true);
     }
-    void remove(Date date, TimeSlot timeSlot){
-        hashMap.remove(new Object[]{date, timeSlot});
+    void remove(DateTime dateTime){
+        hashMap.remove(dateTime);
     }
 
     @Override
     public String toString() {
         StringBuilder ret = new StringBuilder("{");
-        for(Object[] slot:hashMap.keySet()){
+        for(DateTime slot:hashMap.keySet()){
             if(!hashMap.get(slot)){
                 throw new IllegalStateException("what the fuck?");
             }
             if(ret.length() != 1) ret.append("; ");
-            ret.append((String)(slot[0] + " @ " + slot[1]));
+            ret.append(slot.toString());
         }
         ret.append("}");
         return ret.toString();
