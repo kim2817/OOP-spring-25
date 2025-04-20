@@ -3,13 +3,11 @@ import java.util.Date;
 import Karma.Category;
 import Eyadistic.Admin;
 import Omar.Attendee;
-import x3mara.Database;
-import x3mara.Room;
-import x3mara.Schedule;
-import x3mara.TimeSlot;
+import Yahia.User;
+import x3mara.*;
 import Yahia.Organizer;
 
-public class Event {
+public class Event implements HasID {
     static int totEvents =0;
     private String eventID;
     private String eventName;
@@ -18,16 +16,16 @@ public class Event {
     private Organizer eventOrg;
     private double ticketPrice;
     private double eventDuration;
-    private Date eventDate;
+    private Schedule eventDate;
     private TimeSlot eventTime;
     private Attendee [] eventAttendees;
 
-
-    public void Event(){
+//Constructors
+    public Event(){
         totEvents++;
     }
-    public void Event(String eventName, Category eventCat, Room eventRoom, Organizer eventOrg ,
-                      double ticketPrice, double eventDuration, Date eventDate,TimeSlot eventTime  ){
+    public Event(String eventName, Category eventCat, Room eventRoom, Organizer eventOrg ,
+                      double ticketPrice, double eventDuration, Schedule eventDate,TimeSlot eventTime  ){
         this.eventID= "E"+System.nanoTime();
         this.eventName= eventName;
         this.eventCat= eventCat;
@@ -38,52 +36,28 @@ public class Event {
         this.eventDate = eventDate;
         this.eventTime= eventTime;
         this.eventAttendees = new Attendee[100];
+        eventCat.addEvent(this);
         totEvents++;
-
     }
 
-    public String getEventID(){
-        return eventID;
-    }
-    public String getEventName(){
-        return eventName;
-    }
-    public Category getEventCat(){
-        return eventCat;
-    }
-    public Room getEventRoom(){
-        return eventRoom;
-    }
-    public Organizer getEventOrg(){
-        return eventOrg;
-    }
-    public double getTicketPrice(){
-        return ticketPrice;
-    }
-    public Attendee [] getEventAttendees(){
-        return eventAttendees;
-    }
-    public double getEventDuration(){
-        return eventDuration;
-    }
-    public Date getEventDate() {
-        return eventDate;
-    }
-    public TimeSlot getEventTime(){
-        return eventTime;
-    }
+    //accessors
+    public String getID(){return eventID;}
+    public String getEventName(){return eventName;}
+    public Category getEventCat(){return eventCat;}
+    public Room getEventRoom(){return eventRoom;}
+    public Organizer getEventOrg(){return eventOrg;}
+    public double getTicketPrice(){return ticketPrice;}
+    public Attendee [] getEventAttendees(){return eventAttendees;}
+    public double getEventDuration(){return eventDuration;}
+    public Schedule getEventDate() {return eventDate;}
+    public TimeSlot getEventTime(){return eventTime;}
 
-    public void setEventName(String eventName){
-        this.eventName=eventName;
-    }
+    //mutators
+    public void setEventName(String eventName){this.eventName=eventName;}
     //check that category matches outputted values from category maps before using this setter
-    public void setEventCat(Category eventCat){
-        this.eventCat=eventCat;
-    }
+    public void setEventCat(Category eventCat){this.eventCat=eventCat;}
     //validate that room is available using isAvailable () before using this setter
-    public void setEventRoom(Room eventRoom){
-        this.eventRoom=eventRoom;
-    }
+    public void setEventRoom(Room eventRoom){this.eventRoom=eventRoom;}
     public void setTicketPrice(double ticketPrice){
         if (ticketPrice>0){
             this.ticketPrice=ticketPrice;
@@ -94,15 +68,19 @@ public class Event {
             this.eventDuration=eventDuration;
         }
     }
-    public void setEventDate(Date eventDate){
+    public void setEventDate(Schedule eventDate){
         this.eventDate=eventDate;
     }
     public void setEventTime( TimeSlot eventTime){
         this.eventTime=eventTime;
     }
 
+    //CRUD
+    private void createEvent(User obj) {
+        Database.create(this);
+    }
     public void createEvent(String eventName, Category eventCat, Room eventRoom, Organizer eventOrg ,
-                            double ticketPrice, double eventDuration, Date eventDate, TimeSlot eventTime ){
+                            double ticketPrice, double eventDuration, Schedule eventDate, TimeSlot eventTime ){
         Event(eventName, eventCat,eventRoom,eventOrg,ticketPrice, eventDuration, eventDate, eventTime );
 
     }
