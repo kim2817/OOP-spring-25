@@ -42,6 +42,11 @@ public class Category implements HasID {
         return catName;
     }
 
+    public Event[] getEvents() {
+        return Arrays.copyOf(events, numEvents); // to ignore the null values
+    }
+
+
     public void setCatName(String catName) {
         this.catName = catName;
     }
@@ -62,6 +67,7 @@ public class Category implements HasID {
             events[numEvents++] = event;
         }
     }
+
 
     @Override
     public String toString() {
