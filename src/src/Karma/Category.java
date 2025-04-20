@@ -19,6 +19,7 @@ public class Category implements HasID {
     // no-arg constructor
     public Category() {
         System.out.print("Enter category name: ");
+        catName = input.nextLine();
         this.catName = catName;
         this.catID = "C" + System.nanoTime();
         totCats++;
@@ -40,30 +41,11 @@ public class Category implements HasID {
     }
 
     public void setCatName(String catName) {
-        // IF EXISTS, CATEGORY WON'T BE ADDED
         this.catName = catName;
     }
 
-    protected final void ValidateCategoryAccess(User obj){  // method that throws exception if someone other than admin tries to use the method
-        if (!(obj instanceof Admin)) {
-            throw new AccessDenied("You do not have permission to use this method. \n Only Admins are allowed to modify categories");
-        }
-    }
-    // CRUD
-    public void createCat(User obj) {
-        ValidateCategoryAccess(obj);
-        Database.create(this);
-    }
-    public void updateCat(User obj){
-        ValidateCategoryAccess(obj);
-        Database.update(this);
-    }
-    public void deleteCat(User obj){
-        ValidateCategoryAccess(obj);
-        Database.delete(this);
-    }
     public static void listAllCategories(){
-
+        System.out.println(Arrays.toString(Database.readAll(new Category())));
     }
 
     @Override
