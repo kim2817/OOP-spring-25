@@ -97,10 +97,12 @@ public class Organizer extends User {
     }
 
     public void showAvailableRooms(Date date, TimeSlot timeSlot){
-        Room[] roomArray = Database.readAll((new Room()));
+        Room[] roomArray = (Room[])Database.readAll((new Room()));
 
-        for(int i = 0;i < (Database.readAll((new Room()))).length;i++){
-            roomArray[i].isAvailable(date,timeSlot);
+        for(int i = 0; i < (Database.readAll((new Room()))).length; i++){
+            if(roomArray[i].isAvailable(date,timeSlot)){
+                System.out.println(roomArray.toString());
+            }
 
         }
     }
