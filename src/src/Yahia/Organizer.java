@@ -15,18 +15,22 @@ public class Organizer extends User {
     ID = "O" + System.nanoTime();
     }
 
-    public Organizer( String contactNo, double balance) {
-
-        this.contactNo = this.contactNo;
+    public Organizer(String email, String username, String contactNo, String password, Date dateOfBirth, String address, double balance, gender gen) {
+        this.email = email;
+        this.username = username;
+        this.contactNo = contactNo;
+        this.password = password;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
         this.balance = balance;
+        this.gen = gen;
         ID = "O" + System.nanoTime();
     }
-
     public String getContactInfo() {
         return contactNo;
     }
     public void viewCurrentEvents() {
-
+         System.out.println(Database.readAll(new Event()));
     }
 
     public void manageEventDetails(){
@@ -45,6 +49,19 @@ public class Organizer extends User {
         Scanner cin = new Scanner(System.in);
         System.out.println("Enter event ID");
         targetID = cin.next();
+        Event chosenEvent = (Event) Database.read(targetID);
+        System.out.println(
+                chosenEvent.getEventID()
+                        + chosenEvent.getEventName()
+                        + Arrays.toString(chosenEvent.getEventAttendees())
+                        + chosenEvent.getEventCat()
+                        + chosenEvent.getEventDate()
+                        + chosenEvent.getEventDuration()
+                        + chosenEvent.getTicketPrice()
+                        + chosenEvent.getEventRoom()
+                        + chosenEvent.getEventTime()
+        );
+
         //search for target event id
         //call getters of event with target id
         //if target id was not found return error message
@@ -79,14 +96,22 @@ public class Organizer extends User {
     }
 
     public void showAvailableRooms(Date date, TimeSlot timeSlot){
-        for(int i = 0;i < (Database.readAll((new Room()))).length;i++){
+        Room[] roomArray = (Room[])Database.readAll((new Room()));
 
-
+        for(int i = 0; i < (Database.readAll((new Room()))).length; i++){
+            if(roomArray[i].isAvailable(date,timeSlot)){
+                System.out.println(roomArray[i].toString());
+            }
         }
     }
 
     public void register(){
 
+    }
+
+    @Override
+    public String getID(){
+        return ID;
     }
 
     @Override

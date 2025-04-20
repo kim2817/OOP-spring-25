@@ -18,6 +18,7 @@ abstract public class User implements HasID {
 
     }
 
+
     public String getUsername() {
         return username;
     }
