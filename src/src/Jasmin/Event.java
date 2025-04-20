@@ -23,10 +23,10 @@ public class Event {
     private Attendee [] eventAttendees;
 
 
-    public void Event(){
+    public Event(){
         totEvents++;
     }
-    public void Event(String eventName, Category eventCat, Room eventRoom, Organizer eventOrg ,
+    public Event(String eventName, Category eventCat, Room eventRoom, Organizer eventOrg ,
                       double ticketPrice, double eventDuration, Schedule eventDate,TimeSlot eventTime  ){
         this.eventID= "E"+System.nanoTime();
         this.eventName= eventName;
