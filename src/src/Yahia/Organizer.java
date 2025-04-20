@@ -101,9 +101,8 @@ public class Organizer extends User {
 
         for(int i = 0; i < (Database.readAll((new Room()))).length; i++){
             if(roomArray[i].isAvailable(date,timeSlot)){
-                System.out.println(roomArray.toString());
+                System.out.println(roomArray[i].toString());
             }
-
         }
     }
 
