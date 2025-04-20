@@ -5,13 +5,14 @@ import x3mara.*;
 import Jasmin.*;
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Category implements HasID {
     private final String catID; //store the ID of each category
     private String catName; // name of the category
     public static int totCats = 0;
-    private Event[] events = new Event[100]; // or any reasonable size
+    private Event[] events = new Event[100];
     private int numEvents = 0;
 
 
@@ -68,11 +69,13 @@ public class Category implements HasID {
         }
     }
 
-
     @Override
     public String toString() {
         return "ID: " + catID + "\n Name: " + catName;
     }
 
+    public boolean equals(Category cat) {
+        return this.catName.equals(cat.catName);
+    }
 
 }
