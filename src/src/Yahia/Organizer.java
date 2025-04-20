@@ -15,10 +15,15 @@ public class Organizer extends User {
     ID = "O" + System.nanoTime();
     }
 
-    public Organizer( String contactNo, double balance) {
-
-        this.contactNo = this.contactNo;
+    public Organizer(String email, String username, String contactNo, String password, Date dateOfBirth, String address, double balance, gender gen) {
+        this.email = email;
+        this.username = username;
+        this.contactNo = contactNo;
+        this.password = password;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
         this.balance = balance;
+        this.gen = gen;
         ID = "O" + System.nanoTime();
     }
 
@@ -87,6 +92,11 @@ public class Organizer extends User {
 
     public void register(){
 
+    }
+
+    @Override
+    public String getID(){
+        return ID;
     }
 
     @Override
