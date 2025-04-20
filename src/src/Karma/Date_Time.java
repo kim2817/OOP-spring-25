@@ -26,6 +26,7 @@ public class Date_Time {
     }
 
     public void setDay(int day) {
+
         this.day = day;
     }
 
@@ -40,4 +41,5 @@ public class Date_Time {
     public void setTime(TimeSlot time) {
         this.time = time;
     }
+
 }

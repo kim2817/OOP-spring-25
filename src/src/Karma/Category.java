@@ -2,21 +2,31 @@ package Karma;
 import Eyadistic.*;
 import Yahia.*;
 import x3mara.*;
+import Jasmin.*;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Category implements HasID {
     private String catID; //store the ID of each category
     private String catName; // name of the category
     public static int totCats = 0;
+    private Event[] events;
 
+    Scanner input = new Scanner(System.in);
 
     //constructors
-    public Category() {              // no arg constructor
+    // no-arg constructor
+    public Category() {
+        System.out.print("Enter category name: ");
+        String catName = input.nextLine();
+        this.catName = catName;
+        this.catID = "C" + System.nanoTime();
         totCats++;
     }
 
-     public Category(String catName) {
+    // Arg constructor
+    public Category(String catName) {
         this.catName = catName;
         this.catID = "C" + System.nanoTime();
         totCats++;
