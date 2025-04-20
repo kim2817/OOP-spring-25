@@ -31,7 +31,7 @@ public class Organizer extends User {
         return contactNo;
     }
     public void viewCurrentEvents() {
-
+         System.out.println(Database.readAll(new Event()));
     }
 
     public void manageEventDetails(){
