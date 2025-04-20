@@ -71,13 +71,5 @@ public class Category implements HasID {
         return "ID: " + catID + "\n Name: " + catName;
     }
 
-    public static Category Create(){
-        Scanner cin = new Scanner(System.in);
-        String catName = cin.nextLine();
-        cin.close();
-        return new Category(catName);
-    }
-
-
 
 }
