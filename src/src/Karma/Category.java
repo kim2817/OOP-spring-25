@@ -8,10 +8,12 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Category implements HasID {
-    private String catID; //store the ID of each category
+    private final String catID; //store the ID of each category
     private String catName; // name of the category
     public static int totCats = 0;
-    private Event[] events;
+    private Event[] events = new Event[100]; // or any reasonable size
+    private int numEvents = 0;
+
 
     Scanner input = new Scanner(System.in);
 
@@ -44,8 +46,21 @@ public class Category implements HasID {
         this.catName = catName;
     }
 
+    public void setEvents(Event[] events) {
+        this.events = events;
+    }
+
     public static void listAllCategories(){
         System.out.println(Arrays.toString(Database.readAll(new Category())));
+    }
+
+    public void addEvent(Event event) {
+        if (numEvents > 100) { // to avoid exceeding the limit of the array
+            throw new ExceedLimit("You have reached the limit of events for a category");
+        }
+        else {
+            events[numEvents++] = event;
+        }
     }
 
     @Override
