@@ -37,8 +37,7 @@ public class Organizer extends User {
          System.out.println(Arrays.toString(Database.readAll(new Event())));
     }
 
-    public void manageEventDetails() {
-        public void manageEventDetails () {
+    public void manageEventDetails () {
             String targetID;
             Scanner cin = new Scanner(System.in);
             System.out.println("Enter event ID");
@@ -88,7 +87,6 @@ public class Organizer extends User {
                 //call setters of event with target id
                 //if target id was not found return error message
             }
-        }
     }
     public void viewEventStats(){
         String targetID;
