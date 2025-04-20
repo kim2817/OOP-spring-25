@@ -2,6 +2,8 @@ package Omar;
 import Yahia.gender;
 import x3mara.HasID;
 import Yahia.User;
+
+import java.util.Arrays;
 import java.util.Date;
 import Karma.*;
 import x3mara.*;
@@ -42,7 +44,6 @@ public class Attendee extends User implements HasID {
         return ID;
     }
 
-
     public int getAge() {
         return age;
     }
@@ -54,16 +55,17 @@ public class Attendee extends User implements HasID {
     public double getBalance() {
         return balance.getBalance();
     }
-    public void Attendeedeposit(double money){
+
+    public void attendeeDeposit(double money){
         balance.deposit(money);
     }
 
-    public int[][] getPurchasedtickets() {
+    public int[][] getPurchasedTickets() {
         return Purchasedtickets;
     }
 
     public void chooseInterest() {
-        System.out.println(Database.readAll(new Category()));
+        System.out.println(Arrays.toString(Database.readAll(new Category().getCatName())));
         System.out.println("Please type Category ID");
         Scanner input = new Scanner(System.in);
         for (int i = 0 ; i<3 ;i++){
