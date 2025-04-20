@@ -1,5 +1,6 @@
 package x3mara;
 
+import java.util.Arrays;
 import java.util.Date;
 
 public class Room implements HasID{
@@ -31,6 +32,9 @@ public class Room implements HasID{
     public int getRoomCapacity() {
         return roomCapacity;
     }
+    public void setRoomCapacity(int roomCapacity) {
+        this.roomCapacity = roomCapacity;
+    }
     public double getRentPrice() {
         return rentPrice;
     }
@@ -58,12 +62,12 @@ public class Room implements HasID{
         Database.delete(this);
     }
     static public void listRooms(){
-
+        System.out.println(Arrays.toString(Database.readAll(new Room())));
     }
 
     @Override
     public String toString() {
-        return "ID: " + roomID + "; Name: " + roomName + "; Capacity: " + roomCapacity + "; Rent Price: " + rentPrice + "; Location: " + roomLocation + "; Booked Slots: " + bookedSlots;
+        return "{ID: " + roomID + "; Name: " + roomName + "; Capacity: " + roomCapacity + "; Rent Price: " + rentPrice + "; Location: " + roomLocation + "; Booked Slots: " + bookedSlots + "}";
     }
     @Override
     public boolean equals(Object obj) {

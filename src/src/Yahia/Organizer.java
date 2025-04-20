@@ -1,39 +1,34 @@
 package Yahia;
 
-import java.util.Date;
 import Jasmin.Event;
+
+
+import java.util.Arrays;
+import java.util.Date;
 import java.util.Scanner;
+import x3mara.*;
 
 
-public class Organizer {
-
-    private String organizerName;
-    private String contactInfo;
-    private int numOfEvents;
-    private Event[] currentEvents = new Event[numOfEvents];
-    private double balance;
+public class Organizer extends User {
 
     public Organizer(){
-
+    ID = "O" + System.nanoTime();
     }
 
-    public Organizer(String organizerName, String contactInfo, double balance) {
-        this.organizerName = organizerName;
-        this.contactInfo = contactInfo;
+    public Organizer( String contactNo, double balance) {
+
+        this.contactNo = this.contactNo;
         this.balance = balance;
+        ID = "O" + System.nanoTime();
     }
 
-    public String getOrganizerName() {
-        return organizerName;
-    }
     public String getContactInfo() {
-        return contactInfo;
+        return contactNo;
     }
     public void viewCurrentEvents() {
-        for(int i=0;i<numOfEvents;i++){
-            System.out.println(currentEvents[i]);
-        }
+
     }
+
     public void manageEventDetails(){
         String targetID;
         Scanner cin = new Scanner(System.in);
@@ -44,6 +39,7 @@ public class Organizer {
         //if target id was not found return error message
         cin.close();
     }
+
     public void viewEventStats(){
         String targetID;
         Scanner cin = new Scanner(System.in);
@@ -54,6 +50,7 @@ public class Organizer {
         //if target id was not found return error message
         cin.close();
     }
+
     public void rentRoom(){
         String targetRoomID;
         Scanner cin = new Scanner(System.in);
@@ -66,20 +63,44 @@ public class Organizer {
         //if yes then call room setter with targetRoomID and change its isAvailable
         cin.close();
     }
-    public void showAvailableRooms(){
 
+    public void create(){
+        Database.create(this);
     }
-    public void register(){
+    public void update(){
+        Database.update(this);
+    }
+    public void delete(){
+        Database.delete(this);
+    }
 
+    static public void listEvents(){
+        System.out.println(Arrays.toString(Database.readAll(new Event())));
+    }
+
+    public void showAvailableRooms(Date date, TimeSlot timeSlot){
+        for(int i = 0;i < (Database.readAll((new Room()))).length;i++){
+
+
+        }
+    }
+
+    public void register(){
 
     }
 
     @Override
     public String toString() {
-        return "organizer{" +
-                "organizerName='" + organizerName + '\'' +
-                ", contactInfo='" + contactInfo + '\'' +
+        return "Organizer{" +
+                "email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", contactNo='" + contactNo + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", password='" + password + '\'' +
+                ", address='" + address + '\'' +
                 ", balance=" + balance +
+                ", gen=" + gen +
+                ", ID='" + ID + '\'' +
                 '}';
     }
 

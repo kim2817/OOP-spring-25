@@ -1,7 +1,16 @@
 package x3mara;
 
+import Eyadistic.Admin;
+import Karma.Category;
+import Omar.Attendee;
+import Yahia.gender;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class Database {
     private static HashMap<String, Object> data = new HashMap<>();
@@ -37,5 +46,37 @@ public class Database {
             throw new RuntimeException("Invalid Object");
         }
         data.remove(((HasID)o).getID());
+    }
+
+    public static void scanInput(File source) {
+        Scanner in;
+        try{
+            in = new Scanner(source);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        String s = in.next();
+        while(!s.equals("*")){
+            System.out.println(s);
+            switch (s){
+                case "Wallet":
+                    create(new Wallet(in.nextDouble()));
+                    break;
+                case "Room":
+                    create(new Room(in.next(),in.nextInt(),in.nextDouble(),in.next()));
+                    break;
+                case "Attendee":
+                    create(new Attendee(in.next(),in.next(),in.next(),in.next(),new Date(in.nextLong()),in.next(),(in.nextBoolean()?gender.male:gender.female),in.nextInt(),in.next(),new int[0][0],in.nextDouble()));
+                    break;
+                case "Admin":
+                    create(new Admin(in.next(),in.next(),in.next(),in.next(),new Date(in.nextLong()),in.next(),(in.nextBoolean()?gender.male:gender.female),in.next(),in.next()));
+                    break;
+                case "Category":
+                    create(new Category(in.next()));
+                    break;
+            }
+            s = in.next();
+        }
+        in.close();
     }
 }
