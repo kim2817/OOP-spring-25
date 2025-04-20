@@ -27,6 +27,7 @@ public class Database {
         }
         return o;
     }
+
     public static Object[] readAll(Object o){
         ArrayList<Object> ret = new ArrayList<>();
         for(String ID:data.keySet()){

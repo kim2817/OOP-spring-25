@@ -54,7 +54,7 @@ public class Organizer extends User {
         System.out.println(
                 chosenEvent.getEventID()
                         + chosenEvent.getEventName()
-                        + chosenEvent.getEventAttendees()
+                        + Arrays.toString(chosenEvent.getEventAttendees())
                         + chosenEvent.getEventCat()
                         + chosenEvent.getEventDate()
                         + chosenEvent.getEventDuration()
@@ -97,8 +97,10 @@ public class Organizer extends User {
     }
 
     public void showAvailableRooms(Date date, TimeSlot timeSlot){
-        for(int i = 0;i < (Database.readAll((new Room()))).length;i++){
+        Room[] roomArray = Database.readAll((new Room()));
 
+        for(int i = 0;i < (Database.readAll((new Room()))).length;i++){
+            roomArray[i].isAvailable(date,timeSlot);
 
         }
     }
