@@ -1,7 +1,7 @@
 package Karma;
 import x3mara.*;
 
-public class Date_Time {
+public class DateTime {
     // attributes
     private int day;
     private int month;
