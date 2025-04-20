@@ -73,7 +73,7 @@ public class Database {
                     create(new Attendee(in.next(),in.next(),in.next(),in.next(),new Date(in.nextLong()),in.next(),(in.nextBoolean()?gender.male:gender.female),in.nextInt(),in.next(),new int[0][0],in.nextDouble()));
                     break;
                 case "Organizer":
-                    create(new Organizer(in.next(),in.next(),in.next(),in.next(),new Date(in.nextLong()),in.next(),in.nextDouble(),(in.nextBoolean()?gender.male:gender.female)));
+                    create(new Organizer(in.next(),in.next(),in.next(),in.next(),new Date(in.nextLong()),in.next(),in.nextDouble(),(in.nextBoolean()?gender.male:gender.female),new Schedule()));
                     break;
                 case "Admin":
                     create(new Admin(in.next(),in.next(),in.next(),in.next(),new Date(in.nextLong()),in.next(),(in.nextBoolean()?gender.male:gender.female),in.next(),in.next()));

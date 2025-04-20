@@ -21,9 +21,9 @@ public class Category implements HasID {
     //constructors
     // no-arg constructor
     public Category() {
-        System.out.print("Enter category name: ");
-        catName = input.nextLine();
-        this.catName = catName;
+//        System.out.print("Enter category name: ");
+//        catName = input.nextLine();
+//        this.catName = catName;
         this.catID = "C" + System.nanoTime();
         totCats++;
     }
