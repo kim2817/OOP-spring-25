@@ -63,15 +63,15 @@ public class Admin extends User{
     }
 
     public void viewEvents(){
-        Database.readAll(new Event());
+        System.out.println(Arrays.toString(Database.readAll(new Event())));
     }
 
     public void viewOrganizers(){
-        Database.readAll(new Organizer());
+        System.out.println(Arrays.toString(Database.readAll(new Organizer())));
     }
 
     public void viewAttendee(){
-        Database.readAll(new Attendee());
+        System.out.println(Arrays.toString(Database.readAll(new Attendee())));
     }
 
     public void setID(String ID) {
