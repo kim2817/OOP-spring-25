@@ -52,11 +52,15 @@ public class Organizer extends User {
         targetID = cin.next();
         Event chosenEvent = (Event) Database.read(targetID);
         System.out.println(
-                chosenEvent.getEventID() + chosenEvent.getEventName() + chosenEvent.getEventAttendees() + chosenEvent.getEventCat() +chosenEvent.getEventDate()
-                +chosenEvent.getEventDuration() + chosenEvent.getTicketPrice() +chosenEvent.getEventRoom() + chosenEvent.getEventTime()
-
-
-
+                chosenEvent.getEventID()
+                        + chosenEvent.getEventName()
+                        + chosenEvent.getEventAttendees()
+                        + chosenEvent.getEventCat()
+                        + chosenEvent.getEventDate()
+                        + chosenEvent.getEventDuration()
+                        + chosenEvent.getTicketPrice()
+                        + chosenEvent.getEventRoom()
+                        + chosenEvent.getEventTime()
         );
 
         //search for target event id
