@@ -75,7 +75,6 @@ public class Attendee extends User implements HasID {
 
     public void showEvents() {
         System.out.println(Database.readAll(new Event()));
-        System.out.println("Please type Event ID");
     }
 
     public void chooseEvent() {
@@ -95,6 +94,7 @@ public class Attendee extends User implements HasID {
 
     public void buyTickets(int noOfTickets, String eventID, double price) {
         double total = price * noOfTickets;
+
         if (balance.isSufficient(total)) {
             balance.withdraw(total);
             System.out.println("You have purchased " + noOfTickets + " ticket(s) for event ID " + eventID);
