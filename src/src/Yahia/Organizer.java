@@ -50,6 +50,15 @@ public class Organizer extends User {
         Scanner cin = new Scanner(System.in);
         System.out.println("Enter event ID");
         targetID = cin.next();
+        Event chosenEvent = (Event) Database.read(targetID);
+        System.out.println(
+                chosenEvent.getEventID() + chosenEvent.getEventName() + chosenEvent.getEventAttendees() + chosenEvent.getEventCat() +chosenEvent.getEventDate()
+                +chosenEvent.getEventDuration() + chosenEvent.getTicketPrice() +chosenEvent.getEventRoom() + chosenEvent.getEventTime()
+
+
+
+        );
+
         //search for target event id
         //call getters of event with target id
         //if target id was not found return error message
