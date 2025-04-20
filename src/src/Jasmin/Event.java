@@ -18,7 +18,7 @@ public class Event {
     private Organizer eventOrg;
     private double ticketPrice;
     private double eventDuration;
-    private Schedule eventDate;
+    private Date eventDate;
     private TimeSlot eventTime;
     private Attendee [] eventAttendees;
 
@@ -27,7 +27,7 @@ public class Event {
         totEvents++;
     }
     public void Event(String eventName, Category eventCat, Room eventRoom, Organizer eventOrg ,
-                      double ticketPrice, double eventDuration, Schedule eventDate,TimeSlot eventTime  ){
+                      double ticketPrice, double eventDuration, Date eventDate,TimeSlot eventTime  ){
         this.eventID= "E"+System.nanoTime();
         this.eventName= eventName;
         this.eventCat= eventCat;
@@ -66,7 +66,7 @@ public class Event {
     public double getEventDuration(){
         return eventDuration;
     }
-    public Schedule getEventDate() {
+    public Date getEventDate() {
         return eventDate;
     }
     public TimeSlot getEventTime(){
@@ -94,7 +94,7 @@ public class Event {
             this.eventDuration=eventDuration;
         }
     }
-    public void setEventDate(Schedule eventDate){
+    public void setEventDate(Date eventDate){
         this.eventDate=eventDate;
     }
     public void setEventTime( TimeSlot eventTime){
@@ -102,7 +102,7 @@ public class Event {
     }
 
     public void createEvent(String eventName, Category eventCat, Room eventRoom, Organizer eventOrg ,
-                            double ticketPrice, double eventDuration, Schedule eventDate, TimeSlot eventTime ){
+                            double ticketPrice, double eventDuration, Date eventDate, TimeSlot eventTime ){
         Event(eventName, eventCat,eventRoom,eventOrg,ticketPrice, eventDuration, eventDate, eventTime );
 
     }

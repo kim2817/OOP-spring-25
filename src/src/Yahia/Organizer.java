@@ -6,9 +6,11 @@ import Jasmin.Event;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
+import java.text.SimpleDateFormat;
 
-import Karma.DateTime;
+import Karma.*;
 import x3mara.*;
+import Jasmin.*;
 
 
 public class Organizer extends User {
@@ -32,20 +34,60 @@ public class Organizer extends User {
         return contactNo;
     }
     public void viewCurrentEvents() {
-         System.out.println(Database.readAll(new Event()));
+         System.out.println(Arrays.toString(Database.readAll(new Event())));
     }
 
-    public void manageEventDetails(){
-        String targetID;
-        Scanner cin = new Scanner(System.in);
-        System.out.println("Enter event ID");
-        targetID = cin.next();
-        //search for target event id
-        //call setters of event with target id
-        //if target id was not found return error message
-        cin.close();
-    }
+    public void manageEventDetails () {
+            String targetID;
+            Scanner cin = new Scanner(System.in);
+            System.out.println("Enter event ID");
+            targetID = cin.next();
+            Event chosenEvent = (Event) Database.read(targetID);
+            System.out.println("Event found: " + chosenEvent.getEventName());
+            System.out.println("Would you like to update the event? (yes/no)");
+            String response = cin.next();
+            if (response.equalsIgnoreCase("yes")) {
+                System.out.println("What would you like to update?");
+                System.out.println("1. Name");
+                System.out.println("2. Category");
+                System.out.println("3. Price");
+                System.out.println("4. Category");
+                int lol = cin.nextInt();
+                switch (lol) {
+                    case 1:
+                        System.out.println("Enter the new event name:");
+                        String newName = cin.next();
+                        chosenEvent.setEventName(newName);
+                        break;
+                    case 2:
+                        System.out.println("Enter the new event Category:");
+                        String newCaT = cin.next();
+                        chosenEvent.setEventCat(new Category(newCaT));
+                        break;
+                    case 3:
+                        System.out.println("Enter the new event price:");
+                        int newPrice = cin.nextInt();
+                        chosenEvent.setTicketPrice(newPrice);
+                        break;
+                    case 4:
+                        System.out.println("Enter the new event Date in the format DD/MM/YYYY");
+                        String newDate = cin.next();
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                        try {
+                            Date UGH = dateFormat.parse(newDate);
+                            chosenEvent.setEventDate(UGH);
+                            break;
+                        } catch (java.text.ParseException e) {
+                            System.out.println("WRONG Format  IDIOT");
+                        }
 
+
+                }
+                //search for target event id
+                //call setters of event with target id
+                //if target id was not found return error message
+            }
+    }
     public void viewEventStats(){
         String targetID;
         Scanner cin = new Scanner(System.in);

@@ -1,10 +1,13 @@
 package Eyadistic;
+import java.util.Arrays;
+import Karma.*;
 import Yahia.Organizer;
 import Yahia.User;
 import Omar.Attendee;
 import Yahia.gender;
 import x3mara.*;
 import Jasmin.Event;
+import Karma.Category;
 
 import java.util.Date;
 
@@ -60,15 +63,15 @@ public class Admin extends User{
     }
 
     public void viewEvents(){
-        Database.readAll(new Event());
+        System.out.println(Arrays.toString(Database.readAll(new Event())));
     }
 
     public void viewOrganizers(){
-        Database.readAll(new Organizer());
+        System.out.println(Arrays.toString(Database.readAll(new Organizer())));
     }
 
     public void viewAttendee(){
-        Database.readAll(new Attendee());
+        System.out.println(Arrays.toString(Database.readAll(new Attendee())));
     }
 
     public void setID(String ID) {
@@ -102,6 +105,20 @@ public class Admin extends User{
             return (this.role.equals(((Admin) o).getRole()) && (this.workingHours.equals(((Admin) o).getWorkingHours())));
         }
         else return false;
+    }
+
+    // CRUD
+    private void createCat(User obj) {
+        Database.create(this);
+    }
+    private void updateCat(User obj){
+        Database.update(this);
+    }
+    private void deleteCat(User obj){
+        Database.delete(this);
+    }
+    public static void listAllCategories(){
+        System.out.println(Arrays.toString(Database.readAll(new Category())));
     }
 
     //Methods to be added:
