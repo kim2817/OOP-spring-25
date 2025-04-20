@@ -38,31 +38,35 @@ private Schedule schedule;
          System.out.println(Arrays.toString(Database.readAll(new Event())));
     }
 
-    public void manageEventDetails () {
+    public void manageEventDetails() {
         String targetID;
         Scanner cin = new Scanner(System.in);
         System.out.println("Enter event ID");
         targetID = cin.next();
+
         Event chosenEvent = (Event) Database.read(targetID);
         System.out.println("Event found: " + chosenEvent.getEventName());
         System.out.println("Would you like to update the event? (yes/no)");
         String response = cin.next();
+
         if (response.equalsIgnoreCase("yes")) {
             System.out.println("What would you like to update?");
             System.out.println("1. Name");
             System.out.println("2. Category");
             System.out.println("3. Price");
             System.out.println("4. Date");
+
             int lol = cin.nextInt();
+
             switch (lol) {
                 case 1:
                     System.out.println("Enter the new event name:");
-                    String newName = cin.next();
+                    String newName = cin.nextLine();
                     chosenEvent.setEventName(newName);
                     break;
                 case 2:
                     System.out.println("Enter the new event Category:");
-                    String newCaT = cin.next();
+                    String newCaT = cin.nextLine();
                     chosenEvent.setEventCat(new Category(newCaT));
                     break;
                 case 3:
@@ -96,9 +100,13 @@ private Schedule schedule;
                         }
                     }
                     break;
+                default:
+                    System.out.println("Invalid option. Please select a valid number from the list (1-4).");
             }
         }
     }
+
+
 
     public void viewEventStats(){
         String targetID;
