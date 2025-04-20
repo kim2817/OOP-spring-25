@@ -1,47 +1,78 @@
 package Karma;
-import Eyadistic.Admin;
-import Yahia.User;
+import Eyadistic.*;
+import Yahia.*;
+import x3mara.*;
+import Jasmin.*;
 
-public class Category {
-    private String catID; //store the ID of each category
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Category implements HasID {
+    private final String catID; //store the ID of each category
     private String catName; // name of the category
     public static int totCats = 0;
+    private Event[] events = new Event[100]; // or any reasonable size
+    private int numEvents = 0;
+
+
+    Scanner input = new Scanner(System.in);
 
     //constructors
-    public Category() {              // no arg constructor for initializing (unnecessary but may help later)
-        totCats++;
-
-    }
-
-     public Category(String catName) {
+    // no-arg constructor
+    public Category() {
+        System.out.print("Enter category name: ");
+        catName = input.nextLine();
         this.catName = catName;
         this.catID = "C" + System.nanoTime();
+        totCats++;
+    }
+
+    // Arg constructor
+    public Category(String catName) {
+        this.catName = catName;
+        this.catID = "C" + System.nanoTime();
+        totCats++;
     }
 
     //getters & setters
-    public String getCatID() {
+    public String getID(){
         return catID;
     }
-
     public String getCatName() {
         return catName;
     }
 
+    public Event[] getEvents() {
+        return Arrays.copyOf(events, numEvents); // to ignore the null values
+    }
+
+
     public void setCatName(String catName) {
-        //MUST SEARCH FOR EXISTING CATEGORIES FROM HASHMAP FIRST
-        // IF EXISTS, CATEGORY WON'T BE ADDED
         this.catName = catName;
     }
 
-    // CRUD
-    public void createCat(String catName, User obj) {
-        if (!(obj instanceof Admin)) {
-            throw new AccessDenied("You do not have permission to use this method. \n Only Admins are allowed to create categories");
-        }
-
-
+    public void setEvents(Event[] events) {
+        this.events = events;
     }
 
+    public static void listAllCategories(){
+        System.out.println(Arrays.toString(Database.readAll(new Category())));
+    }
+
+    public void addEvent(Event event) {
+        if (numEvents > 100) { // to avoid exceeding the limit of the array
+            throw new ExceedLimit("You have reached the limit of events for a category");
+        }
+        else {
+            events[numEvents++] = event;
+        }
+    }
+
+
+    @Override
+    public String toString() {
+        return "ID: " + catID + "\n Name: " + catName;
+    }
 
 
 }

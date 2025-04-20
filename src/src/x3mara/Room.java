@@ -1,8 +1,11 @@
 package x3mara;
 
+import Karma.DateTime;
+
+import java.util.Arrays;
 import java.util.Date;
 
-public class Room implements hasID{
+public class Room implements HasID{
     private final String roomID;
     private String roomName;
     private int roomCapacity;
@@ -31,6 +34,9 @@ public class Room implements hasID{
     public int getRoomCapacity() {
         return roomCapacity;
     }
+    public void setRoomCapacity(int roomCapacity) {
+        this.roomCapacity = roomCapacity;
+    }
     public double getRentPrice() {
         return rentPrice;
     }
@@ -41,11 +47,11 @@ public class Room implements hasID{
     public void setRentPrice(double rentPrice) {
         this.rentPrice = rentPrice;
     }
-    public boolean isAvailable(Date date, TimeSlot timeSlot){
-        return bookedSlots.isAvailable(date, timeSlot);
+    public boolean isAvailable(DateTime slot){
+        return bookedSlots.isAvailable(slot);
     }
-    public void reserveSlot(Date date, TimeSlot timeSlot){
-        bookedSlots.add(date, timeSlot);
+    public void reserveSlot(DateTime slot){
+        bookedSlots.add(slot);
     }
     // CRUD \\
     public void create(){
@@ -58,12 +64,12 @@ public class Room implements hasID{
         Database.delete(this);
     }
     static public void listRooms(){
-
+        System.out.println(Arrays.toString(Database.readAll(new Room())));
     }
 
     @Override
     public String toString() {
-        return "ID: " + roomID + "; Name: " + roomName + "; Capacity: " + roomCapacity + "; Rent Price: " + rentPrice + "; Location: " + roomLocation + "; Booked Slots: " + bookedSlots;
+        return "{ID: " + roomID + "; Name: " + roomName + "; Capacity: " + roomCapacity + "; Rent Price: " + rentPrice + "; Location: " + roomLocation + "; Booked Slots: " + bookedSlots + "}";
     }
     @Override
     public boolean equals(Object obj) {

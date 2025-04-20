@@ -1,59 +1,117 @@
 package Yahia;
 
-import java.util.Date;
 import Jasmin.Event;
+
+
+import java.util.Arrays;
+import java.util.Date;
 import java.util.Scanner;
+import java.text.SimpleDateFormat;
+
+import Karma.*;
+import x3mara.*;
+import Jasmin.*;
 
 
-public class Organizer {
-
-    private String organizerName;
-    private String contactInfo;
-    private int numOfEvents;
-    private Event[] currentEvents = new Event[numOfEvents];
-    private double balance;
+public class Organizer extends User {
 
     public Organizer(){
-
+    ID = "O" + System.nanoTime();
     }
 
-    public Organizer(String organizerName, String contactInfo, double balance) {
-        this.organizerName = organizerName;
-        this.contactInfo = contactInfo;
+    public Organizer(String email, String username, String contactNo, String password, Date dateOfBirth, String address, double balance, gender gen) {
+        this.email = email;
+        this.username = username;
+        this.contactNo = contactNo;
+        this.password = password;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
         this.balance = balance;
-    }
-
-    public String getOrganizerName() {
-        return organizerName;
+        this.gen = gen;
+        ID = "O" + System.nanoTime();
     }
     public String getContactInfo() {
-        return contactInfo;
+        return contactNo;
     }
     public void viewCurrentEvents() {
-        for(int i=0;i<numOfEvents;i++){
-            System.out.println(currentEvents[i]);
-        }
+         System.out.println(Arrays.toString(Database.readAll(new Event())));
     }
-    public void manageEventDetails(){
-        String targetID;
-        Scanner cin = new Scanner(System.in);
-        System.out.println("Enter event ID");
-        targetID = cin.next();
-        //search for target event id
-        //call setters of event with target id
-        //if target id was not found return error message
-        cin.close();
+
+    public void manageEventDetails () {
+            String targetID;
+            Scanner cin = new Scanner(System.in);
+            System.out.println("Enter event ID");
+            targetID = cin.next();
+            Event chosenEvent = (Event) Database.read(targetID);
+            System.out.println("Event found: " + chosenEvent.getEventName());
+            System.out.println("Would you like to update the event? (yes/no)");
+            String response = cin.next();
+            if (response.equalsIgnoreCase("yes")) {
+                System.out.println("What would you like to update?");
+                System.out.println("1. Name");
+                System.out.println("2. Category");
+                System.out.println("3. Price");
+                System.out.println("4. Category");
+                int lol = cin.nextInt();
+                switch (lol) {
+                    case 1:
+                        System.out.println("Enter the new event name:");
+                        String newName = cin.next();
+                        chosenEvent.setEventName(newName);
+                        break;
+                    case 2:
+                        System.out.println("Enter the new event Category:");
+                        String newCaT = cin.next();
+                        chosenEvent.setEventCat(new Category(newCaT));
+                        break;
+                    case 3:
+                        System.out.println("Enter the new event price:");
+                        int newPrice = cin.nextInt();
+                        chosenEvent.setTicketPrice(newPrice);
+                        break;
+                    case 4:
+                        System.out.println("Enter the new event Date in the format DD/MM/YYYY");
+                        String newDate = cin.next();
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                        try {
+                            Date UGH = dateFormat.parse(newDate);
+                            chosenEvent.setEventDate(UGH);
+                            break;
+                        } catch (java.text.ParseException e) {
+                            System.out.println("WRONG Format  IDIOT");
+                        }
+
+
+                }
+                //search for target event id
+                //call setters of event with target id
+                //if target id was not found return error message
+            }
     }
     public void viewEventStats(){
         String targetID;
         Scanner cin = new Scanner(System.in);
         System.out.println("Enter event ID");
         targetID = cin.next();
+        Event chosenEvent = (Event) Database.read(targetID);
+        System.out.println(
+                chosenEvent.getEventID()
+                        + chosenEvent.getEventName()
+                        + Arrays.toString(chosenEvent.getEventAttendees())
+                        + chosenEvent.getEventCat()
+                        + chosenEvent.getEventDate()
+                        + chosenEvent.getEventDuration()
+                        + chosenEvent.getTicketPrice()
+                        + chosenEvent.getEventRoom()
+                        + chosenEvent.getEventTime()
+        );
+
         //search for target event id
         //call getters of event with target id
         //if target id was not found return error message
         cin.close();
     }
+
     public void rentRoom(){
         String targetRoomID;
         Scanner cin = new Scanner(System.in);
@@ -66,20 +124,52 @@ public class Organizer {
         //if yes then call room setter with targetRoomID and change its isAvailable
         cin.close();
     }
-    public void showAvailableRooms(){
 
+    public void create(){
+        Database.create(this);
     }
-    public void register(){
+    public void update(){
+        Database.update(this);
+    }
+    public void delete(){
+        Database.delete(this);
+    }
 
+    static public void listEvents(){
+        System.out.println(Arrays.toString(Database.readAll(new Event())));
+    }
+
+    public void showAvailableRooms(DateTime slot){
+        Room[] roomArray = (Room[])Database.readAll((new Room()));
+
+        for(int i = 0; i < (Database.readAll((new Room()))).length; i++){
+            if(roomArray[i].isAvailable(slot)){
+                System.out.println(roomArray[i].toString());
+            }
+        }
+    }
+
+    public void register(){
 
     }
 
     @Override
+    public String getID(){
+        return ID;
+    }
+
+    @Override
     public String toString() {
-        return "organizer{" +
-                "organizerName='" + organizerName + '\'' +
-                ", contactInfo='" + contactInfo + '\'' +
+        return "Organizer{" +
+                "email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", contactNo='" + contactNo + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", password='" + password + '\'' +
+                ", address='" + address + '\'' +
                 ", balance=" + balance +
+                ", gen=" + gen +
+                ", ID='" + ID + '\'' +
                 '}';
     }
 
