@@ -19,7 +19,6 @@ public class Category implements HasID {
     // no-arg constructor
     public Category() {
         System.out.print("Enter category name: ");
-        String catName = input.nextLine();
         this.catName = catName;
         this.catID = "C" + System.nanoTime();
         totCats++;
@@ -72,7 +71,12 @@ public class Category implements HasID {
         return "ID: " + catID + "\n Name: " + catName;
     }
 
-
+    public static Category Create(){
+        Scanner cin = new Scanner(System.in);
+        String catName = cin.nextLine();
+        cin.close();
+        return new Category(catName);
+    }
 
 
 
