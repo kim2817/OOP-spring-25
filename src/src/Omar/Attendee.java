@@ -76,7 +76,7 @@ public class Attendee extends User implements HasID {
     }
 
     public void showEvents() {
-        System.out.println(Database.readAll(new Event()));
+        System.out.println(Arrays.toString(Database.readAll(new Event())));
     }
 
     public void chooseEvent() {
