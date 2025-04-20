@@ -26,7 +26,6 @@ public class Organizer extends User {
         this.gen = gen;
         ID = "O" + System.nanoTime();
     }
-
     public String getContactInfo() {
         return contactNo;
     }

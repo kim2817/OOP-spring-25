@@ -9,7 +9,7 @@ public class Schedule {
         hashMap = new HashMap<>();
     }
     boolean isAvailable(Date date, TimeSlot timeSlot){
-        return hashMap.get(new Object[]{date, timeSlot});
+        return hashMap.get(new Object[]{date,timeSlot}) == null;
     }
     void add(Date date, TimeSlot timeSlot){
         hashMap.put(new Object[]{date, timeSlot}, true);
