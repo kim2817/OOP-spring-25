@@ -1,8 +1,9 @@
 package Karma;
-import Eyadistic.Admin;
-import Yahia.User;
-import x3mara.Database;
-import x3mara.HasID;
+import Eyadistic.*;
+import Yahia.*;
+import x3mara.*;
+
+import java.util.Arrays;
 
 public class Category implements HasID {
     private String catID; //store the ID of each category
@@ -11,14 +12,14 @@ public class Category implements HasID {
 
 
     //constructors
-    public Category() {              // no arg constructor for initializing (unnecessary but may help later)
+    public Category() {              // no arg constructor
         totCats++;
-
     }
 
      public Category(String catName) {
         this.catName = catName;
         this.catID = "C" + System.nanoTime();
+        totCats++;
     }
 
     //getters & setters
@@ -34,14 +35,34 @@ public class Category implements HasID {
         this.catName = catName;
     }
 
-    // CRUD
-    public void createCat(String catName, User obj) {
+    protected final void ValidateCategoryAccess(User obj){  // method that throws exception if someone other than admin tries to use the method
         if (!(obj instanceof Admin)) {
-            throw new AccessDenied("You do not have permission to use this method. \n Only Admins are allowed to create categories");
+            throw new AccessDenied("You do not have permission to use this method. \n Only Admins are allowed to modify categories");
         }
-        
+    }
+    // CRUD
+    public void createCat(User obj) {
+        ValidateCategoryAccess(obj);
+        Database.create(this);
+    }
+    public void updateCat(User obj){
+        ValidateCategoryAccess(obj);
+        Database.update(this);
+    }
+    public void deleteCat(User obj){
+        ValidateCategoryAccess(obj);
+        Database.delete(this);
+    }
+    public static void listAllCategories(){
 
     }
+
+    @Override
+    public String toString() {
+        return "ID: " + catID + "\n Name: " + catName;
+    }
+
+
 
 
 
