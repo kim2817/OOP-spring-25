@@ -1,7 +1,7 @@
 package Jasmin;
-import java.util.Date;
+import java.util.Arrays;
+
 import Karma.Category;
-import Eyadistic.Admin;
 import Omar.Attendee;
 import Yahia.User;
 import x3mara.*;
@@ -79,29 +79,24 @@ public class Event implements HasID {
     private void createEvent(User obj) {
         Database.create(this);
     }
-    public void createEvent(String eventName, Category eventCat, Room eventRoom, Organizer eventOrg ,
-                            double ticketPrice, double eventDuration, Schedule eventDate, TimeSlot eventTime ){
-        Event(eventName, eventCat,eventRoom,eventOrg,ticketPrice, eventDuration, eventDate, eventTime );
+    private void updateEvent(User obj){
+        Database.update(this);
+    }
+    private void deleteEvent(User obj){
+        Database.delete(this);
+    }
+    public static void listAllEvents(){
+        System.out.println(Arrays.toString(Database.readAll(new Event())));
+    }
 
-    }
-    // organizers part
-    public void updateEvent(int eventID ,String eventName, Category eventCat, Room eventRoom,
-                            Organizer eventOrg , double ticketPrice, double eventDuration, Schedule eventDate,
-                            TimeSlot eventTime, Attendee [] eventAttendees){
-        //search for eventID in hashmap
-    }
-    public void listEvents(){
-
-    }
-    public void deleteEvent(int eventID){
-
-    }
 
     @Override
     public String toString(){
         String s;
         s="Event ID:"+eventID+"\nEvent name:"+ eventName + "\nEvent Category:"+ eventCat.toString() +
-                "\nEvent Room:"+ eventRoom.toString() + "\nEvent organizer:" + eventOrg.toString();
+                "\nEvent Room:"+ eventRoom.toString() + "\nEvent organizer:" + eventOrg.toString()+ "\nTicket Price:"+
+                ticketPrice + "\nEvent Attendees:"+ eventAttendees.toString() + "\n Event Duration:" + eventDuration +
+                " hours\nEvent Date:" + eventDate.toString() + "\nEvent Time: " + eventTime.toString();
 
 
         return s;
