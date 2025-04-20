@@ -10,7 +10,7 @@ public class Room implements HasID{
     private int roomCapacity;
     private double rentPrice;
     private String roomLocation;
-    private Schedule bookedSlots;
+    private Schedule bookedSlots = new Schedule();
 
     public Room(){
         this("",100,100.00,"");
