@@ -43,21 +43,17 @@ private Schedule schedule;
         Scanner cin = new Scanner(System.in);
         System.out.println("Enter event ID");
         targetID = cin.next();
-
         Event chosenEvent = (Event) Database.read(targetID);
         System.out.println("Event found: " + chosenEvent.getEventName());
         System.out.println("Would you like to update the event? (yes/no)");
         String response = cin.next();
-
         if (response.equalsIgnoreCase("yes")) {
             System.out.println("What would you like to update?");
             System.out.println("1. Name");
             System.out.println("2. Category");
             System.out.println("3. Price");
             System.out.println("4. Date");
-
             int lol = cin.nextInt();
-
             switch (lol) {
                 case 1:
                     System.out.println("Enter the new event name:");
@@ -78,15 +74,12 @@ private Schedule schedule;
                     while (true) {
                         System.out.println("Enter the new event Date in the format DD/MM/YYYY");
                         String newDate = cin.next();
-
                         try {
                             String[] parts = newDate.split("/");
                             int day = Integer.parseInt(parts[0]);
                             int month = Integer.parseInt(parts[1]);
                             int year = Integer.parseInt(parts[2]);
-
                             DateTime UGHH = new DateTime(day, month, year);
-
                             if (schedule.isAvailable(UGHH)) {
                                 chosenEvent.setEventDate(UGHH);
                                 schedule.add(UGHH);
@@ -94,7 +87,6 @@ private Schedule schedule;
                             } else {
                                 System.out.println("Date is already taken. Try another one.");
                             }
-
                         } catch (Exception e) {
                             System.out.println("WRONG Format  IDIOT");
                         }
