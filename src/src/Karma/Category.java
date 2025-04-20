@@ -1,11 +1,14 @@
 package Karma;
 import Eyadistic.Admin;
 import Yahia.User;
+import x3mara.Database;
+import x3mara.HasID;
 
-public class Category {
+public class Category implements HasID {
     private String catID; //store the ID of each category
     private String catName; // name of the category
     public static int totCats = 0;
+
 
     //constructors
     public Category() {              // no arg constructor for initializing (unnecessary but may help later)
@@ -19,16 +22,14 @@ public class Category {
     }
 
     //getters & setters
-    public String getCatID() {
+    public String getID(){
         return catID;
     }
-
     public String getCatName() {
         return catName;
     }
 
     public void setCatName(String catName) {
-        //MUST SEARCH FOR EXISTING CATEGORIES FROM HASHMAP FIRST
         // IF EXISTS, CATEGORY WON'T BE ADDED
         this.catName = catName;
     }
@@ -38,7 +39,7 @@ public class Category {
         if (!(obj instanceof Admin)) {
             throw new AccessDenied("You do not have permission to use this method. \n Only Admins are allowed to create categories");
         }
-
+        
 
     }
 
