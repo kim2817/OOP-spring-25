@@ -1,5 +1,7 @@
 package x3mara;
 
+import Karma.DateTime;
+
 import java.util.Arrays;
 import java.util.Date;
 
@@ -45,11 +47,11 @@ public class Room implements HasID{
     public void setRentPrice(double rentPrice) {
         this.rentPrice = rentPrice;
     }
-    public boolean isAvailable(Date date, TimeSlot timeSlot){
-        return bookedSlots.isAvailable(date, timeSlot);
+    public boolean isAvailable(DateTime slot){
+        return bookedSlots.isAvailable(slot);
     }
-    public void reserveSlot(Date date, TimeSlot timeSlot){
-        bookedSlots.add(date, timeSlot);
+    public void reserveSlot(DateTime slot){
+        bookedSlots.add(slot);
     }
     // CRUD \\
     public void create(){

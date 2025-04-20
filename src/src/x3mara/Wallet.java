@@ -7,9 +7,9 @@ public class Wallet implements HasID {
         walletID = "W" + System.nanoTime();
     }
     public Wallet(double balance){
-        walletID = "W" + System.nanoTime(); // change to user id
+        walletID = "W" + System.nanoTime();
         this.balance = balance;
-        Database.create(this);
+        Database.create(this); // this should be removed and added in the attendee and the organizer create()
     }
     public double getBalance() {
         return balance;

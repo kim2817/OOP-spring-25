@@ -6,6 +6,8 @@ import Jasmin.Event;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
+
+import Karma.DateTime;
 import x3mara.*;
 
 
@@ -95,11 +97,11 @@ public class Organizer extends User {
         System.out.println(Arrays.toString(Database.readAll(new Event())));
     }
 
-    public void showAvailableRooms(Date date, TimeSlot timeSlot){
+    public void showAvailableRooms(DateTime slot){
         Room[] roomArray = (Room[])Database.readAll((new Room()));
 
         for(int i = 0; i < (Database.readAll((new Room()))).length; i++){
-            if(roomArray[i].isAvailable(date,timeSlot)){
+            if(roomArray[i].isAvailable(slot)){
                 System.out.println(roomArray[i].toString());
             }
         }
