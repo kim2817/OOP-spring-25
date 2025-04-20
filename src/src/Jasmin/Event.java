@@ -2,6 +2,7 @@ package Jasmin;
 import java.util.Date;
 import Karma.Category;
 import Eyadistic.Admin;
+import Karma.DateTime;
 import Omar.Attendee;
 import Yahia.User;
 import x3mara.*;
@@ -16,7 +17,7 @@ public class Event implements HasID {
     private Organizer eventOrg;
     private double ticketPrice;
     private double eventDuration;
-    private Schedule eventDate;
+    private DateTime eventDate;
     private TimeSlot eventTime;
     private Attendee [] eventAttendees;
 
@@ -25,7 +26,7 @@ public class Event implements HasID {
         totEvents++;
     }
     public Event(String eventName, Category eventCat, Room eventRoom, Organizer eventOrg ,
-                      double ticketPrice, double eventDuration, Schedule eventDate,TimeSlot eventTime  ){
+                      double ticketPrice, double eventDuration, DateTime eventDate,TimeSlot eventTime  ){
         this.eventID= "E"+System.nanoTime();
         this.eventName= eventName;
         this.eventCat= eventCat;
@@ -49,8 +50,11 @@ public class Event implements HasID {
     public double getTicketPrice(){return ticketPrice;}
     public Attendee [] getEventAttendees(){return eventAttendees;}
     public double getEventDuration(){return eventDuration;}
-    public Schedule getEventDate() {return eventDate;}
+    public DateTime getEventDate() {return eventDate;}
     public TimeSlot getEventTime(){return eventTime;}
+    public String getEventID(){
+        return eventID;
+    }
 
     //mutators
     public void setEventName(String eventName){this.eventName=eventName;}
@@ -68,7 +72,7 @@ public class Event implements HasID {
             this.eventDuration=eventDuration;
         }
     }
-    public void setEventDate(Schedule eventDate){
+    public void setEventDate(DateTime eventDate){
         this.eventDate=eventDate;
     }
     public void setEventTime( TimeSlot eventTime){
@@ -80,8 +84,8 @@ public class Event implements HasID {
         Database.create(this);
     }
     public void createEvent(String eventName, Category eventCat, Room eventRoom, Organizer eventOrg ,
-                            double ticketPrice, double eventDuration, Schedule eventDate, TimeSlot eventTime ){
-        Event(eventName, eventCat,eventRoom,eventOrg,ticketPrice, eventDuration, eventDate, eventTime );
+                            double ticketPrice, double eventDuration, DateTime eventDate, TimeSlot eventTime ){
+        new Event(eventName, eventCat,eventRoom,eventOrg,ticketPrice, eventDuration, eventDate, eventTime );
 
     }
     // organizers part

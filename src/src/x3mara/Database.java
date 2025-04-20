@@ -3,6 +3,7 @@ package x3mara;
 import Eyadistic.Admin;
 import Jasmin.Event;
 import Karma.Category;
+import Karma.DateTime;
 import Omar.Attendee;
 import Yahia.Organizer;
 import Yahia.gender;
@@ -81,7 +82,7 @@ public class Database {
                     create(new Category(in.next()));
                     break;
                 case "Event":
-                    create(new Event(in.next(),(Category)random(new Category()),(Room)random(new Room()),(Organizer)random(new Organizer()),in.nextDouble(),in.nextDouble(),new Schedule(),TimeSlot.translate(in.nextInt())));
+                    create(new Event(in.next(),(Category)random(new Category()),(Room)random(new Room()),(Organizer)random(new Organizer()),in.nextDouble(),in.nextDouble(),new DateTime(),TimeSlot.translate(in.nextInt())));
             }
             s = in.next();
         }
