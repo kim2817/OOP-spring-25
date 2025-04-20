@@ -101,7 +101,7 @@ private Schedule schedule;
                     }
                     break;
                 default:
-                    System.out.println("Invalid option. Please select a valid number from the list (1-4).");
+                    System.out.println("Invalid option. Please select a valid number from the list (1-4)(idiot).");
             }
         }
     }
