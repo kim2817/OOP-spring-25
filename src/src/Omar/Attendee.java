@@ -98,8 +98,8 @@ public class Attendee extends User implements HasID {
         try{
             System.out.println(chosenEvent);
             System.out.println("number of tickets");
-            int temmmp = input.nextInt();
-            buyTickets(temmmp,tempID,(chosenEvent.getTicketPrice()));
+            int temp = input.nextInt();
+            buyTickets(temp,tempID,(chosenEvent.getTicketPrice()));
         }catch (Exception ex){
             System.out.println("Something wrong happened here -_-");
         }
