@@ -1,7 +1,6 @@
 package Jasmin;
 import java.util.Arrays;
-
-import Karma.Category;
+import Karma.*;
 import Omar.Attendee;
 import Yahia.User;
 import x3mara.*;
@@ -16,7 +15,7 @@ public class Event implements HasID {
     private Organizer eventOrg;
     private double ticketPrice;
     private double eventDuration;
-    private Schedule eventDate;
+    private DateTime eventDate;
     private TimeSlot eventTime;
     private Attendee [] eventAttendees;
 
@@ -25,7 +24,7 @@ public class Event implements HasID {
         totEvents++;
     }
     public Event(String eventName, Category eventCat, Room eventRoom, Organizer eventOrg ,
-                      double ticketPrice, double eventDuration, Schedule eventDate,TimeSlot eventTime  ){
+                      double ticketPrice, double eventDuration, DateTime eventDate,TimeSlot eventTime  ){
         this.eventID= "E"+System.nanoTime();
         this.eventName= eventName;
         this.eventCat= eventCat;
@@ -49,7 +48,7 @@ public class Event implements HasID {
     public double getTicketPrice(){return ticketPrice;}
     public Attendee [] getEventAttendees(){return eventAttendees;}
     public double getEventDuration(){return eventDuration;}
-    public Schedule getEventDate() {return eventDate;}
+    public DateTime getEventDate() {return eventDate;}
     public TimeSlot getEventTime(){return eventTime;}
 
     //mutators
@@ -68,7 +67,7 @@ public class Event implements HasID {
             this.eventDuration=eventDuration;
         }
     }
-    public void setEventDate(Schedule eventDate){
+    public void setEventDate(DateTime eventDate){
         this.eventDate=eventDate;
     }
     public void setEventTime( TimeSlot eventTime){
