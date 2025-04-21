@@ -109,7 +109,6 @@ private Schedule schedule;
         System.out.println(
                 chosenEvent.getID()
                         + chosenEvent.getEventName()
-                        + Arrays.toString(chosenEvent.getEventAttendees())
                         + chosenEvent.getEventCat()
                         + chosenEvent.getEventDate()
                         + chosenEvent.getEventDuration()
