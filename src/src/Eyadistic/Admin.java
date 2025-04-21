@@ -107,20 +107,6 @@ public class Admin extends User{
         else return false;
     }
 
-    // CRUD
-    private void createCat(User obj) {
-        Database.create(this);
-    }
-    private void updateCat(User obj){
-        Database.update(this);
-    }
-    private void deleteCat(User obj){
-        Database.delete(this);
-    }
-    public static void listAllCategories(){
-        System.out.println(Arrays.toString(Database.readAll(new Category())));
-    }
-
     //Methods to be added:
     //login, register//
 }

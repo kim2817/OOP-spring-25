@@ -56,6 +56,24 @@ public class Category implements HasID {
         this.events = events;
     }
 
+    public final void ValidateCatAccess(User obj){
+        if (!(obj instanceof Admin)) {
+            throw new AccessDenied("You do not have permission to use this method. \n Only Admins are allowed to create categories");
+        }
+    }
+    public void addCatToDatabase(User obj) {
+        ValidateCatAccess(obj);
+        Database.create(this);
+    }
+    public void updateCatInDatabase(User obj){
+        ValidateCatAccess(obj);
+        Database.update(this);
+    }
+    public void deleteCatFromDatabase(User obj){
+        ValidateCatAccess(obj);
+        Database.delete(this);
+    }
+
     public static void listAllCategories(){
         System.out.println(Arrays.toString(Database.readAll(new Category())));
     }
