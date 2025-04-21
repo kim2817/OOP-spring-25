@@ -76,14 +76,13 @@ public class Event implements HasID {
     public void setEventTime( TimeSlot eventTime){
         this.eventTime=eventTime;
     }
-    public void checkEventAvailability(int nOfTickets){
+    public boolean checkEventAvailability(int nOfTickets){
         if(eventAttendees+nOfTickets>eventRoomCap){
-            System.out.println("event does not have enough tickets");
+            return false;
         }
         else{
-            System.out.println("number of tickets purchased:" + nOfTickets);
-            System.out.println("Purchase complete!");
             eventAttendees+=nOfTickets;
+            return true;
         }
     }
 
