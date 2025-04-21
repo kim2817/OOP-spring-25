@@ -124,10 +124,30 @@ private Schedule schedule;
         cin.close();
     }
 
-    public void rentRoom(){
+    //we somehow need to get the room ID that is related to this room's ID
+    public void rentRoom(DateTime slot){
         String targetRoomID;
+        String choice;
         Scanner cin = new Scanner(System.in);
         targetRoomID = cin.next();
+        Room[] roomArray = (Room[]) Database.readAll((new Room()));
+
+        for (int i = 0; i < Database.readAll(new Room()).length; i++){
+            if (targetRoomID.equals(roomArray[i].getID())){
+                if (roomArray[i].isAvailable(slot)) {
+                    roomArray[i].setAvaialble(false);
+                    System.out.println("The room with ID " + roomArray[i].getID() + " is available and costs " + roomArray[i].getRentPrice());
+                }
+            }
+            else{
+                if (!roomArray[i].isAvailable(slot)){
+                    System.out.println("The room with ID " + roomArray[i].getID() + " is already taken!");
+                }
+                else {
+                    System.out.println("The room with ID " + roomArray[i].getID() + " doesn't exit.");
+                }
+            }
+        }
         //search for target room id
         //if room id not found return error message
         //if room id found then print which time slot will be reserved

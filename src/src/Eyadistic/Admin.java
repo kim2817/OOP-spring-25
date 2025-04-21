@@ -95,7 +95,7 @@ public class Admin extends User{
                 ", dateOfBirth=" + this.dateOfBirth +
                 ", address='" + this.address + '\'' +
                 ", balance=" + this.balance +
-                ", gen=" + this.gen +
+                ", gen=" + this.gen + '\'' +
                 ", ID='" + getID() + '\'' +
                 '}';
     }

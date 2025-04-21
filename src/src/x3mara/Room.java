@@ -11,6 +11,11 @@ public class Room implements HasID{
     private double rentPrice;
     private String roomLocation;
     private Schedule bookedSlots = new Schedule();
+    private boolean isAvaialble;
+
+    public void setAvaialble(boolean avaialble) {
+        isAvaialble = avaialble;
+    }
 
     public Room(){
         this("",100,100.00,"");
