@@ -1,8 +1,11 @@
 package x3mara;
 
 import Eyadistic.Admin;
+import Jasmin.Event;
 import Karma.Category;
+import Karma.DateTime;
 import Omar.Attendee;
+import Yahia.Organizer;
 import Yahia.gender;
 
 import java.io.File;
@@ -69,15 +72,25 @@ public class Database {
                 case "Attendee":
                     create(new Attendee(in.next(),in.next(),in.next(),in.next(),new Date(in.nextLong()),in.next(),(in.nextBoolean()?gender.male:gender.female),in.nextInt(),in.next(),new int[0][0],in.nextDouble()));
                     break;
+                case "Organizer":
+                    create(new Organizer(in.next(),in.next(),in.next(),in.next(),new Date(in.nextLong()),in.next(),in.nextDouble(),(in.nextBoolean()?gender.male:gender.female),new Schedule()));
+                    break;
                 case "Admin":
                     create(new Admin(in.next(),in.next(),in.next(),in.next(),new Date(in.nextLong()),in.next(),(in.nextBoolean()?gender.male:gender.female),in.next(),in.next()));
                     break;
                 case "Category":
                     create(new Category(in.next()));
                     break;
+                case "Event":
+                    create(new Event(in.next(),(Category)random(new Category()),(Room)random(new Room()),(Organizer)random(new Organizer()),in.nextDouble(),in.nextDouble(),new DateTime(),TimeSlot.translate(in.nextInt())));
             }
             s = in.next();
         }
         in.close();
+    }
+
+    private static Object random(Object o){
+        Object[] ret = readAll(o);
+        return ret[(int)(Math.random()*ret.length)];
     }
 }

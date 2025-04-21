@@ -5,16 +5,16 @@ import Karma.DateTime;
 
 public class Schedule {
     private HashMap<DateTime,Boolean> hashMap;
-    Schedule(){
+    public Schedule(){
         hashMap = new HashMap<>();
     }
-    boolean isAvailable(DateTime dateTime){
+    public boolean isAvailable(DateTime dateTime){
         return hashMap.get(dateTime) == null;
     }
-    void add(DateTime dateTime){
+    public void add(DateTime dateTime){
         hashMap.put(dateTime, true);
     }
-    void remove(DateTime dateTime){
+    public void remove(DateTime dateTime){
         hashMap.remove(dateTime);
     }
 
