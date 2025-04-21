@@ -77,17 +77,24 @@ public class Event implements HasID {
     }
 
     //CRUD
-    private void createEvent(User obj) {
-        Database.create(this);
-    }
-    private void updateEvent(User obj){
-        Database.update(this);
-    }
-    private void deleteEvent(User obj){
-        Database.delete(this);
-    }
-    public static void listAllEvents(){
-        System.out.println(Arrays.toString(Database.readAll(new Event())));
+    public void update(){Database.update(this);}
+    private void createEvent(User obj) {Database.create(this);}
+    private void updateEvent(String eventName, Category eventCat, Room eventRoom, Organizer eventOrg ,
+                             double ticketPrice, double eventDuration, DateTime eventDate, TimeSlot eventTime ){
+        this.eventName= eventName;
+        this.eventCat= eventCat;
+        this.eventRoom= eventRoom;
+        this.eventOrg= eventOrg;
+        this.ticketPrice= ticketPrice;
+        this.eventDuration= eventDuration;
+        this.eventDate = eventDate;
+        this.eventTime= eventTime;
+        update();
+       }
+    private void deleteEvent(User obj){Database.delete(this);}
+    public static void listAllEvents(){System.out.println(Arrays.toString(Database.readAll(new Event())));}
+    public void showEvent(){
+        System.out.println(Database.read(this.eventID));
     }
 
 
@@ -96,7 +103,7 @@ public class Event implements HasID {
         String s;
         s="Event ID:"+eventID+"\nEvent name:"+ eventName + "\nEvent Category:"+ eventCat.toString() +
                 "\nEvent Room:"+ eventRoom.toString() + "\nEvent organizer:" + eventOrg.toString()+ "\nTicket Price:"+
-                ticketPrice + "\nEvent Attendees:"+ eventAttendees.toString() + "\n Event Duration:" + eventDuration +
+                ticketPrice + "\nEvent Attendees:"+ Arrays.toString(eventAttendees) + "\n Event Duration:" + eventDuration +
                 " hours\nEvent Date:" + eventDate.toString() + "\nEvent Time: " + eventTime.toString();
 
 
