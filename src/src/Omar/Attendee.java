@@ -9,6 +9,8 @@ import Karma.*;
 import x3mara.*;
 import Jasmin.*;
 import java.util.Scanner;
+import java.util.ArrayList;
+
 
 public class Attendee extends User implements HasID {
     private String ID;
@@ -65,14 +67,23 @@ public class Attendee extends User implements HasID {
     }
 
     public void chooseInterest() {
-        System.out.println(Arrays.toString(Database.readAll(new Category().getCatName())));
-        System.out.println("Please type Category ID");
+        System.out.println(Arrays.toString(Database.readAll(new Category())));
+        System.out.println("Please enter 3 Category IDs:");
         Scanner input = new Scanner(System.in);
+        ArrayList<Event> tempEvents = new ArrayList<>();
         for (int i = 0 ; i<3 ;i++){
             String tempID = input.next();
             interest[i] = (Category) Database.read(tempID);
         }
-
+        for(int  i = 0; i<3 ;i++){
+            Event [] ughx2 = interest[i].getEvents();
+            for(int j =0;j< ughx2.length;j++){
+                tempEvents.add(ughx2[j]);
+            }
+        }
+        for (Event e:tempEvents) {
+            System.out.println(e);
+        }
     }
 
     public void showEvents() {
