@@ -107,7 +107,7 @@ private Schedule schedule;
         targetID = cin.next();
         Event chosenEvent = (Event) Database.read(targetID);
         System.out.println(
-                chosenEvent.getEventID()
+                chosenEvent.getID()
                         + chosenEvent.getEventName()
                         + Arrays.toString(chosenEvent.getEventAttendees())
                         + chosenEvent.getEventCat()
