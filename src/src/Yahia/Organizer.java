@@ -199,8 +199,8 @@ private Schedule schedule;
                 ", dateOfBirth=" + dateOfBirth +
                 ", password='" + password + '\'' +
                 ", address='" + address + '\'' +
-                ", balance=" + balance +
-                ", gen=" + gen +
+                ", balance=" + balance + '\'' +
+                ", gen=" + gen + '\'' +
                 ", ID='" + ID + '\'' +
                 '}';
     }
