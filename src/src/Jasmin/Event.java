@@ -162,7 +162,7 @@ public class Event implements HasID {
         s="Event ID:"+eventID+"\nEvent name:"+ eventName + "\nEvent Category:"+ eventCat.toString() +
                 "\nEvent Room:"+ eventRoom.toString() + "\nEvent organizer:" + eventOrg.toString()+ "\nTicket Price:"+
                 ticketPrice + "\nNumber of Event Attendees:"+ eventAttendees+ " out of" + eventRoomCap +
-                " hours\nEvent Date:" + eventDate.toString() + "\nEvent Time: " + eventTime.toString()+"\n\n";
+                " hours\nEvent Date:" + eventDate.toString() + "\n\n";
 
         return s;
     }
