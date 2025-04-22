@@ -11,7 +11,6 @@ import x3mara.*;
 
 
 public class Event implements HasID {
-    static int totEvents =0;
     private String eventID;
     private String eventName;
     private Category eventCat;
@@ -21,11 +20,17 @@ public class Event implements HasID {
     private DateTime eventDate;
     private int eventRoomCap;
     private int eventAttendees=0;
+
+
 //Constructors
+    //no arg constructor
     public Event(){this.eventID= "E"+System.nanoTime();}
+
+    //argument constructor
     public Event(String eventName, Category eventCat, Room eventRoom, Organizer eventOrg ,
                       double ticketPrice, double eventDuration, DateTime eventDate){
 
+        //a unique username is set using nano time
         this.eventID= "E"+System.nanoTime();
         this.eventName= eventName;
         this.eventCat= eventCat;
@@ -33,9 +38,10 @@ public class Event implements HasID {
         this.eventOrg= eventOrg;
         this.ticketPrice= ticketPrice;
         this.eventDate = eventDate;
+
+        //adding this event object to array of this certain category
         eventCat.addEvent(this);
         this.eventRoomCap=eventRoom.getRoomCapacity();
-        totEvents++;
     }
 
     //accessors
@@ -51,9 +57,7 @@ public class Event implements HasID {
 
     //mutators
     public void setEventName(String eventName){this.eventName=eventName;}
-    //check that category matches outputted values from category maps before using this setter
     public void setEventCat(Category eventCat){this.eventCat=eventCat;}
-    //validate that room is available using isAvailable () before using this setter
     public void setTicketPrice(double ticketPrice){
         if (ticketPrice>0){
             this.ticketPrice=ticketPrice;
