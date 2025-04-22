@@ -1,23 +1,22 @@
 package Yahia;
 
-import Jasmin.Event;
-
-
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
 
+import Jasmin.Event;
 import Karma.*;
 import x3mara.*;
 
 
 public class Organizer extends User {
-private Schedule schedule;
+    private Schedule schedule;
     public Organizer(){
     ID = "O" + System.nanoTime();
     }
 
     public Organizer(String email, String username, String contactNo, String password, DateTime dateOfBirth, String address, double balance, Gender gen, Schedule schedule) {
+        
         this.email = email;
         this.username = username;
         this.contactNo = contactNo;
@@ -109,7 +108,6 @@ private Schedule schedule;
                         + chosenEvent.getEventName()
                         + chosenEvent.getEventCat()
                         + chosenEvent.getEventDate()
-                        + chosenEvent.getEventDuration()
                         + chosenEvent.getTicketPrice()
                         + chosenEvent.getEventRoom()
                         + chosenEvent.getEventTime()
@@ -181,6 +179,77 @@ private Schedule schedule;
     public void register(){
 
     }
+
+    void Ui(){
+    Scanner cin = new Scanner(System.in);
+    System.out.println("Organizer Dashboard\n" +
+            "Username: "+ this.username +
+            "\nEmail: " + this.email +
+            "\nPassword: " + this.password +
+            "\nContact Info:" + this.contactNo);
+
+        System.out.println("Choose a function\n" +
+                "List All Events (1)\n"
+                + "Manage Event details (2)\n" +
+                "View Specific event details (3)\n"+
+                "Rent room (4)\n"+
+                "List available rooms (5)");
+
+        int choice = cin.nextInt();
+        switch (choice){
+            case 1:
+                viewCurrentEvents();
+                break;
+            case 2:
+                manageEventDetails();
+                break;
+            case 3:
+                viewEventStats();
+                break;
+            case 4:
+                DateTime date2 = new DateTime();
+                System.out.println("Choose a time slot: \n"+"MORNING (1)\n"
+                        "AFTERNOON (2)\n"
+                        "EVENING (3)");
+                date2.setTime(TimeSlot.translate(cin.nextInt()));
+                System.out.println("Enter day:");
+                date2.setDay(cin.nextInt());
+                System.out.println("Enter month:");
+                date2.setMonth(cin.nextInt());
+                System.out.println("Enter year:");
+                date2.setYear(cin.nextInt());
+                rentRoom(date2);
+                break;
+            case 5:
+                DateTime date = new DateTime();
+                System.out.println("Choose a time slot: \n"+"MORNING (1)\n"
+                        "AFTERNOON (2)\n"
+                        "EVENING (3)");
+                date.setTime(TimeSlot.translate(cin.nextInt()));
+                System.out.println("Enter day:");
+                date.setDay(cin.nextInt());
+                System.out.println("Enter month:");
+                date.setMonth(cin.nextInt());
+                System.out.println("Enter year:");
+                date.setYear(cin.nextInt());
+                showAvailableRooms(date);
+                break;
+            default :
+
+
+
+
+
+
+        }
+
+
+
+
+    }
+
+
+
 
     @Override
     public String getID(){
