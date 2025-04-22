@@ -84,6 +84,11 @@ public class Event implements HasID {
     private void createEvent(User obj) {
         System.out.println("please enter the new event name using underscores instead of spaces:");
         String eventName=input.next();
+        Category[] catArr = (Category[]) Database.readAll(new Category());
+        for(int i=0;i<catArr.length;i++){
+            System.out.println((i+1) + ") " + catArr[i]);
+        }
+        System.out.println();
 
 
 
@@ -97,7 +102,7 @@ public class Event implements HasID {
 // eventName,
         Database.create(new Event());
     }
-    private void updateEvent(){
+    public void updateEvent(){
 
         String[] options = new String[] {"Event name", "Event Category", "Ticket Price ", "Exit"};
         System.out.println("Which Detail do you want to edit? Please enter a number");
