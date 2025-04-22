@@ -56,20 +56,10 @@ public class Organizer extends User {
         System.out.println("Enter event ID");
         targetID = cin.next();
         Event chosenEvent = (Event) Database.read(targetID);
-        System.out.println(
-                chosenEvent.getID()
-                        + chosenEvent.getEventName()
-                        + chosenEvent.getEventCat()
-                        + chosenEvent.getEventDate()
-                        + chosenEvent.getTicketPrice()
-                        + chosenEvent.getEventRoom()
-                        + chosenEvent.getEventTime()
-        );
-
+        System.out.println(chosenEvent);
         //search for target event id
         //call getters of event with target id
         //if target id was not found return error message
-        cin.close();
     }
 
     //we somehow need to get the room ID that is related to this room's ID
@@ -120,8 +110,11 @@ public class Organizer extends User {
     }
 
     public void showAvailableRooms(DateTime slot){
-        Room[] roomArray = (Room[])Database.readAll((new Room()));
-
+        Object[] temp = Database.readAll((new Room()));
+        Room[] roomArray = new Room[temp.length];
+        for(int i=0;i<temp.length;i++){
+            roomArray[i] = (Room)temp[i];
+        }
         for(int i = 0; i < (Database.readAll((new Room()))).length; i++){
             if(roomArray[i].isAvailable(slot)){
                 System.out.println(roomArray[i].toString());
