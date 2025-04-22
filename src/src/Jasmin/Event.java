@@ -1,5 +1,8 @@
 package Jasmin;
 import java.util.Arrays;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 import Karma.*;
 import Eyadistic.*;
 import Omar.*;
@@ -76,19 +79,47 @@ public class Event implements HasID {
     }
 
     //CRUD
+    static Scanner input = new Scanner(System.in);
     public void update(){Database.update(this);}
     private void createEvent(User obj) {Database.create(this);}
     private void updateEvent(String eventName, Category eventCat, Room eventRoom, Organizer eventOrg ,
                              double ticketPrice, double eventDuration, DateTime eventDate, TimeSlot eventTime ){
 
-//        static String[] options = new String[] {"Event name", "Event Category", "Event "}
-        this.eventName= eventName;
-        this.eventCat= eventCat;
-        this.ticketPrice= ticketPrice;
+        String[] options = new String[] {"Event name", "Event Category", "Ticket Price ", "Exit"};
+        System.out.println("Which Detail do you want to edit? Please enter a number");
+        for(int i=0;i<options.length;i++){
+            System.out.println((i+1) + ") " + options[i]);
+        }
+        int choice = input.nextInt();
+        if(choice < 1 || choice > options.length){
+            throw new InputMismatchException("Input should be inbounds.");
+        }
+        switch (choice){
+            case 1:
+                System.out.println("please enter the new event name using underscores instead of spaces:");
+                this.eventName= input.next();
+                break;
+            case 2:
+                System.out.println("please enter the new event cat");
+                break;
+            case 3:
+                System.out.println("please enter the new ticket price");
+                this.ticketPrice= input.nextDouble();
+                break;
+            case 4:
+                break;
+        }
 
         update();
     }
-    private void deleteEvent(User obj){Database.delete(this);}
+    private void deleteEvent(User obj){
+        System.out.println("please confirm that you want to delete this event." );
+        System.out.println("press 1 to confirm, any other number to exit");
+        int choice = input.nextInt();
+        if (choice==1){
+            Database.delete(this);
+        }
+    }
     public static void listAllEvents(){System.out.println(Arrays.toString(Database.readAll(new Event())));}
     public void showEvent(){
         System.out.println(Database.read(this.eventID));
