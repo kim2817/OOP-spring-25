@@ -11,7 +11,7 @@ public class Room implements HasID{
     private double rentPrice;
     private String roomLocation;
     private Schedule bookedSlots = new Schedule();
-    private boolean isAvaialble;
+    private boolean isAvaialble = false;
 
     public void setAvaialble(boolean avaialble) {
         isAvaialble = avaialble;
