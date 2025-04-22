@@ -1,8 +1,11 @@
 package x3mara;
 
+import Eyadistic.Admin;
 import Karma.DateTime;
+import Yahia.User;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Room implements HasID{
     private final String roomID;
@@ -11,11 +14,6 @@ public class Room implements HasID{
     private double rentPrice;
     private String roomLocation;
     private Schedule bookedSlots = new Schedule();
-    private boolean isAvaialble = false;
-
-    public void setAvaialble(boolean avaialble) {
-        isAvaialble = avaialble;
-    }
 
     public Room(){
         this("",100,100.00,"");
@@ -58,8 +56,20 @@ public class Room implements HasID{
         bookedSlots.add(slot);
     }
     // CRUD \\
-    public void create(){
-        Database.create(this);
+    public static void createRoom(User user){
+        if(!(user instanceof Admin)) return;
+        Scanner in = new Scanner(System.in);
+        System.out.println("Creating Room");
+        System.out.print("Room Name: ");
+        String roomName = in.nextLine();
+        System.out.print("Capacity: ");
+        int capacity = in.nextInt();
+        System.out.print("Rent Price: ");
+        double rentPrice = in.nextDouble();
+        System.out.print("Location: ");
+        String location = in.nextLine();
+        if(location.isEmpty()) location = in.nextLine();
+        Database.create(new Room(roomName,capacity,rentPrice,location));
     }
     public void update(){
         Database.update(this);
