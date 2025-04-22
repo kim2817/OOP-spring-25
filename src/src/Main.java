@@ -1,7 +1,9 @@
+import Eyadistic.Admin;
 import Karma.DateTime;
 import Omar.Attendee;
 import Yahia.*;
 import x3mara.Database;
+import x3mara.Room;
 import x3mara.Schedule;
 
 import java.io.File;
@@ -35,7 +37,7 @@ public class Main {
     }
     public static void register(){
         Scanner in = new Scanner(System.in);
-        System.out.println("Choose account type (0 for attendee; 1 for organizer): ");
+        System.out.print("Choose account type (0 for attendee; 1 for organizer): ");
         int classChoice = in.nextInt();
         System.out.print("Email: ");
         String email = in.next();
@@ -95,7 +97,8 @@ public class Main {
     }
     public static void main(String[] args){
         Database.scanInput(new File("DataToInput.txt"));
-        System.out.println(Arrays.toString(Database.readAll(new Attendee())));
-        screen1();
+//        System.out.println(Arrays.toString(Database.readAll(new Attendee())));
+//        screen1();
+        Room.createRoom(new Admin());
     }
 }
