@@ -11,9 +11,9 @@ import java.util.Scanner;
 public class Category implements HasID {
     private final String catID; //store the ID of each category
     private String catName; // name of the category
-    public static int totCats = 0;
-    private Event[] events = new Event[100];
-    private int numEvents = 0;
+    public static int totCats = 0; // stores total number of categories;
+    private Event[] events = new Event[100];  // stores events under each category;
+    private int numEvents = 0; // stores number of events in each category
 
 
     Scanner input = new Scanner(System.in);
@@ -21,9 +21,6 @@ public class Category implements HasID {
     //constructors
     // no-arg constructor
     public Category() {
-//        System.out.print("Enter category name: ");
-//        catName = input.nextLine();
-//        this.catName = catName;
         this.catID = "C" + System.nanoTime();
         totCats++;
     }
@@ -58,7 +55,8 @@ public class Category implements HasID {
 
     public final void ValidateCatAccess(User obj){
         if (!(obj instanceof Admin)) {
-            throw new AccessDenied("You do not have permission to use this method. \n Only Admins are allowed to create categories");
+            throw new AccessDenied("You do not have permission to use this method." +
+                    " \n Only Admins are allowed to create categories");
         }
     }
     public void addCatToDatabase(User obj) {
@@ -80,7 +78,8 @@ public class Category implements HasID {
 
     public void addEvent(Event event) {
         if (numEvents > 100) { // to avoid exceeding the limit of the array
-            throw new ExceedLimit("You have reached the limit of events for a category");
+            throw new ExceedLimit("You have reached the limit of events for " +
+                    "a category");
         }
         else {
             events[numEvents++] = event;
