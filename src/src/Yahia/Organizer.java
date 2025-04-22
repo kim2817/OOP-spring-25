@@ -1,10 +1,9 @@
 package Yahia;
 
 import java.util.Arrays;
-import java.util.Date;
 import java.util.Scanner;
 
-import Jasmin.Event;
+import Jasmin.*;
 import Karma.*;
 import x3mara.*;
 
@@ -180,7 +179,7 @@ public class Organizer extends User {
 
     }
 
-    void Ui(){
+    public void organizerInterface(){
     Scanner cin = new Scanner(System.in);
     System.out.println("Organizer Dashboard\n" +
             "Username: "+ this.username +
@@ -235,21 +234,10 @@ public class Organizer extends User {
                 showAvailableRooms(date);
                 break;
             default :
-
-
-
-
-
-
+                return;
         }
-
-
-
-
+        organizerInterface();
     }
-
-
-
 
     @Override
     public String getID(){

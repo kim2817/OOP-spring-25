@@ -1,10 +1,11 @@
 package Omar;
 import Yahia.Gender;
+import com.sun.tools.javac.Main;
 import x3mara.HasID;
 import Yahia.User;
 
 import java.util.Arrays;
-import java.util.Date;
+
 import Karma.*;
 import x3mara.*;
 import Jasmin.*;
@@ -130,27 +131,35 @@ public class Attendee extends User implements HasID {
             return this.age == ((Attendee) o).age && this.city.equals(((Attendee) o).city);
         } else return false;
     }
-    public void attendeeinterface(){
+    public void attendeeInterface(){
         Scanner input = new Scanner(System.in);
-        System.out.println("Please choose one of the following option\n 1)getId \n 2)getBalance\n3)Deposit money\n4)get recoomandation baseed on your interest" +
-                "\n 5)show events \n 6)choose events");
+        System.out.println("Please choose one of the following option\n1) getId \n2) getBalance\n3) Deposit money\n4) get recommendation based on your interest" +
+                "\n5) Show events \n6) choose events\n7) Exit");
         int answer = input.nextInt();
         switch (answer){
             case 1:
-                this.getID();
+                System.out.println(this.getID());
+                break;
             case 2:
-                this.getBalance();
+                System.out.println(this.getBalance());
+                break;
             case 3:
                 System.out.println("please enter a value");
                 double deposit = input.nextDouble();
-                    this.attendeeDeposit(deposit);
-            case 4:this.chooseInterest();
-            case 5:this.showEvents();
+                this.attendeeDeposit(deposit);
+                break;
+            case 4:
+                this.chooseInterest();
+                break;
+            case 5:
+                this.showEvents();
+                break;
             case 6:
-               this.chooseEvent();
+                this.chooseEvent();
+                break;
+            default:
+                return;
         }
-
-
-
+        attendeeInterface();
     }
 }
