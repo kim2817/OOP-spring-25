@@ -208,8 +208,8 @@ public class Organizer extends User {
                 break;
             case 4:
                 DateTime date2 = new DateTime();
-                System.out.println("Choose a time slot: \n"+"MORNING (1)\n"
-                        "AFTERNOON (2)\n"
+                System.out.println("Choose a time slot: \n"+"MORNING (1)\n"+
+                        "AFTERNOON (2)\n"+
                         "EVENING (3)");
                 date2.setTime(TimeSlot.translate(cin.nextInt()));
                 System.out.println("Enter day:");
@@ -222,8 +222,8 @@ public class Organizer extends User {
                 break;
             case 5:
                 DateTime date = new DateTime();
-                System.out.println("Choose a time slot: \n"+"MORNING (1)\n"
-                        "AFTERNOON (2)\n"
+                System.out.println("Choose a time slot: \n"+"MORNING (1)\n"+
+                        "AFTERNOON (2)\n"+
                         "EVENING (3)");
                 date.setTime(TimeSlot.translate(cin.nextInt()));
                 System.out.println("Enter day:");
