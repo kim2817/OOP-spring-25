@@ -1,16 +1,15 @@
 package Jasmin;
 import java.util.Arrays;
-import java.util.Date;
 import Karma.*;
-import Eyadistic.Admin;
-import Omar.Attendee;
-import Yahia.User;
+import Eyadistic.*;
+import Omar.*;
+import Yahia.*;
 import x3mara.*;
-import Yahia.Organizer;
+
 
 public class Event implements HasID {
     static int totEvents =0;
-    private String eventID;
+    final String eventID;
     private String eventName;
     private Category eventCat;
     private Room eventRoom;
@@ -22,9 +21,7 @@ public class Event implements HasID {
     private int eventRoomCap;
     private int eventAttendees=0;
 //Constructors
-    public Event(){
-        totEvents++;
-    }
+    public Event(){this.eventID= "E"+System.nanoTime();}
     public Event(String eventName, Category eventCat, Room eventRoom, Organizer eventOrg ,
                       double ticketPrice, double eventDuration, DateTime eventDate,TimeSlot eventTime  ){
         this.eventID= "E"+System.nanoTime();
