@@ -11,6 +11,7 @@ import Jasmin.Event;
 import Karma.Category;
 
 import java.util.Date;
+import java.util.Scanner;
 
 
 public class Admin extends User{
@@ -39,13 +40,17 @@ public class Admin extends User{
     }
 
 
-    //Methods
+    //Setters and getters
     public String getRole() {
         return role;
     }
 
     public String getWorkingHours() {
         return workingHours;
+    }
+
+    public String getID() {
+        return ID;
     }
 
     public void setRole(String role) {
@@ -55,6 +60,13 @@ public class Admin extends User{
     public void setWorkingHours(String workingHours) {
         this.workingHours = workingHours;
     }
+
+    public void setID(String ID) {
+        this.ID = "a" + System.nanoTime();
+    }
+
+    //Methods
+
 
     public void addRooms(Room o, String roomName, int roomCapacity, double rentPrice){
     Database.create(o);
@@ -75,18 +87,26 @@ public class Admin extends User{
         System.out.println(Arrays.toString(Database.readAll(new Attendee())));
     }
 
-    public void setID(String ID) {
-        this.ID = "a" + System.nanoTime();
+
+
+    // CRUD
+    private void createCat(User obj) {
+        Database.create(this);
+    }
+    private void updateCat(User obj){
+        Database.update(this);
+    }
+    private void deleteCat(User obj){
+        Database.delete(this);
+    }
+    public static void listAllCategories(){
+        System.out.println(Arrays.toString(Database.readAll(new Category())));
     }
 
-    @Override
-    public String getID() {
-        return ID;
-    }
 
     @Override
     public String toString(){
-       return "Admin{" +
+        return "Admin{" +
                 "email='" + this.email + '\'' +
                 ", username='" + this.username + '\'' +
                 ", role='" + getRole() + '\'' +
@@ -107,19 +127,21 @@ public class Admin extends User{
         }
         else return false;
     }
-
-    // CRUD
-    private void createCat(User obj) {
-        Database.create(this);
-    }
-    private void updateCat(User obj){
-        Database.update(this);
-    }
-    private void deleteCat(User obj){
-        Database.delete(this);
-    }
-    public static void listAllCategories(){
-        System.out.println(Arrays.toString(Database.readAll(new Category())));
+    public void adminInterface(){
+        int choice;
+        Scanner input = new Scanner(System.in);
+        System.out.println("Welcome Mr.Admin\n Please choose an option of the following");
+        System.out.println("1) Add room\n 2) View events\n 3) View organizers\n 4) View Attendee\n CRUD:\n 5) Create Category\n 6)Delete Category\n 7) Update Category\n 8) List all Categories");
+        choice = input.nextInt();
+        switch(input){
+            case 1:
+                Room o;
+                String roomName;
+                int Roomcapacity;
+                double rentprice;
+                System.out.println("Please");
+                addRooms();
+        }
     }
 
     //Methods to be added:

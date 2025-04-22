@@ -1,5 +1,8 @@
 package Jasmin;
 import java.util.Arrays;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 import Karma.*;
 import Eyadistic.*;
 import Omar.*;
@@ -9,13 +12,12 @@ import x3mara.*;
 
 public class Event implements HasID {
     static int totEvents =0;
-    final String eventID;
+    private String eventID;
     private String eventName;
     private Category eventCat;
     private Room eventRoom;
     private Organizer eventOrg;
     private double ticketPrice;
-    private double eventDuration;
     private DateTime eventDate;
     private TimeSlot eventTime;
     private int eventRoomCap;
@@ -24,13 +26,13 @@ public class Event implements HasID {
     public Event(){this.eventID= "E"+System.nanoTime();}
     public Event(String eventName, Category eventCat, Room eventRoom, Organizer eventOrg ,
                       double ticketPrice, double eventDuration, DateTime eventDate,TimeSlot eventTime  ){
+
         this.eventID= "E"+System.nanoTime();
         this.eventName= eventName;
         this.eventCat= eventCat;
         this.eventRoom= eventRoom;
         this.eventOrg= eventOrg;
         this.ticketPrice= ticketPrice;
-        this.eventDuration= eventDuration;
         this.eventDate = eventDate;
         this.eventTime= eventTime;
         eventCat.addEvent(this);
@@ -45,7 +47,6 @@ public class Event implements HasID {
     public Room getEventRoom(){return eventRoom;}
     public Organizer getEventOrg(){return eventOrg;}
     public double getTicketPrice(){return ticketPrice;}
-    public double getEventDuration(){return eventDuration;}
     public DateTime getEventDate() {return eventDate;}
     public TimeSlot getEventTime(){return eventTime;}
     public int getEventRoomCap(){return eventRoomCap;}
@@ -56,15 +57,9 @@ public class Event implements HasID {
     //check that category matches outputted values from category maps before using this setter
     public void setEventCat(Category eventCat){this.eventCat=eventCat;}
     //validate that room is available using isAvailable () before using this setter
-    public void setEventRoom(Room eventRoom){this.eventRoom=eventRoom;}
     public void setTicketPrice(double ticketPrice){
         if (ticketPrice>0){
             this.ticketPrice=ticketPrice;
-        }
-    }
-    public void setEventDuration(double eventDuration){
-        if (eventDuration > 0) {
-            this.eventDuration=eventDuration;
         }
     }
     public void setEventDate(DateTime eventDate){
@@ -84,21 +79,47 @@ public class Event implements HasID {
     }
 
     //CRUD
+    static Scanner input = new Scanner(System.in);
     public void update(){Database.update(this);}
     private void createEvent(User obj) {Database.create(this);}
     private void updateEvent(String eventName, Category eventCat, Room eventRoom, Organizer eventOrg ,
                              double ticketPrice, double eventDuration, DateTime eventDate, TimeSlot eventTime ){
-        this.eventName= eventName;
-        this.eventCat= eventCat;
-        this.eventRoom= eventRoom;
-        this.eventOrg= eventOrg;
-        this.ticketPrice= ticketPrice;
-        this.eventDuration= eventDuration;
-        this.eventDate = eventDate;
-        this.eventTime= eventTime;
+
+        String[] options = new String[] {"Event name", "Event Category", "Ticket Price ", "Exit"};
+        System.out.println("Which Detail do you want to edit? Please enter a number");
+        for(int i=0;i<options.length;i++){
+            System.out.println((i+1) + ") " + options[i]);
+        }
+        int choice = input.nextInt();
+        if(choice < 1 || choice > options.length){
+            throw new InputMismatchException("Input should be inbounds.");
+        }
+        switch (choice){
+            case 1:
+                System.out.println("please enter the new event name using underscores instead of spaces:");
+                this.eventName= input.next();
+                break;
+            case 2:
+                System.out.println("please enter the new event cat");
+                break;
+            case 3:
+                System.out.println("please enter the new ticket price");
+                this.ticketPrice= input.nextDouble();
+                break;
+            case 4:
+                break;
+        }
+
         update();
     }
-    private void deleteEvent(User obj){Database.delete(this);}
+    private void deleteEvent(User obj){
+        System.out.println("please confirm that you want to delete this event." );
+        System.out.println("press 1 to confirm, any other number to exit");
+        int choice = input.nextInt();
+        if (choice==1){
+            Database.delete(this);
+        }
+    }
     public static void listAllEvents(){System.out.println(Arrays.toString(Database.readAll(new Event())));}
     public void showEvent(){
         System.out.println(Database.read(this.eventID));
@@ -111,14 +132,10 @@ public class Event implements HasID {
         s="Event ID:"+eventID+"\nEvent name:"+ eventName + "\nEvent Category:"+ eventCat.toString() +
                 "\nEvent Room:"+ eventRoom.toString() + "\nEvent organizer:" + eventOrg.toString()+ "\nTicket Price:"+
                 ticketPrice + "\nNumber of Event Attendees:"+ eventAttendees+ " out of" + eventRoomCap +
-                "\n Event Duration:" + eventDuration + " hours\nEvent Date:" + eventDate.toString() +
-                "\nEvent Time: " + eventTime.toString()+"\n\n";
+                " hours\nEvent Date:" + eventDate.toString() + "\nEvent Time: " + eventTime.toString()+"\n\n";
 
         return s;
     }
-    public boolean equals(Event event){
-
-        return(this.eventID.equals(event.eventID));
-    }
+    public boolean equals(Event event){return(this.eventID.equals(event.eventID));}
 
 }
