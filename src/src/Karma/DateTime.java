@@ -19,7 +19,8 @@ public class DateTime {
         this(Integer.parseInt(DoB.substring(0,2)),Integer.parseInt(DoB.substring(3,5)),Integer.parseInt(DoB.substring(6)));
     }
     public static boolean checkFormat(String s){
-        if(s.length() != 11) return false;
+        if(s.length() != 10) return false;
+        System.out.println("hi");
         if(s.charAt(2) != '/' || s.charAt(5) != '/') return false;
         try{
             new DateTime(s);

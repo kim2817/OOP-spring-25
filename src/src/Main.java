@@ -51,7 +51,7 @@ public class Main {
         System.out.print("Date of Birth (in dd/mm/yyyy): ");
         String DoB = in.next();
         while(!DateTime.checkFormat(DoB)){
-            System.out.println("Wrong Format. Please use (dd/mm/yyyy): ");
+            System.out.print("Wrong Format. Please use (dd/mm/yyyy): ");
             DoB = in.next();
         }
         System.out.print("Address: ");
