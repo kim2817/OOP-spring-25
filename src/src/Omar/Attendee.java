@@ -99,27 +99,25 @@ public class Attendee extends User implements HasID {
             System.out.println(chosenEvent);
             System.out.println("number of tickets");
             int temp = input.nextInt();
-            buyTickets(temp,tempID,(chosenEvent.getTicketPrice()));
+            buyTickets(temp,tempID);
         }catch (Exception ex){
             System.out.println("Something wrong happened here -_-");
         }
     }
 
-    public void buyTickets(int noOfTickets, String eventID, double price) {
+    public void buyTickets(int noOfTickets, String eventID) {
+        Event temppurchased = new Event();
+        temppurchased = (Event) Database.read(eventID);
+        double price = temppurchased.getTicketPrice();
         double total = price * noOfTickets;
-
-        if (balance.isSufficient(total)) {
+        if (balance.isSufficient(total)&& temppurchased.checkEventAvailability(noOfTickets)) {
             balance.withdraw(total);
             System.out.println("You have purchased " + noOfTickets + " ticket(s) for event ID " + eventID);
+
         } else {
             throw new RuntimeException("Not enough moneym,get a job");
         }
     }
-
-    public void register() {
-
-    }
-
 
     @Override
     public String toString() {
@@ -131,5 +129,28 @@ public class Attendee extends User implements HasID {
         if (o instanceof Attendee) {
             return this.age == ((Attendee) o).age && this.city.equals(((Attendee) o).city);
         } else return false;
+    }
+    public void attendeeinterface(){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Please choose one of the following option\n 1)getId \n 2)getBalance\n3)Deposit money\n4)get recoomandation baseed on your interest" +
+                "\n 5)show events \n 6)choose events");
+        int answer = input.nextInt();
+        switch (answer){
+            case 1:
+                this.getID();
+            case 2:
+                this.getBalance();
+            case 3:
+                System.out.println("please enter a value");
+                double deposit = input.nextDouble();
+                    this.attendeeDeposit(deposit);
+            case 4:this.chooseInterest();
+            case 5:this.showEvents();
+            case 6:
+               this.chooseEvent();
+        }
+
+
+
     }
 }
