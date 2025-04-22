@@ -9,13 +9,12 @@ import x3mara.*;
 
 public class Event implements HasID {
     static int totEvents =0;
-    final String eventID;
+    private String eventID;
     private String eventName;
     private Category eventCat;
     private Room eventRoom;
     private Organizer eventOrg;
     private double ticketPrice;
-    private double eventDuration;
     private DateTime eventDate;
     private TimeSlot eventTime;
     private int eventRoomCap;
@@ -24,13 +23,13 @@ public class Event implements HasID {
     public Event(){this.eventID= "E"+System.nanoTime();}
     public Event(String eventName, Category eventCat, Room eventRoom, Organizer eventOrg ,
                       double ticketPrice, double eventDuration, DateTime eventDate,TimeSlot eventTime  ){
+
         this.eventID= "E"+System.nanoTime();
         this.eventName= eventName;
         this.eventCat= eventCat;
         this.eventRoom= eventRoom;
         this.eventOrg= eventOrg;
         this.ticketPrice= ticketPrice;
-        this.eventDuration= eventDuration;
         this.eventDate = eventDate;
         this.eventTime= eventTime;
         eventCat.addEvent(this);
@@ -45,7 +44,6 @@ public class Event implements HasID {
     public Room getEventRoom(){return eventRoom;}
     public Organizer getEventOrg(){return eventOrg;}
     public double getTicketPrice(){return ticketPrice;}
-    public double getEventDuration(){return eventDuration;}
     public DateTime getEventDate() {return eventDate;}
     public TimeSlot getEventTime(){return eventTime;}
     public int getEventRoomCap(){return eventRoomCap;}
@@ -56,15 +54,9 @@ public class Event implements HasID {
     //check that category matches outputted values from category maps before using this setter
     public void setEventCat(Category eventCat){this.eventCat=eventCat;}
     //validate that room is available using isAvailable () before using this setter
-    public void setEventRoom(Room eventRoom){this.eventRoom=eventRoom;}
     public void setTicketPrice(double ticketPrice){
         if (ticketPrice>0){
             this.ticketPrice=ticketPrice;
-        }
-    }
-    public void setEventDuration(double eventDuration){
-        if (eventDuration > 0) {
-            this.eventDuration=eventDuration;
         }
     }
     public void setEventDate(DateTime eventDate){
@@ -88,14 +80,12 @@ public class Event implements HasID {
     private void createEvent(User obj) {Database.create(this);}
     private void updateEvent(String eventName, Category eventCat, Room eventRoom, Organizer eventOrg ,
                              double ticketPrice, double eventDuration, DateTime eventDate, TimeSlot eventTime ){
+
+//        static String[] options = new String[] {"Event name", "Event Category", "Event "}
         this.eventName= eventName;
         this.eventCat= eventCat;
-        this.eventRoom= eventRoom;
-        this.eventOrg= eventOrg;
         this.ticketPrice= ticketPrice;
-        this.eventDuration= eventDuration;
-        this.eventDate = eventDate;
-        this.eventTime= eventTime;
+
         update();
     }
     private void deleteEvent(User obj){Database.delete(this);}
@@ -111,14 +101,10 @@ public class Event implements HasID {
         s="Event ID:"+eventID+"\nEvent name:"+ eventName + "\nEvent Category:"+ eventCat.toString() +
                 "\nEvent Room:"+ eventRoom.toString() + "\nEvent organizer:" + eventOrg.toString()+ "\nTicket Price:"+
                 ticketPrice + "\nNumber of Event Attendees:"+ eventAttendees+ " out of" + eventRoomCap +
-                "\n Event Duration:" + eventDuration + " hours\nEvent Date:" + eventDate.toString() +
-                "\nEvent Time: " + eventTime.toString()+"\n\n";
+                " hours\nEvent Date:" + eventDate.toString() + "\nEvent Time: " + eventTime.toString()+"\n\n";
 
         return s;
     }
-    public boolean equals(Event event){
-
-        return(this.eventID.equals(event.eventID));
-    }
+    public boolean equals(Event event){return(this.eventID.equals(event.eventID));}
 
 }
