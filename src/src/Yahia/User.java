@@ -1,6 +1,8 @@
 package Yahia;
 
 import java.util.Date;
+
+import Karma.DateTime;
 import x3mara.*;
 
 abstract public class User implements HasID {
@@ -8,10 +10,10 @@ abstract public class User implements HasID {
     protected String username;
     protected String contactNo;
     protected String password;
-    protected Date dateOfBirth;
+    protected DateTime dateOfBirth;
     protected String address;
     protected double balance;
-    protected gender gen;
+    protected Gender gen;
     protected String ID;
 
     protected User (){
@@ -31,7 +33,7 @@ abstract public class User implements HasID {
     public String getPassword() {
         return password;
     }
-    public Date getDateOfBirth() {
+    public DateTime getDateOfBirth() {
         return dateOfBirth;
     }
     public double getBalance() {
@@ -40,7 +42,7 @@ abstract public class User implements HasID {
     public String getAddress() {
         return address;
     }
-    public gender getGen() {
+    public Gender getGen() {
         return gen;
     }
 
@@ -53,7 +55,7 @@ abstract public class User implements HasID {
     public void setContactNo(String contactNo) {
         this.contactNo = contactNo;
     }
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(DateTime dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
     public void setPassword(String password) {
@@ -65,7 +67,7 @@ abstract public class User implements HasID {
     public void setAddress(String address) {
         this.address = address;
     }
-    public void setGen(gender gen) {
+    public void setGen(Gender gen) {
         this.gen = gen;
     }
 

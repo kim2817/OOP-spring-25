@@ -6,7 +6,8 @@ import Karma.Category;
 import Karma.DateTime;
 import Omar.Attendee;
 import Yahia.Organizer;
-import Yahia.gender;
+import Yahia.Gender;
+import Yahia.User;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -30,7 +31,6 @@ public class Database {
         }
         return o;
     }
-
     public static Object[] readAll(Object o){
         ArrayList<Object> ret = new ArrayList<>();
         for(String ID:data.keySet()){
@@ -51,7 +51,24 @@ public class Database {
         }
         data.remove(((HasID)o).getID());
     }
-
+    public static int findUser(String username, String password){
+        Object[] A = readAll(new Attendee());
+        for(Object o:A) {
+            if(((Attendee)o).getUsername().equals(username)
+                    && ((Attendee)o).getPassword().equals(password)) return 1;
+        }
+        A = readAll(new Organizer());
+        for(Object o:A) {
+            if(((Organizer)o).getUsername().equals(username)
+                    && ((Organizer)o).getPassword().equals(password)) return 2;
+        }
+        A = readAll(new Admin());
+        for(Object o:A) {
+            if(((Admin)o).getUsername().equals(username)
+                    && ((Admin)o).getPassword().equals(password)) return 3;
+        }
+        return 0;
+    }
     public static void scanInput(File source) {
         Scanner in;
         try{
@@ -70,13 +87,13 @@ public class Database {
                     create(new Room(in.next(),in.nextInt(),in.nextDouble(),in.next()));
                     break;
                 case "Attendee":
-                    create(new Attendee(in.next(),in.next(),in.next(),in.next(),new Date(in.nextLong()),in.next(),(in.nextBoolean()?gender.male:gender.female),in.nextInt(),in.next(),new int[0][0],in.nextDouble()));
+                    create(new Attendee(in.next(),in.next(),in.next(),in.next(),null,in.next(),(in.nextBoolean()? Gender.MALE : Gender.FEMALE),in.nextInt(),in.next(),new int[0][0],in.nextDouble()));
                     break;
                 case "Organizer":
-                    create(new Organizer(in.next(),in.next(),in.next(),in.next(),new Date(in.nextLong()),in.next(),in.nextDouble(),(in.nextBoolean()?gender.male:gender.female),new Schedule()));
+                    create(new Organizer(in.next(),in.next(),in.next(),in.next(),null,in.next(),in.nextDouble(),(in.nextBoolean()? Gender.MALE : Gender.FEMALE),new Schedule()));
                     break;
                 case "Admin":
-                    create(new Admin(in.next(),in.next(),in.next(),in.next(),new Date(in.nextLong()),in.next(),(in.nextBoolean()?gender.male:gender.female),in.next(),in.next()));
+                    create(new Admin(in.next(),in.next(),in.next(),in.next(),null,in.next(),(in.nextBoolean()? Gender.MALE : Gender.FEMALE),in.next(),in.next()));
                     break;
                 case "Category":
                     create(new Category(in.next()));
