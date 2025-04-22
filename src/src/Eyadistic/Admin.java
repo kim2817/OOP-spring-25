@@ -132,15 +132,21 @@ public class Admin extends User{
         Scanner input = new Scanner(System.in);
         System.out.println("Welcome Mr.Admin\n Please choose an option of the following");
         System.out.println("1) Add room\n 2) View events\n 3) View organizers\n 4) View Attendee\n CRUD:\n 5) Create Category\n 6)Delete Category\n 7) Update Category\n 8) List all Categories");
-        choice = input.nextInt();
-        switch(input){
+        switch(input.nextInt()){
             case 1:
-                Room o;
+                Room o = new Room();
                 String roomName;
                 int Roomcapacity;
                 double rentprice;
-                System.out.println("Please");
-                addRooms();
+                System.out.println("Please set room name");
+                roomName = input.next();
+                System.out.println("Please set room capacity");
+                Roomcapacity = input.nextInt();
+                System.out.println("Please set rent price");
+                rentprice = input.nextDouble();
+                addRooms(o, roomName, Roomcapacity, rentprice);
+                System.out.println("Room is succesfully added. YIPEEE!!");
+                break;
         }
     }
 
