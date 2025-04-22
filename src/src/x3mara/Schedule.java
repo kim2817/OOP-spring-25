@@ -1,18 +1,20 @@
 package x3mara;
 
 import java.util.HashMap;
+
+import Jasmin.Event;
 import Karma.DateTime;
 
 public class Schedule {
-    private HashMap<DateTime,Boolean> hashMap;
+    private HashMap<DateTime,Event> hashMap;
     public Schedule(){
         hashMap = new HashMap<>();
     }
     public boolean isAvailable(DateTime dateTime){
         return hashMap.get(dateTime) == null;
     }
-    public void add(DateTime dateTime){
-        hashMap.put(dateTime, true);
+    public void add(DateTime dateTime, Event event){
+        hashMap.put(dateTime, event);
     }
     public void remove(DateTime dateTime){
         hashMap.remove(dateTime);
@@ -22,11 +24,8 @@ public class Schedule {
     public String toString() {
         StringBuilder ret = new StringBuilder("{");
         for(DateTime slot:hashMap.keySet()){
-            if(!hashMap.get(slot)){
-                throw new IllegalStateException("what the fuck?");
-            }
             if(ret.length() != 1) ret.append("; ");
-            ret.append(slot.toString());
+            ret.append((String)("{Slot: " + slot.toString() + "; Event: " + hashMap.get(slot).getID() + "}"));
         }
         ret.append("}");
         return ret.toString();

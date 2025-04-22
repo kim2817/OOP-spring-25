@@ -68,16 +68,26 @@ public class Attendee extends User implements HasID {
     }
 
     public void chooseInterest() {
-        System.out.println(Arrays.toString(Database.readAll(new Category())));
-        System.out.println("Please enter 3 Category IDs:");
+        Category.listAllCategories();
+        System.out.println("Please enter 3 Category:");
         Scanner input = new Scanner(System.in);
-        ArrayList<Event> tempEvents = new ArrayList<>();
-        for (int i = 0 ; i<3 ;i++){
-            String tempID = input.next();
-            interest[i] = (Category) Database.read(tempID);
+        Object[] T = Database.readAll(new Category());
+        Category[] options = new Category[T.length];
+        for(int i=0;i<T.length;i++){
+            options[i] = (Category)T[i];
         }
+        for(int i=0;i<options.length;i++) {
+            System.out.println((i + 1) + ") " + options[i]);
+        }
+        for(int i=0;i<3;i++){
+            int temp = input.nextInt();
+            temp = temp-1;
+            interest[i] = (Category) Database.read(options[temp].getID());
+        }
+        ArrayList<Event> tempEvents = new ArrayList<>();
         for(int  i = 0; i<3 ;i++){
-            Event [] ughx2 = interest[i].getEvents();
+
+            Event [] ughx2 = interest[i].getEvents().toArray(new Event[0]);
             for(int j =0;j< ughx2.length;j++){
                 tempEvents.add(ughx2[j]);
             }

@@ -78,7 +78,7 @@ public class Database {
         }
         String s = in.next();
         while(!s.equals("*")){
-            System.out.println(s);
+//            System.out.println(s);
             switch (s){
                 case "Wallet":
                     create(new Wallet(in.nextDouble()));
@@ -99,10 +99,11 @@ public class Database {
                     create(new Category(in.next()));
                     break;
                 case "Event":
-                    create(new Event(in.next(),(Category)random(new Category()),(Room)random(new Room()),(Organizer)random(new Organizer()),in.nextDouble(),in.nextDouble(),new DateTime(),TimeSlot.translate(in.nextInt())));
+                    create(new Event(in.next(),(Category)random(new Category()),(Room)random(new Room()),(Organizer)random(new Organizer()),in.nextDouble(),in.nextDouble(),new DateTime()));
             }
             s = in.next();
         }
+//        System.out.println(s);
         in.close();
     }
 

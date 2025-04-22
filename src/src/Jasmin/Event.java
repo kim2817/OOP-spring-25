@@ -19,13 +19,12 @@ public class Event implements HasID {
     private Organizer eventOrg;
     private double ticketPrice;
     private DateTime eventDate;
-    private TimeSlot eventTime;
     private int eventRoomCap;
     private int eventAttendees=0;
 //Constructors
     public Event(){this.eventID= "E"+System.nanoTime();}
     public Event(String eventName, Category eventCat, Room eventRoom, Organizer eventOrg ,
-                      double ticketPrice, double eventDuration, DateTime eventDate,TimeSlot eventTime  ){
+                      double ticketPrice, double eventDuration, DateTime eventDate){
 
         this.eventID= "E"+System.nanoTime();
         this.eventName= eventName;
@@ -34,7 +33,6 @@ public class Event implements HasID {
         this.eventOrg= eventOrg;
         this.ticketPrice= ticketPrice;
         this.eventDate = eventDate;
-        this.eventTime= eventTime;
         eventCat.addEvent(this);
         this.eventRoomCap=eventRoom.getRoomCapacity();
         totEvents++;
@@ -48,7 +46,6 @@ public class Event implements HasID {
     public Organizer getEventOrg(){return eventOrg;}
     public double getTicketPrice(){return ticketPrice;}
     public DateTime getEventDate() {return eventDate;}
-    public TimeSlot getEventTime(){return eventTime;}
     public int getEventRoomCap(){return eventRoomCap;}
     public int getEventAttendees(){return eventAttendees;}
 
@@ -64,9 +61,6 @@ public class Event implements HasID {
     }
     public void setEventDate(DateTime eventDate){
         this.eventDate=eventDate;
-    }
-    public void setEventTime( TimeSlot eventTime){
-        this.eventTime=eventTime;
     }
     public boolean checkEventAvailability(int nOfTickets){
         if(eventAttendees+nOfTickets>eventRoomCap){
@@ -84,22 +78,31 @@ public class Event implements HasID {
     private void createEvent(User obj) {
         System.out.println("please enter the new event name using underscores instead of spaces:");
         String eventName=input.next();
-        Category[] catArr = (Category[]) Database.readAll(new Category());
+        Object[] T = Database.readAll(new Category());
+        Category[] catArr = new Category[T.length];
+        for(int i=0;i<T.length;i++){
+            catArr[i] = (Category)T[i];
+        }
         for(int i=0;i<catArr.length;i++){
             System.out.println((i+1) + ") " + catArr[i]);
         }
-        System.out.println();
+        System.out.println("enter a number corresponding to your category of choice");
+        int choice = input.nextInt();
+        Category cat= catArr[choice-1];
+        //Room room= Organizer.rentRoom();
+        System.out.println("please enter ticket price");
+        double ticketPrice = input.nextDouble();
+        if(ticketPrice<0){
+            throw new InputMismatchException("Input should be inbounds.");
+        }
+        //pls event date I will cry
 
 
 
 
 
 
-
-
-
-
-// eventName,
+// eventName, cat, room, this.eventOrg, ticketPrice
         Database.create(new Event());
     }
     public void updateEvent(){
@@ -120,8 +123,17 @@ public class Event implements HasID {
                 break;
             case 2:
                 System.out.println("please enter the new event cat");
-                Category.listAllCategories();
-
+                Category[] catArr = (Category[]) Database.readAll(new Category());
+                for(int i=0;i<catArr.length;i++){
+                    System.out.println((i+1) + ") " + catArr[i]);
+                }
+                System.out.println("enter a number corresponding to your category of choice");
+                int catnum = input.nextInt();
+                Category cat= catArr[catnum-1];
+                String category= this.eventCat.getCatName();
+                this.eventCat.deleteEventFromCat(this);
+                this.eventCat=cat;
+                eventCat.addEvent(this);
                 break;
             case 3:
                 System.out.println("please enter the new ticket price");
@@ -154,7 +166,7 @@ public class Event implements HasID {
         s="Event ID:"+eventID+"\nEvent name:"+ eventName + "\nEvent Category:"+ eventCat.toString() +
                 "\nEvent Room:"+ eventRoom.toString() + "\nEvent organizer:" + eventOrg.toString()+ "\nTicket Price:"+
                 ticketPrice + "\nNumber of Event Attendees:"+ eventAttendees+ " out of" + eventRoomCap +
-                " hours\nEvent Date:" + eventDate.toString() + "\nEvent Time: " + eventTime.toString()+"\n\n";
+                " hours\nEvent Date:" + eventDate.toString() + "\n\n";
 
         return s;
     }

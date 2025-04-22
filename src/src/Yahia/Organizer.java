@@ -73,7 +73,7 @@ public class Organizer extends User {
         for (int i = 0; i < Database.readAll(new Room()).length; i++){
             if (targetRoomID.equals(roomArray[i].getID())){
                 if (roomArray[i].isAvailable(slot)) {
-                    roomArray[i].reserveSlot(slot);
+                    roomArray[i].reserveSlot(slot,new Event());
                     System.out.println("The room with ID " + roomArray[i].getID() + " is available and costs " + roomArray[i].getRentPrice());
                 }
             }
@@ -109,17 +109,17 @@ public class Organizer extends User {
         System.out.println(Arrays.toString(Database.readAll(new Event())));
     }
 
-    public void showAvailableRooms(DateTime slot){
-        Object[] temp = Database.readAll((new Room()));
-        Room[] roomArray = new Room[temp.length];
-        for(int i=0;i<temp.length;i++){
-            roomArray[i] = (Room)temp[i];
-        }
-        for(int i = 0; i < (Database.readAll((new Room()))).length; i++){
-            if(roomArray[i].isAvailable(slot)){
-                System.out.println(roomArray[i].toString());
+    public void showAvailableRooms(DateTime slot) {
+        Room[] roomArray = (Room[]) Database.readAll((new Room()));
+        int numberOfFiltered = 1;
+        Room[] roomArrayFiltered = new Room[numberOfFiltered];
+        for (int i = 0; i < (Database.readAll((new Room()))).length; i++) {
+            if (roomArray[i].isAvailable(slot)) {
+                numberOfFiltered++;
+                roomArrayFiltered[i] = roomArray[i];
             }
         }
+        numberOfFiltered--;
     }
 
     public void register(){
