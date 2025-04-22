@@ -19,8 +19,8 @@ public class Event implements HasID {
     private double eventDuration;
     private DateTime eventDate;
     private TimeSlot eventTime;
-    private Attendee [] eventAttendees;
-
+    private int eventRoomCap;
+    private int eventAttendees=0;
 //Constructors
     public Event(){
         totEvents++;
@@ -36,8 +36,8 @@ public class Event implements HasID {
         this.eventDuration= eventDuration;
         this.eventDate = eventDate;
         this.eventTime= eventTime;
-        this.eventAttendees = new Attendee[100];
         eventCat.addEvent(this);
+        this.eventRoomCap=eventRoom.getRoomCapacity();
         totEvents++;
     }
 
@@ -48,10 +48,11 @@ public class Event implements HasID {
     public Room getEventRoom(){return eventRoom;}
     public Organizer getEventOrg(){return eventOrg;}
     public double getTicketPrice(){return ticketPrice;}
-    public Attendee [] getEventAttendees(){return eventAttendees;}
     public double getEventDuration(){return eventDuration;}
     public DateTime getEventDate() {return eventDate;}
     public TimeSlot getEventTime(){return eventTime;}
+    public int getEventRoomCap(){return eventRoomCap;}
+    public int getEventAttendees(){return eventAttendees;}
 
     //mutators
     public void setEventName(String eventName){this.eventName=eventName;}
@@ -75,6 +76,16 @@ public class Event implements HasID {
     public void setEventTime( TimeSlot eventTime){
         this.eventTime=eventTime;
     }
+    public void checkEventAvailability(int nOfTickets){
+        if(eventAttendees+nOfTickets>eventRoomCap){
+            System.out.println("event does not have enough tickets");
+        }
+        else{
+            System.out.println("number of tickets purchased:" + nOfTickets);
+            System.out.println("Purchase complete!");
+            eventAttendees+=nOfTickets;
+        }
+    }
 
     //CRUD
     public void update(){Database.update(this);}
@@ -90,7 +101,7 @@ public class Event implements HasID {
         this.eventDate = eventDate;
         this.eventTime= eventTime;
         update();
-       }
+    }
     private void deleteEvent(User obj){Database.delete(this);}
     public static void listAllEvents(){System.out.println(Arrays.toString(Database.readAll(new Event())));}
     public void showEvent(){
@@ -103,9 +114,9 @@ public class Event implements HasID {
         String s;
         s="Event ID:"+eventID+"\nEvent name:"+ eventName + "\nEvent Category:"+ eventCat.toString() +
                 "\nEvent Room:"+ eventRoom.toString() + "\nEvent organizer:" + eventOrg.toString()+ "\nTicket Price:"+
-                ticketPrice + "\nEvent Attendees:"+ Arrays.toString(eventAttendees) + "\n Event Duration:" + eventDuration +
-                " hours\nEvent Date:" + eventDate.toString() + "\nEvent Time: " + eventTime.toString();
-
+                ticketPrice + "\nNumber of Event Attendees:"+ eventAttendees+ " out of" + eventRoomCap +
+                "\n Event Duration:" + eventDuration + " hours\nEvent Date:" + eventDate.toString() +
+                "\nEvent Time: " + eventTime.toString()+"\n\n";
 
         return s;
     }
