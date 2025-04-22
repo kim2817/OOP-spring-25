@@ -11,6 +11,7 @@ import Jasmin.Event;
 import Karma.Category;
 
 import java.util.Date;
+import java.util.Scanner;
 
 
 public class Admin extends User{
@@ -127,8 +128,20 @@ public class Admin extends User{
         else return false;
     }
     public void adminInterface(){
+        int choice;
+        Scanner input = new Scanner(System.in);
         System.out.println("Welcome Mr.Admin\n Please choose an option of the following");
         System.out.println("1) Add room\n 2) View events\n 3) View organizers\n 4) View Attendee\n CRUD:\n 5) Create Category\n 6)Delete Category\n 7) Update Category\n 8) List all Categories");
+        choice = input.nextInt();
+        switch(input){
+            case 1:
+                Room o;
+                String roomName;
+                int Roomcapacity;
+                double rentprice;
+                System.out.println("Please");
+                addRooms();
+        }
     }
 
     //Methods to be added:
