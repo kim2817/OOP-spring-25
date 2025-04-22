@@ -78,7 +78,11 @@ public class Event implements HasID {
     private void createEvent(User obj) {
         System.out.println("please enter the new event name using underscores instead of spaces:");
         String eventName=input.next();
-        Category[] catArr = (Category[]) Database.readAll(new Category());
+        Object[] T = Database.readAll(new Category());
+        Category[] catArr = new Category[T.length];
+        for(int i=0;i<T.length;i++){
+            catArr[i] = (Category)T[i];
+        }
         for(int i=0;i<catArr.length;i++){
             System.out.println((i+1) + ") " + catArr[i]);
         }
