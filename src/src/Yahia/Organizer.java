@@ -44,53 +44,7 @@ public class Organizer extends User {
         System.out.println("Would you like to update the event? (yes/no)");
         String response = cin.next();
         if (response.equalsIgnoreCase("yes")) {
-            System.out.println("What would you like to update?");
-            System.out.println("1. Name");
-            System.out.println("2. Category");
-            System.out.println("3. Price");
-            System.out.println("4. Date");
-            int lol = cin.nextInt();
-            switch (lol) {
-                case 1:
-                    System.out.println("Enter the new event name:");
-                    String newName = cin.nextLine();
-                    chosenEvent.setEventName(newName);
-                    break;
-                case 2:
-                    System.out.println("Enter the new event Category:");
-                    String newCaT = cin.nextLine();
-                    chosenEvent.setEventCat(new Category(newCaT));
-                    break;
-                case 3:
-                    System.out.println("Enter the new event price:");
-                    int newPrice = cin.nextInt();
-                    chosenEvent.setTicketPrice(newPrice);
-                    break;
-                case 4:
-                    while (true) {
-                        System.out.println("Enter the new event Date in the format DD/MM/YYYY");
-                        String newDate = cin.next();
-                        try {
-                            String[] parts = newDate.split("/");
-                            int day = Integer.parseInt(parts[0]);
-                            int month = Integer.parseInt(parts[1]);
-                            int year = Integer.parseInt(parts[2]);
-                            DateTime UGHH = new DateTime(day, month, year);
-                            if (schedule.isAvailable(UGHH)) {
-                                chosenEvent.setEventDate(UGHH);
-                                schedule.add(UGHH);
-                                break;
-                            } else {
-                                System.out.println("Date is already taken. Try another one.");
-                            }
-                        } catch (Exception e) {
-                            System.out.println("WRONG Format  IDIOT");
-                        }
-                    }
-                    break;
-                default:
-                    System.out.println("Invalid option. Please select a valid number from the list (1-4)(idiot).");
-            }
+            chosenEvent.updateEvent();
         }
     }
 
