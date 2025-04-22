@@ -1,8 +1,6 @@
 package Karma;
 import x3mara.*;
 
-import java.util.Date;
-
 public class DateTime {
     // attributes
     private int day;

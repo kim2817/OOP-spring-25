@@ -1,10 +1,9 @@
-import Eyadistic.Admin;
-import Karma.DateTime;
-import Omar.Attendee;
+import Eyadistic.*;
+import Karma.*;
+import Omar.*;
 import Yahia.*;
-import x3mara.Database;
-import x3mara.Room;
-import x3mara.Schedule;
+import x3mara.*;
+import Jasmin.*;
 
 import java.io.File;
 import java.util.Arrays;
@@ -13,6 +12,7 @@ import java.util.Scanner;
 
 public class Main {
     static String[] options1 = new String[]{"Register","Login","Exit"};
+    static User curUser = null;
     static Scanner in = new Scanner(System.in);
     public static void screen1(){
         System.out.println("Choose an option:");
@@ -21,7 +21,7 @@ public class Main {
         }
         boolean flag = false;
         int choice = in.nextInt();
-        if(choice < 1 || choice >= options1.length){
+        if(choice < 1 || choice > options1.length){
             throw new InputMismatchException("Input should be inbounds.");
         }
         switch (choice){
@@ -75,7 +75,11 @@ public class Main {
         String username = in.next();
         System.out.print("Password: ");
         String password = in.next();
-        int ret = Database.findUser(username,password);
+        curUser = Database.findUser(username,password);
+        int ret = 0;
+        if(curUser instanceof Attendee) ret=1;
+        if(curUser instanceof Organizer) ret=2;
+        if(curUser instanceof Admin) ret=3;
         switch (ret){
             case 0:
                 System.out.println("Incorrect Username/Password.");
@@ -83,22 +87,24 @@ public class Main {
                 break;
             case 1:
                 System.out.println("Welcome Mr. Attendee");
-//                attendeeInterface();
+                ((Attendee)curUser).attendeeInterface();
                 break;
             case 2:
                 System.out.println("Welcome Mr. Organizer");
-//                organizerInterface();
+                ((Organizer)curUser).organizerInterface();
                 break;
             case 3:
                 System.out.println("Welcome Mr. Admin");
 //                adminInterface();
                 break;
         }
+        screen1();
     }
     public static void main(String[] args){
         Database.scanInput(new File("DataToInput.txt"));
 //        System.out.println(Arrays.toString(Database.readAll(new Attendee())));
-//        screen1();
-        Room.createRoom(new Admin());
+        screen1();
+//        Room.updateRoom(new Admin());
+        System.out.println(Arrays.toString(Database.readAll(new Organizer())));
     }
 }
