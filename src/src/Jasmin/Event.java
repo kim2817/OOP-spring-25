@@ -95,7 +95,7 @@ public class Event implements HasID {
         if(ticketPrice<0){
             throw new InputMismatchException("Input should be inbounds.");
         }
-        //pls event date i will cry
+        //pls event date I will cry
 
 
 
