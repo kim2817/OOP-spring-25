@@ -6,11 +6,9 @@ import Jasmin.Event;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
-import java.text.SimpleDateFormat;
 
 import Karma.*;
 import x3mara.*;
-import Jasmin.*;
 
 
 public class Organizer extends User {
@@ -19,7 +17,7 @@ private Schedule schedule;
     ID = "O" + System.nanoTime();
     }
 
-    public Organizer(String email, String username, String contactNo, String password, Date dateOfBirth, String address, double balance, gender gen,Schedule schedule) {
+    public Organizer(String email, String username, String contactNo, String password, DateTime dateOfBirth, String address, double balance, Gender gen, Schedule schedule) {
         this.email = email;
         this.username = username;
         this.contactNo = contactNo;

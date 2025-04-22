@@ -1,5 +1,5 @@
 package Omar;
-import Yahia.gender;
+import Yahia.Gender;
 import x3mara.HasID;
 import Yahia.User;
 
@@ -25,7 +25,7 @@ public class Attendee extends User implements HasID {
     }
 
     public Attendee(String email, String username, String contactNo, String password,
-                    Date dateOfBirth, String address, gender gen,
+                    DateTime dateOfBirth, String address, Gender gen,
                     int age, String city, int[][] Purchasedtickets, double walletBalance) {
         this.email = email;
         this.username = username;
@@ -123,7 +123,7 @@ public class Attendee extends User implements HasID {
 
     @Override
     public String toString() {
-        return  "Attendee[age=" + age + ", city=" + city + ", balance=" + balance.getBalance() + "]";
+        return  "Attendee[age=" + age + ", city=" + city + ", balance=" + balance.getBalance() + ", DoB: " + dateOfBirth + "]";
     }
 
     @Override
