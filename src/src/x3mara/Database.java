@@ -78,7 +78,7 @@ public class Database {
         }
         String s = in.next();
         while(!s.equals("*")){
-            //System.out.println(s);
+//            System.out.println(s);
             switch (s){
                 case "Wallet":
                     create(new Wallet(in.nextDouble()));
@@ -103,6 +103,7 @@ public class Database {
             }
             s = in.next();
         }
+//        System.out.println(s);
         in.close();
     }
 
