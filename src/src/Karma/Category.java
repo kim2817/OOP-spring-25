@@ -43,7 +43,7 @@ public class Category implements HasID {
     }
 
     public ArrayList<Event> getEvents() {
-        return events; // to ignore the null values
+        return events;
     }
 
 
@@ -66,6 +66,18 @@ public class Category implements HasID {
         System.out.println("Enter the name of the Category");
         Scanner input = new Scanner(System.in);
         String name = input.next();
+        Object[] T = Database.readAll(new Category());
+        Category[] catArr = new Category[T.length];
+        for(int i=0;i<T.length;i++){
+            catArr[i] = (Category)T[i];
+        }
+        for(int i = 0;i<catArr.length;i++){
+            if(Objects.equals(name, catArr[i].catName)){
+                throw new AlreadyExists("This Category Already Exists");
+            }
+
+
+        }
         Database.create(new Category(name));
     }
     public void updateCatInDatabase(User obj){
