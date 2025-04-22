@@ -64,35 +64,48 @@ public class Organizer extends User {
 
     //we somehow need to get the room ID that is related to this room's ID
     public void rentRoom(DateTime slot){
-        String targetRoomID;
-        String choice;
-        Scanner cin = new Scanner(System.in);
-        targetRoomID = cin.next();
-        Room[] roomArray = (Room[]) Database.readAll((new Room()));
+        Scanner input = new Scanner(System.in);
 
-        for (int i = 0; i < Database.readAll(new Room()).length; i++){
-            if (targetRoomID.equals(roomArray[i].getID())){
-                if (roomArray[i].isAvailable(slot)) {
-                    roomArray[i].reserveSlot(slot,new Event());
-                    System.out.println("The room with ID " + roomArray[i].getID() + " is available and costs " + roomArray[i].getRentPrice());
-                }
-            }
-            else{
-                if (!roomArray[i].isAvailable(slot)){
-                    System.out.println("The room with ID " + roomArray[i].getID() + " is already taken!");
-                }
-                else {
-                    System.out.println("The room with ID " + roomArray[i].getID() + " doesn't exit.");
-                }
+        Object[] Temp = Database.readAll(new Room());
+        Room[] roomArray = new Room[Temp.length];
+        for(int i=0;i<Temp.length;i++){
+            roomArray[i] = (Room)Temp[i];
+        }
+
+        int numberOfFiltered = 1;
+        Room[] roomArrayFiltered = new Room[numberOfFiltered];
+        for(int i = 0; i < (Database.readAll((new Room()))).length; i++){
+            if(roomArray[i].isAvailable(slot)){
+                roomArrayFiltered[numberOfFiltered] = roomArray[i];
+                numberOfFiltered++;
             }
         }
+        String choiceS = "n";
+        int choiceI;
+        while(choiceS == "N" || choiceS == "n") {
+            for (int i = 0; i < Database.readAll(new Room()).length; i++) {
+
+                System.out.println("Please choose a room from these available rooms:\n");
+                System.out.println("(" + i + ")" + " Room ID: " + roomArrayFiltered[i].getID() + "   Room name: " + roomArrayFiltered[i].getRoomName() + "   Room Capacity: " + roomArrayFiltered[i].getRoomCapacity() + "   Rent price: " + roomArrayFiltered[i].getRentPrice());
+            }
+            choiceI = input.nextInt();
+            System.out.println("Are you sure you want to choose room number (" + choiceI + ")");
+            System.out.println("Choose (Y/N)");
+            choiceS = input.next();
+        }
+        System.out.println("Congrats, You now have rented the room");
+        //roomArrayFiltered[choiceI].reserveSlot(slot);
+        //The "reserveSlot() method didn't use to have two parameters.... What is this event parameter?
+
+
+
         //search for target room id
         //if room id not found return error message
         //if room id found then print which time slot will be reserved
         //print price
         //at last print are you sure you want to rent room (targetRoomID) for the slots (slotChosen) for (room[targetRoomID])$
         //if yes then call room setter with targetRoomID and change its isAvailable
-        cin.close();
+        input.close();
     }
 
     public void create(){
@@ -119,7 +132,6 @@ public class Organizer extends User {
                 roomArrayFiltered[i] = roomArray[i];
             }
         }
-        numberOfFiltered--;
     }
 
     public void register(){
