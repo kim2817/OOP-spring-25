@@ -50,6 +50,10 @@ public class Main {
         String contactNo = in.next();
         System.out.print("Date of Birth (in dd/mm/yyyy): ");
         String DoB = in.next();
+        while(!DateTime.checkFormat(DoB)){
+            System.out.println("Wrong Format. Please use (dd/mm/yyyy): ");
+            DoB = in.next();
+        }
         System.out.print("Address: ");
         String address = in.next();
         System.out.print("Choose gender (true for MALE and false for female): ");
@@ -61,6 +65,8 @@ public class Main {
             Database.create(new Attendee(email,username,contactNo,password,new DateTime(DoB),address,gender,0,"Default City",new int[0][0],0.0));
         }
         else throw new RuntimeException("Unexpected Class Choice.");
+        System.out.println("Registered Successfully");
+        screen1();
     }
     public static void login(){
         System.out.print("Username: ");
