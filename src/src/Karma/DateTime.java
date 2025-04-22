@@ -9,9 +9,13 @@ public class DateTime {
     public TimeSlot time;
     public DateTime(){}
     public DateTime(int day,int month , int year){
+        this(day,month,year,null);
+    }
+    public DateTime(int day, int month, int year, TimeSlot time){
         this.day = day;
         this.month = month;
         this.year = year;
+        this.time = time;
     }
     public DateTime(String DoB){
         this(Integer.parseInt(DoB.substring(0,2)),Integer.parseInt(DoB.substring(3,5)),Integer.parseInt(DoB.substring(6)));
