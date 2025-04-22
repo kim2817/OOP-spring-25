@@ -95,16 +95,13 @@ public class Main {
                 break;
             case 3:
                 System.out.println("Welcome Mr. Admin");
-//                adminInterface();
+                ((Admin)curUser).adminInterface();
                 break;
         }
         screen1();
     }
     public static void main(String[] args){
         Database.scanInput(new File("DataToInput.txt"));
-//        System.out.println(Arrays.toString(Database.readAll(new Attendee())));
         screen1();
-//        Room.updateRoom(new Admin());
-        System.out.println(Arrays.toString(Database.readAll(new Organizer())));
     }
 }

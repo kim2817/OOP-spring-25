@@ -71,7 +71,11 @@ public class Attendee extends User implements HasID {
         Category.listAllCategories();
         System.out.println("Please enter 3 Category:");
         Scanner input = new Scanner(System.in);
-        Category[] options = (Category[]) Database.readAll(new Category());
+        Object[] T = Database.readAll(new Category());
+        Category[] options = new Category[T.length];
+        for(int i=0;i<T.length;i++){
+            options[i] = (Category)T[i];
+        }
         for(int i=0;i<options.length;i++) {
             System.out.println((i + 1) + ") " + options[i]);
         }

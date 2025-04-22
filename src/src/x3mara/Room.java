@@ -1,6 +1,7 @@
 package x3mara;
 
 import Eyadistic.Admin;
+import Jasmin.Event;
 import Karma.DateTime;
 import Yahia.User;
 
@@ -52,8 +53,8 @@ public class Room implements HasID{
     public boolean isAvailable(DateTime slot){
         return bookedSlots.isAvailable(slot);
     }
-    public void reserveSlot(DateTime slot){
-        bookedSlots.add(slot);
+    public void reserveSlot(DateTime slot, Event event){
+        bookedSlots.add(slot,event);
     }
     // CRUD \\
     public static void createRoom(User user){

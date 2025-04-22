@@ -149,7 +149,4 @@ public class Admin extends User{
                 break;
         }
     }
-
-    //Methods to be added:
-    //login, register//
 }

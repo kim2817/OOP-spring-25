@@ -3,9 +3,10 @@ Room HappyPlace 50 1.99 HappyTown
 Wallet 200.00
 Category Fun
 Category Sad
+Category IDK
 Organizer HI@gmail.com HI 111111111 ******** IdkHouse 54.99 false
 Attendee hi@gmail.com hi 123456789 ******** SigmaHouse true 69 SigmaCity 2.50
 Room SadPlace 1 99.99 SadTown
 Admin bye@gmail.com L 987654321 * LigmaHouse true MainAdmin DayAndNight
-Event HappyEvent 0.99 90 0
+Event HappyEvent 0.99 90
 *
