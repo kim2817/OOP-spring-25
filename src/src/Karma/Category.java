@@ -18,6 +18,7 @@ public class Category implements HasID {
     private ArrayList<Event> events = new ArrayList<>();// stores events under each category;
 
 
+
     Scanner input = new Scanner(System.in);
 
     //constructors
