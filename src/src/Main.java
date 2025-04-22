@@ -1,8 +1,9 @@
-import Karma.DateTime;
-import Omar.Attendee;
+import Eyadistic.*;
+import Karma.*;
+import Omar.*;
 import Yahia.*;
-import x3mara.Database;
-import x3mara.Schedule;
+import x3mara.*;
+import Jasmin.*;
 
 import java.io.File;
 import java.util.Arrays;
@@ -11,6 +12,7 @@ import java.util.Scanner;
 
 public class Main {
     static String[] options1 = new String[]{"Register","Login","Exit"};
+    static User curUser = null;
     static Scanner in = new Scanner(System.in);
     public static void screen1(){
         System.out.println("Choose an option:");
@@ -19,7 +21,7 @@ public class Main {
         }
         boolean flag = false;
         int choice = in.nextInt();
-        if(choice < 1 || choice >= options1.length){
+        if(choice < 1 || choice > options1.length){
             throw new InputMismatchException("Input should be inbounds.");
         }
         switch (choice){
@@ -35,7 +37,7 @@ public class Main {
     }
     public static void register(){
         Scanner in = new Scanner(System.in);
-        System.out.println("Choose account type (0 for attendee; 1 for organizer): ");
+        System.out.print("Choose account type (0 for attendee; 1 for organizer): ");
         int classChoice = in.nextInt();
         System.out.print("Email: ");
         String email = in.next();
@@ -50,6 +52,10 @@ public class Main {
         String contactNo = in.next();
         System.out.print("Date of Birth (in dd/mm/yyyy): ");
         String DoB = in.next();
+        while(!DateTime.checkFormat(DoB)){
+            System.out.print("Wrong Format. Please use (dd/mm/yyyy): ");
+            DoB = in.next();
+        }
         System.out.print("Address: ");
         String address = in.next();
         System.out.print("Choose gender (true for MALE and false for female): ");
@@ -61,13 +67,19 @@ public class Main {
             Database.create(new Attendee(email,username,contactNo,password,new DateTime(DoB),address,gender,0,"Default City",new int[0][0],0.0));
         }
         else throw new RuntimeException("Unexpected Class Choice.");
+        System.out.println("Registered Successfully");
+        screen1();
     }
     public static void login(){
         System.out.print("Username: ");
         String username = in.next();
         System.out.print("Password: ");
         String password = in.next();
-        int ret = Database.findUser(username,password);
+        curUser = Database.findUser(username,password);
+        int ret = 0;
+        if(curUser instanceof Attendee) ret=1;
+        if(curUser instanceof Organizer) ret=2;
+        if(curUser instanceof Admin) ret=3;
         switch (ret){
             case 0:
                 System.out.println("Incorrect Username/Password.");
@@ -75,21 +87,24 @@ public class Main {
                 break;
             case 1:
                 System.out.println("Welcome Mr. Attendee");
-//                attendeeInterface();
+                ((Attendee)curUser).attendeeInterface();
                 break;
             case 2:
                 System.out.println("Welcome Mr. Organizer");
-//                organizerInterface();
+                ((Organizer)curUser).organizerInterface();
                 break;
             case 3:
                 System.out.println("Welcome Mr. Admin");
 //                adminInterface();
                 break;
         }
+        screen1();
     }
     public static void main(String[] args){
         Database.scanInput(new File("DataToInput.txt"));
-        System.out.println(Arrays.toString(Database.readAll(new Attendee())));
+//        System.out.println(Arrays.toString(Database.readAll(new Attendee())));
         screen1();
+//        Room.updateRoom(new Admin());
+        System.out.println(Arrays.toString(Database.readAll(new Organizer())));
     }
 }

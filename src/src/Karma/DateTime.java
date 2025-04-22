@@ -1,8 +1,6 @@
 package Karma;
 import x3mara.*;
 
-import java.util.Date;
-
 public class DateTime {
     // attributes
     private int day;
@@ -17,6 +15,18 @@ public class DateTime {
     }
     public DateTime(String DoB){
         this(Integer.parseInt(DoB.substring(0,2)),Integer.parseInt(DoB.substring(3,5)),Integer.parseInt(DoB.substring(6)));
+    }
+    public static boolean checkFormat(String s){
+        if(s.length() != 10) return false;
+        System.out.println("hi");
+        if(s.charAt(2) != '/' || s.charAt(5) != '/') return false;
+        try{
+            new DateTime(s);
+        }
+        catch (RuntimeException e){
+            return false;
+        }
+        return true;
     }
     // setters & getters
     public int getDay() {

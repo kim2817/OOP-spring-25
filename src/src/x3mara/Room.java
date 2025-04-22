@@ -1,8 +1,11 @@
 package x3mara;
 
+import Eyadistic.Admin;
 import Karma.DateTime;
+import Yahia.User;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Room implements HasID{
     private final String roomID;
@@ -11,11 +14,6 @@ public class Room implements HasID{
     private double rentPrice;
     private String roomLocation;
     private Schedule bookedSlots = new Schedule();
-    private boolean isAvaialble;
-
-    public void setAvaialble(boolean avaialble) {
-        isAvaialble = avaialble;
-    }
 
     public Room(){
         this("",100,100.00,"");
@@ -58,11 +56,39 @@ public class Room implements HasID{
         bookedSlots.add(slot);
     }
     // CRUD \\
-    public void create(){
-        Database.create(this);
+    public static void createRoom(User user){
+        if(!(user instanceof Admin)) return;
+        Scanner in = new Scanner(System.in);
+        System.out.println("Creating Room");
+        System.out.print("Room Name: ");
+        String roomName = in.next();
+        System.out.print("Capacity: ");
+        int capacity = in.nextInt();
+        System.out.print("Rent Price: ");
+        double rentPrice = in.nextDouble();
+        System.out.print("Location: ");
+        String location = in.next();
+        Database.create(new Room(roomName,capacity,rentPrice,location));
     }
     public void update(){
-        Database.update(this);
+        String[] options = new String[]{"Name","Capacity","Rent Price"};
+        Scanner in = new Scanner(System.in);
+        System.out.println("Choose an option:");
+        for(int i=0;i<options.length;i++){
+            System.out.println((i+1) + ") " + options[i]);
+        }
+        int choice = in.nextInt();
+        switch (choice){
+            case 1:
+                setRoomName(in.next());
+                break;
+            case 2:
+                setRoomCapacity(in.nextInt());
+                break;
+            case 3:
+                setRentPrice(in.nextDouble());
+                break;
+        }
     }
     public void delete(){
         Database.delete(this);

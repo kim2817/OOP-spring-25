@@ -1,10 +1,11 @@
 package Omar;
 import Yahia.Gender;
+import com.sun.tools.javac.Main;
 import x3mara.HasID;
 import Yahia.User;
 
 import java.util.Arrays;
-import java.util.Date;
+
 import Karma.*;
 import x3mara.*;
 import Jasmin.*;
@@ -99,27 +100,25 @@ public class Attendee extends User implements HasID {
             System.out.println(chosenEvent);
             System.out.println("number of tickets");
             int temp = input.nextInt();
-            buyTickets(temp,tempID,(chosenEvent.getTicketPrice()));
+            buyTickets(temp,tempID);
         }catch (Exception ex){
             System.out.println("Something wrong happened here -_-");
         }
     }
 
-    public void buyTickets(int noOfTickets, String eventID, double price) {
+    public void buyTickets(int noOfTickets, String eventID) {
+        Event temppurchased = new Event();
+        temppurchased = (Event) Database.read(eventID);
+        double price = temppurchased.getTicketPrice();
         double total = price * noOfTickets;
-
-        if (balance.isSufficient(total)) {
+        if (balance.isSufficient(total)&& temppurchased.checkEventAvailability(noOfTickets)) {
             balance.withdraw(total);
             System.out.println("You have purchased " + noOfTickets + " ticket(s) for event ID " + eventID);
+
         } else {
             throw new RuntimeException("Not enough moneym,get a job");
         }
     }
-
-    public void register() {
-
-    }
-
 
     @Override
     public String toString() {
@@ -131,5 +130,36 @@ public class Attendee extends User implements HasID {
         if (o instanceof Attendee) {
             return this.age == ((Attendee) o).age && this.city.equals(((Attendee) o).city);
         } else return false;
+    }
+    public void attendeeInterface(){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Please choose one of the following option\n1) getId \n2) getBalance\n3) Deposit money\n4) get recommendation based on your interest" +
+                "\n5) Show events \n6) choose events\n7) Exit");
+        int answer = input.nextInt();
+        switch (answer){
+            case 1:
+                System.out.println(this.getID());
+                break;
+            case 2:
+                System.out.println(this.getBalance());
+                break;
+            case 3:
+                System.out.println("please enter a value");
+                double deposit = input.nextDouble();
+                this.attendeeDeposit(deposit);
+                break;
+            case 4:
+                this.chooseInterest();
+                break;
+            case 5:
+                this.showEvents();
+                break;
+            case 6:
+                this.chooseEvent();
+                break;
+            default:
+                return;
+        }
+        attendeeInterface();
     }
 }
