@@ -94,8 +94,8 @@ public class Event implements HasID {
 
 
 
-
-        Database.create(new Event(eventName));
+// eventName,
+        Database.create(new Event());
     }
     private void updateEvent(){
 
