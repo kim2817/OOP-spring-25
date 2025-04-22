@@ -81,9 +81,23 @@ public class Event implements HasID {
     //CRUD
     static Scanner input = new Scanner(System.in);
     public void update(){Database.update(this);}
-    private void createEvent(User obj) {Database.create(this);}
-    private void updateEvent(String eventName, Category eventCat, Room eventRoom, Organizer eventOrg ,
-                             double ticketPrice, double eventDuration, DateTime eventDate, TimeSlot eventTime ){
+    private void createEvent(User obj) {
+        System.out.println("please enter the new event name using underscores instead of spaces:");
+        String eventName=input.next();
+
+
+
+
+
+
+
+
+
+
+
+        Database.create(new Event(eventName));
+    }
+    private void updateEvent(){
 
         String[] options = new String[] {"Event name", "Event Category", "Ticket Price ", "Exit"};
         System.out.println("Which Detail do you want to edit? Please enter a number");
@@ -97,14 +111,17 @@ public class Event implements HasID {
         switch (choice){
             case 1:
                 System.out.println("please enter the new event name using underscores instead of spaces:");
-                this.eventName= input.next();
+                setEventName(input.next());
                 break;
             case 2:
                 System.out.println("please enter the new event cat");
+                Category.listAllCategories();
+
                 break;
             case 3:
                 System.out.println("please enter the new ticket price");
-                this.ticketPrice= input.nextDouble();
+                setTicketPrice(input.nextDouble());
+
                 break;
             case 4:
                 break;
