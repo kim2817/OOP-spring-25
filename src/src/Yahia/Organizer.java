@@ -73,7 +73,7 @@ public class Organizer extends User {
         for (int i = 0; i < Database.readAll(new Room()).length; i++){
             if (targetRoomID.equals(roomArray[i].getID())){
                 if (roomArray[i].isAvailable(slot)) {
-//                    roomArray[i].reserveSlot(slot);
+                    roomArray[i].reserveSlot(slot,new Event());
                     System.out.println("The room with ID " + roomArray[i].getID() + " is available and costs " + roomArray[i].getRentPrice());
                 }
             }
