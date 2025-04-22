@@ -51,23 +51,23 @@ public class Database {
         }
         data.remove(((HasID)o).getID());
     }
-    public static int findUser(String username, String password){
+    public static User findUser(String username, String password){
         Object[] A = readAll(new Attendee());
         for(Object o:A) {
             if(((Attendee)o).getUsername().equals(username)
-                    && ((Attendee)o).getPassword().equals(password)) return 1;
+                    && ((Attendee)o).getPassword().equals(password)) return (Attendee)o;
         }
         A = readAll(new Organizer());
         for(Object o:A) {
             if(((Organizer)o).getUsername().equals(username)
-                    && ((Organizer)o).getPassword().equals(password)) return 2;
+                    && ((Organizer)o).getPassword().equals(password)) return (Organizer)o;
         }
         A = readAll(new Admin());
         for(Object o:A) {
             if(((Admin)o).getUsername().equals(username)
-                    && ((Admin)o).getPassword().equals(password)) return 3;
+                    && ((Admin)o).getPassword().equals(password)) return (Admin)o;
         }
-        return 0;
+        return null;
     }
     public static void scanInput(File source) {
         Scanner in;

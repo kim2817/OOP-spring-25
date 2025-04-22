@@ -61,18 +61,34 @@ public class Room implements HasID{
         Scanner in = new Scanner(System.in);
         System.out.println("Creating Room");
         System.out.print("Room Name: ");
-        String roomName = in.nextLine();
+        String roomName = in.next();
         System.out.print("Capacity: ");
         int capacity = in.nextInt();
         System.out.print("Rent Price: ");
         double rentPrice = in.nextDouble();
         System.out.print("Location: ");
-        String location = in.nextLine();
-        if(location.isEmpty()) location = in.nextLine();
+        String location = in.next();
         Database.create(new Room(roomName,capacity,rentPrice,location));
     }
     public void update(){
-        Database.update(this);
+        String[] options = new String[]{"Name","Capacity","Rent Price"};
+        Scanner in = new Scanner(System.in);
+        System.out.println("Choose an option:");
+        for(int i=0;i<options.length;i++){
+            System.out.println((i+1) + ") " + options[i]);
+        }
+        int choice = in.nextInt();
+        switch (choice){
+            case 1:
+                setRoomName(in.next());
+                break;
+            case 2:
+                setRoomCapacity(in.nextInt());
+                break;
+            case 3:
+                setRentPrice(in.nextDouble());
+                break;
+        }
     }
     public void delete(){
         Database.delete(this);

@@ -1,23 +1,21 @@
 package Yahia;
 
-import Jasmin.Event;
-
-
 import java.util.Arrays;
-import java.util.Date;
 import java.util.Scanner;
 
+import Jasmin.*;
 import Karma.*;
 import x3mara.*;
 
 
 public class Organizer extends User {
-private Schedule schedule;
+    private Schedule schedule;
     public Organizer(){
     ID = "O" + System.nanoTime();
     }
 
     public Organizer(String email, String username, String contactNo, String password, DateTime dateOfBirth, String address, double balance, Gender gen, Schedule schedule) {
+        
         this.email = email;
         this.username = username;
         this.contactNo = contactNo;
@@ -46,53 +44,7 @@ private Schedule schedule;
         System.out.println("Would you like to update the event? (yes/no)");
         String response = cin.next();
         if (response.equalsIgnoreCase("yes")) {
-            System.out.println("What would you like to update?");
-            System.out.println("1. Name");
-            System.out.println("2. Category");
-            System.out.println("3. Price");
-            System.out.println("4. Date");
-            int lol = cin.nextInt();
-            switch (lol) {
-                case 1:
-                    System.out.println("Enter the new event name:");
-                    String newName = cin.nextLine();
-                    chosenEvent.setEventName(newName);
-                    break;
-                case 2:
-                    System.out.println("Enter the new event Category:");
-                    String newCaT = cin.nextLine();
-                    chosenEvent.setEventCat(new Category(newCaT));
-                    break;
-                case 3:
-                    System.out.println("Enter the new event price:");
-                    int newPrice = cin.nextInt();
-                    chosenEvent.setTicketPrice(newPrice);
-                    break;
-                case 4:
-                    while (true) {
-                        System.out.println("Enter the new event Date in the format DD/MM/YYYY");
-                        String newDate = cin.next();
-                        try {
-                            String[] parts = newDate.split("/");
-                            int day = Integer.parseInt(parts[0]);
-                            int month = Integer.parseInt(parts[1]);
-                            int year = Integer.parseInt(parts[2]);
-                            DateTime UGHH = new DateTime(day, month, year);
-                            if (schedule.isAvailable(UGHH)) {
-                                chosenEvent.setEventDate(UGHH);
-                                schedule.add(UGHH);
-                                break;
-                            } else {
-                                System.out.println("Date is already taken. Try another one.");
-                            }
-                        } catch (Exception e) {
-                            System.out.println("WRONG Format  IDIOT");
-                        }
-                    }
-                    break;
-                default:
-                    System.out.println("Invalid option. Please select a valid number from the list (1-4)(idiot).");
-            }
+            chosenEvent.updateEvent();
         }
     }
 
@@ -104,21 +56,10 @@ private Schedule schedule;
         System.out.println("Enter event ID");
         targetID = cin.next();
         Event chosenEvent = (Event) Database.read(targetID);
-        System.out.println(
-                chosenEvent.getID()
-                        + chosenEvent.getEventName()
-                        + chosenEvent.getEventCat()
-                        + chosenEvent.getEventDate()
-                        + chosenEvent.getEventDuration()
-                        + chosenEvent.getTicketPrice()
-                        + chosenEvent.getEventRoom()
-                        + chosenEvent.getEventTime()
-        );
-
+        System.out.println(chosenEvent);
         //search for target event id
         //call getters of event with target id
         //if target id was not found return error message
-        cin.close();
     }
 
     //we somehow need to get the room ID that is related to this room's ID
@@ -169,8 +110,11 @@ private Schedule schedule;
     }
 
     public void showAvailableRooms(DateTime slot){
-        Room[] roomArray = (Room[])Database.readAll((new Room()));
-
+        Object[] temp = Database.readAll((new Room()));
+        Room[] roomArray = new Room[temp.length];
+        for(int i=0;i<temp.length;i++){
+            roomArray[i] = (Room)temp[i];
+        }
         for(int i = 0; i < (Database.readAll((new Room()))).length; i++){
             if(roomArray[i].isAvailable(slot)){
                 System.out.println(roomArray[i].toString());
@@ -180,6 +124,66 @@ private Schedule schedule;
 
     public void register(){
 
+    }
+
+    public void organizerInterface(){
+    Scanner cin = new Scanner(System.in);
+    System.out.println("Organizer Dashboard\n" +
+            "Username: "+ this.username +
+            "\nEmail: " + this.email +
+            "\nPassword: " + this.password +
+            "\nContact Info:" + this.contactNo);
+
+        System.out.println("Choose a function\n" +
+                "List All Events (1)\n"
+                + "Manage Event details (2)\n" +
+                "View Specific event details (3)\n"+
+                "Rent room (4)\n"+
+                "List available rooms (5)");
+
+        int choice = cin.nextInt();
+        switch (choice){
+            case 1:
+                viewCurrentEvents();
+                break;
+            case 2:
+                manageEventDetails();
+                break;
+            case 3:
+                viewEventStats();
+                break;
+            case 4:
+                DateTime date2 = new DateTime();
+                System.out.println("Choose a time slot: \n"+"MORNING (1)\n"+
+                        "AFTERNOON (2)\n"+
+                        "EVENING (3)");
+                date2.setTime(TimeSlot.translate(cin.nextInt()));
+                System.out.println("Enter day:");
+                date2.setDay(cin.nextInt());
+                System.out.println("Enter month:");
+                date2.setMonth(cin.nextInt());
+                System.out.println("Enter year:");
+                date2.setYear(cin.nextInt());
+                rentRoom(date2);
+                break;
+            case 5:
+                DateTime date = new DateTime();
+                System.out.println("Choose a time slot: \n"+"MORNING (1)\n"+
+                        "AFTERNOON (2)\n"+
+                        "EVENING (3)");
+                date.setTime(TimeSlot.translate(cin.nextInt()));
+                System.out.println("Enter day:");
+                date.setDay(cin.nextInt());
+                System.out.println("Enter month:");
+                date.setMonth(cin.nextInt());
+                System.out.println("Enter year:");
+                date.setYear(cin.nextInt());
+                showAvailableRooms(date);
+                break;
+            default :
+                return;
+        }
+        organizerInterface();
     }
 
     @Override
