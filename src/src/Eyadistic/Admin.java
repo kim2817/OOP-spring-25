@@ -1,10 +1,11 @@
 package Eyadistic;
 import java.util.Arrays;
-import Karma.*;
+
+import Karma.DateTime;
 import Yahia.Organizer;
 import Yahia.User;
 import Omar.Attendee;
-import Yahia.gender;
+import Yahia.Gender;
 import x3mara.*;
 import Jasmin.Event;
 import Karma.Category;
@@ -24,7 +25,7 @@ public class Admin extends User{
     public Admin(){}
 
     public Admin(String email, String username, String contactNo, String password,
-                    Date dateOfBirth, String address, gender gen, String role, String workingHours) {
+                 DateTime dateOfBirth, String address, Gender gen, String role, String workingHours) {
         this.email = email;
         this.username = username;
         this.contactNo = contactNo;
