@@ -112,12 +112,6 @@ public class Admin extends User{
                 ", role='" + getRole() + '\'' +
                 ", workingHours='" + getWorkingHours() + '\'' +
                 ", contactNo='" + this.contactNo + '\'' +
-                ", password='" +  this.password + '\'' +
-                ", dateOfBirth=" + this.dateOfBirth +
-                ", address='" + this.address + '\'' +
-                ", balance=" + this.balance +
-                ", gen=" + this.gen + '\'' +
-                ", ID='" + getID() + '\'' +
                 '}';
     }
 

@@ -68,7 +68,6 @@ public class Attendee extends User implements HasID {
     }
 
     public void chooseInterest() {
-        Category.listAllCategories();
         System.out.println("Please enter 3 Category:");
         Scanner input = new Scanner(System.in);
         Object[] T = Database.readAll(new Category());
@@ -95,6 +94,7 @@ public class Attendee extends User implements HasID {
         for (Event e:tempEvents) {
             System.out.println(e);
         }
+
     }
 
     public void showEvents() {

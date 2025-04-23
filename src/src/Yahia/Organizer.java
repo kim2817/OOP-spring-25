@@ -213,12 +213,6 @@ public class Organizer extends User {
                 "email='" + email + '\'' +
                 ", username='" + username + '\'' +
                 ", contactNo='" + contactNo + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
-                ", password='" + password + '\'' +
-                ", address='" + address + '\'' +
-                ", balance=" + balance + '\'' +
-                ", gen=" + gen + '\'' +
-                ", ID='" + ID + '\'' +
                 '}';
     }
 
