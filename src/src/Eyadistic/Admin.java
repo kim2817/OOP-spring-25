@@ -155,6 +155,7 @@ public class Admin extends User{
                 '}';
     }
 
+    @Override
     public boolean equals(Object o){
         if (o instanceof Admin){
             return (this.role.equals(((Admin) o).getRole()) && (this.workingHours.equals(((Admin) o).getWorkingHours())));
