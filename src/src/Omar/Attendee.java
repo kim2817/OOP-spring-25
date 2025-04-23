@@ -18,7 +18,6 @@ public class Attendee extends User implements HasID {
     private int age;
     private String city;
     private Wallet balance;
-    private int[][] Purchasedtickets;
     private Category[] interest = new Category[3];
 
     public Attendee() {
@@ -27,7 +26,7 @@ public class Attendee extends User implements HasID {
 
     public Attendee(String email, String username, String contactNo, String password,
                     DateTime dateOfBirth, String address, Gender gen,
-                    int age, String city, int[][] Purchasedtickets, double walletBalance) {
+                    int age, String city,  double walletBalance) {
         this.email = email;
         this.username = username;
         this.contactNo = contactNo;
@@ -39,7 +38,6 @@ public class Attendee extends User implements HasID {
         this.age = age;
         this.city = city;
         this.balance = new Wallet(walletBalance);
-        this.Purchasedtickets = Purchasedtickets;
     }
 
     @Override
@@ -63,9 +61,6 @@ public class Attendee extends User implements HasID {
         balance.deposit(money);
     }
 
-    public int[][] getPurchasedTickets() {
-        return Purchasedtickets;
-    }
 
     public void chooseInterest() {
         System.out.println("Please enter 3 Category:");
@@ -81,6 +76,10 @@ public class Attendee extends User implements HasID {
         for(int i=0;i<3;i++){
             int temp = input.nextInt();
             temp = temp-1;
+            if (temp < 0 || temp >= options.length) {
+                throw new InvalidCategoryindex("CHOOSE THE RIGHT INDEX NEXT TIME");
+            }
+
             interest[i] = (Category) Database.read(options[temp].getID());
         }
         ArrayList<Event> tempEvents = new ArrayList<>();
@@ -103,14 +102,23 @@ public class Attendee extends User implements HasID {
 
     public void chooseEvent() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Please type Event ID");
-        String tempID = input.next();
-         Event chosenEvent =(Event)  Database.read(tempID);
+        Object[] T = Database.readAll(new Event());
+        Event[] options = new Event[T.length];
+        for (int i = 0; i < T.length; i++) {
+            options[i] = (Event) T[i];
+        }
+        System.out.println("Please select an event:");
+        for (int i = 0; i < options.length; i++) {
+            System.out.println((i + 1) + ") ID: " + options[i]);
+        }
         try{
+            int temp = input.nextInt();
+            temp = temp-1;
+            Event chosenEvent = options[temp];
             System.out.println(chosenEvent);
             System.out.println("number of tickets");
-            int temp = input.nextInt();
-            buyTickets(temp,tempID);
+            int count = input.nextInt();
+            buyTickets(count, chosenEvent.getID());
         }catch (Exception ex){
             System.out.println("Something wrong happened here -_-");
         }
@@ -121,13 +129,19 @@ public class Attendee extends User implements HasID {
         temppurchased = (Event) Database.read(eventID);
         double price = temppurchased.getTicketPrice();
         double total = price * noOfTickets;
-        if (balance.isSufficient(total)&& temppurchased.checkEventAvailability(noOfTickets)) {
-            balance.withdraw(total);
-            System.out.println("You have purchased " + noOfTickets + " ticket(s) for event ID " + eventID);
-
-        } else {
-            throw new RuntimeException("Not enough moneym,get a job");
+        if(noOfTickets < 0){
+            throw new NotPostiveAmount("number of tickers is 0");
         }
+        if (!balance.isSufficient(total)){
+            throw new FundsNOTenough("Not enough money g");
+        } if(!temppurchased.isthereEnough(noOfTickets)) {
+            throw new EventnotAvaible("Event is not avaible hehe");
+        }
+        balance.withdraw(total);
+        temppurchased.AddAttendee(noOfTickets);
+        System.out.println("You have purchased " + noOfTickets + " ticket(s) for event ID " + eventID);
+
+
     }
 
     @Override

@@ -19,14 +19,15 @@ public class Admin extends User{
     //Attributes
     private String role;
     private String workingHours;
-    private String ID;
+    private Wallet balance;
+
 
 
     //Constructors//
     public Admin(){}
 
     public Admin(String email, String username, String contactNo, String password,
-                 DateTime dateOfBirth, String address, Gender gen, String role, String workingHours) {
+                 DateTime dateOfBirth, String address, Gender gen, String role, String workingHours, double walletBalance) {
         this.email = email;
         this.username = username;
         this.contactNo = contactNo;
@@ -37,6 +38,7 @@ public class Admin extends User{
         this.ID = "a" + System.nanoTime();
         this.workingHours = workingHours;
         this.role = role;
+        this.balance = new Wallet(walletBalance);
     }
 
 
@@ -103,29 +105,11 @@ public class Admin extends User{
         System.out.println(Arrays.toString(Database.readAll(new Category())));
     }
 
-
-    @Override
-    public String toString(){
-        return "Admin{" +
-                "email='" + this.email + '\'' +
-                ", username='" + this.username + '\'' +
-                ", role='" + getRole() + '\'' +
-                ", workingHours='" + getWorkingHours() + '\'' +
-                ", contactNo='" + this.contactNo + '\'' +
-                '}';
-    }
-
-    public boolean equals(Object o){
-        if (o instanceof Admin){
-            return (this.role.equals(((Admin) o).getRole()) && (this.workingHours.equals(((Admin) o).getWorkingHours())));
-        }
-        else return false;
-    }
     public void adminInterface(){
         int choice;
         Scanner input = new Scanner(System.in);
         System.out.println("\n Please choose an option of the following");
-        System.out.println("1) Add room\n 2) View events\n 3) View organizers\n 4) View Attendee\n CRUD:\n 5) Create Category\n 6)Delete Category\n 7) Update Category\n 8) List all Categories");
+        System.out.println(" 1) Add room\n 2) View events\n 3) View organizers\n 4) View Attendee\n\n CRUD:\n 5) Create Category\n 6) Delete Category\n 7) Update Category\n 8) List all Categories");
         switch(input.nextInt()){
             case 1:
                 Room o = new Room();
@@ -164,4 +148,24 @@ public class Admin extends User{
         }
         adminInterface();
     }
+
+    @Override
+    public String toString(){
+        return "Admin{" +
+                "email='" + this.email + '\'' +
+                ", username='" + this.username + '\'' +
+                ", role='" + getRole() + '\'' +
+                ", workingHours='" + getWorkingHours() + '\'' +
+                ", contactNo='" + this.contactNo + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if (o instanceof Admin){
+            return (this.role.equals(((Admin) o).getRole()) && (this.workingHours.equals(((Admin) o).getWorkingHours())));
+        }
+        else return false;
+    }
+
 }
