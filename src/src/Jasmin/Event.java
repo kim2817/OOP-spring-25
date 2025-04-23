@@ -66,14 +66,11 @@ public class Event implements HasID {
     public void setEventDate(DateTime eventDate){
         this.eventDate=eventDate;
     }
-    public boolean checkEventAvailability(int nOfTickets){
-        if(eventAttendees+nOfTickets>eventRoomCap){
-            return false;
-        }
-        else{
-            eventAttendees+=nOfTickets;
-            return true;
-        }
+    public boolean isthereEnough(int nOfTickets){
+        return eventAttendees + nOfTickets <= eventRoomCap;
+    }
+    public void AddAttendee(int nOfTickets){
+        eventAttendees += nOfTickets;
     }
 
     //CRUD
