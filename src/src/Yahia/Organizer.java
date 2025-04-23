@@ -96,9 +96,10 @@ public class Organizer extends User {
         }
         else if (choiceS == "Y" || choiceS == "y"){
         System.out.println("Congrats, You now have rented the room");
-        roomArrayFiltered[choiceI].reserveSlot(slot);}
+        roomArrayFiltered[choiceI].reserveSlot(slot, new Event());}
         else {
             System.out.println("INVALID INPUT!! Please re-choose your room again");
+            rentRoom(slot);
         }
 
 
