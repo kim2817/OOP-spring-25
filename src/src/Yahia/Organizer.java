@@ -123,7 +123,11 @@ public class Organizer extends User {
     }
 
     public void showAvailableRooms(DateTime slot) {
-        Room[] roomArray = (Room[]) Database.readAll((new Room()));
+        Object[] T = Database.readAll((new Room()));
+        Room[] roomArray = new Room[T.length];
+        for(int i=0;i<T.length;i++){
+            roomArray[i] = (Room)T[i];
+        }
         int numberOfFiltered = 1;
         Room[] roomArrayFiltered = new Room[numberOfFiltered];
         for (int i = 0; i < (Database.readAll((new Room()))).length; i++) {
