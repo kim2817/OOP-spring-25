@@ -25,7 +25,7 @@ public class Admin extends User{
     public Admin(){}
 
     public Admin(String email, String username, String contactNo, String password,
-                 DateTime dateOfBirth, String address, Gender gen, String role, String workingHours) {
+                 DateTime dateOfBirth, String address, Gender gen, String role, String workingHours, double walletBalance) {
         this.email = email;
         this.username = username;
         this.contactNo = contactNo;
@@ -36,6 +36,7 @@ public class Admin extends User{
         this.ID = "a" + System.nanoTime();
         this.workingHours = workingHours;
         this.role = role;
+        this.balance = new Wallet(walletBalance);
     }
 
 
