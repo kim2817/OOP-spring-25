@@ -19,6 +19,8 @@ public class Admin extends User{
     //Attributes
     private String role;
     private String workingHours;
+    private Wallet balance;
+
 
 
     //Constructors//
