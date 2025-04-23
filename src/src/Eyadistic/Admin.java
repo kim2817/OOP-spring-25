@@ -159,7 +159,9 @@ public class Admin extends User{
             case 7:
                 updateCat();
                 break;
-
+            case 8:
+                return;
         }
+        adminInterface();
     }
 }
