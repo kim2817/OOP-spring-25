@@ -134,11 +134,11 @@ public class Attendee extends User implements HasID {
         }
         if (!balance.isSufficient(total)){
             throw new FundsNOTenough("Not enough money g");
-        } if(!temppurchased.isthereEnough(noOfTickets)) {
+        } if(!temppurchased.isThereEnough(noOfTickets)) {
             throw new EventnotAvaible("Event is not avaible hehe");
         }
         balance.withdraw(total);
-        temppurchased.AddAttendee(noOfTickets);
+        temppurchased.addAttendee(noOfTickets);
         bookedEvents.add(temppurchased);
         System.out.println("You have purchased " + noOfTickets + " ticket(s) for event ID " + eventID);
 
