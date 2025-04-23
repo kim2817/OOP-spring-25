@@ -92,18 +92,7 @@ public class Admin extends User{
 
 
     // CRUD
-    private void createCat(Category o) {
 
-        Database.create(o);
-    }
-    private void updateCat(Category o){
-
-        Database.update(o);
-    }
-    private void deleteCat(Category o){
-
-        Database.delete(o);
-    }
     public static void listAllCategories(){
         System.out.println(Arrays.toString(Database.readAll(new Category())));
     }
@@ -138,22 +127,31 @@ public class Admin extends User{
                 viewAttendee();
                 break;
             case 5:
-                Category c = new Category();
-                System.out.println("Please the category name to be created: ");
-                c.setCatName(input.next());
-                createCat(c);
+                Category.addCatToDatabase(this);
                 break;
             case 6:
-                Category a = new Category();
-                System.out.println("Please the category name to be deleted: ");
-                a.setCatName(input.next());
-                updateCat(a);
+                Category[] T = (Category[]) Database.readAll(new Category());
+                Category[] options = new Category[T.length];
+                for(int i=0;i<T.length;i++){
+                    options[i] = (Category)T[i];
+                }
+                System.out.println("Please choose a category to update");
+                for (int i=0;i< options.length;i++){
+                    System.out.println("(" + i + ")" + "Category name: " + options[i].getCatName() + "   Category event: " + options[i].getEvents());
+                }
+                options[input.nextInt()].updateCatInDatabase(this);
                 break;
             case 7:
-                Category t = new Category();
-                System.out.println("Please the category name to be updated: ");
-                t.setCatName(input.next());
-                updateCat(t);
+                Category[] S = (Category[]) Database.readAll(new Category());
+                Category[] optionss = new Category[S.length];
+                for(int i=0;i<S.length;i++){
+                    optionss[i] = (Category)S[i];
+                }
+                System.out.println("Please choose a category to update");
+                for (int i=0;i< optionss.length;i++){
+                    System.out.println("(" + i + ")" + "Category name: " + optionss[i].getCatName() + "   Category event: " + optionss[i].getEvents());
+                }
+                optionss[input.nextInt()].deleteCatFromDatabase(this);
                 break;
         }
         adminInterface();
