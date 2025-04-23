@@ -42,15 +42,14 @@ public class Admin extends User{
     }
 
 
-    //Setters and getters
-    public String getRole() {
-        return role;
-    }
 
+
+
+    //Setters and getters
+    public String getRole() {return role;}
     public String getWorkingHours() {
         return workingHours;
     }
-
     public String getID() {
         return ID;
     }
@@ -58,23 +57,23 @@ public class Admin extends User{
     public void setRole(String role) {
         this.role = role;
     }
-
     public void setWorkingHours(String workingHours) {
         this.workingHours = workingHours;
     }
-
     public void setID(String ID) {
         this.ID = "a" + System.nanoTime();
     }
+    public void setBalance(Wallet balance) {this.balance = balance;}
+
 
     //Methods
-
 
     public void addRooms(Room o, String roomName, int roomCapacity, double rentPrice){
     Database.create(o);
     o.setRoomName(roomName);
     o.setRoomCapacity(roomCapacity);
     o.setRentPrice(rentPrice);
+
     }
 
     public void viewEvents(){
@@ -123,7 +122,7 @@ public class Admin extends User{
                 System.out.println("Please set rent price");
                 rentprice = input.nextDouble();
                 addRooms(o, roomName, Roomcapacity, rentprice);
-                System.out.println("Room is succesfully added. YIPEEE!!");
+                System.out.println("Room "+ roomName + "succesfully added.");
                 break;
             case 2:
                 viewEvents();
