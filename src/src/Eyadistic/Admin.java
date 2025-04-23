@@ -99,9 +99,6 @@ public class Admin extends User{
 
     // CRUD
 
-    public static void listAllCategories(){
-        System.out.println(Arrays.toString(Database.readAll(new Category())));
-    }
 
     public void adminInterface(){
         int choice;
@@ -160,7 +157,7 @@ public class Admin extends User{
                 options2[input.nextInt()].deleteCatFromDatabase(this);
                 break;
             case 8:
-                listAllCategories();
+                Category.listAllCategories();
                 break;
             case 9:
                 Room.createRoom(this);
