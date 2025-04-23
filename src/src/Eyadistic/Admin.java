@@ -93,13 +93,16 @@ public class Admin extends User{
 
     // CRUD
     private void createCat(Category o) {
+
         Database.create(o);
     }
-    private void updateCat(){
-        Database.update(this);
+    private void updateCat(Category o){
+
+        Database.update(o);
     }
-    private void deleteCat(){
-        Database.delete(this);
+    private void deleteCat(Category o){
+
+        Database.delete(o);
     }
     public static void listAllCategories(){
         System.out.println(Arrays.toString(Database.readAll(new Category())));
@@ -135,16 +138,23 @@ public class Admin extends User{
                 viewAttendee();
                 break;
             case 5:
-                createCat();
+                Category c = new Category();
+                System.out.println("Please the category name to be created: ");
+                c.setCatName(input.next());
+                createCat(c);
                 break;
             case 6:
-                deleteCat();
+                Category a = new Category();
+                System.out.println("Please the category name to be deleted: ");
+                a.setCatName(input.next());
+                updateCat(a);
                 break;
             case 7:
-                updateCat();
+                Category t = new Category();
+                System.out.println("Please the category name to be updated: ");
+                t.setCatName(input.next());
+                updateCat(t);
                 break;
-            case 8:
-                return;
         }
         adminInterface();
     }
