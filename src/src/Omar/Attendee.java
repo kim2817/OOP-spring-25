@@ -16,6 +16,7 @@ public class Attendee extends User implements HasID {
     private String city;
     private Wallet balance;
     private Category[] interest = new Category[3];
+    private ArrayList<Event> bookedEvents = new ArrayList<>();
 
     public Attendee() {
         this.ID = "A" + System.nanoTime();
@@ -36,7 +37,6 @@ public class Attendee extends User implements HasID {
         this.city = city;
         this.balance = new Wallet(walletBalance);
     }
-
 
     public int getAge() {
         return age;
@@ -92,7 +92,15 @@ public class Attendee extends User implements HasID {
     public void showEvents() {
         System.out.println(Arrays.toString(Database.readAll(new Event())));
     }
-
+    public void showBookedevents() {
+        if (bookedEvents.isEmpty()) {
+            System.out.println("No events booked yet.");
+        } else {
+            for (Event e : bookedEvents) {
+                System.out.println(e);
+            }
+        }
+    }
     public void chooseEvent() {
         Scanner input = new Scanner(System.in);
         Object[] T = Database.readAll(new Event());
@@ -131,6 +139,7 @@ public class Attendee extends User implements HasID {
         }
         balance.withdraw(total);
         temppurchased.AddAttendee(noOfTickets);
+        bookedEvents.add(temppurchased);
         System.out.println("You have purchased " + noOfTickets + " ticket(s) for event ID " + eventID);
 
 
@@ -139,14 +148,15 @@ public class Attendee extends User implements HasID {
         Scanner input = new Scanner(System.in);
         System.out.println("""
                 Please choose one of the following option
-                1) getId\s
-                2) getBalance
-                3) Deposit money
-                4) get recommendation based on your interest\
-                
-                5) Show events\s
-                6) choose events
-                7) Exit""");
+                       1) getId
+                       2) getBalance
+                       3) Deposit money
+                       4) get recommendation based on your interest
+                       5) Show events
+                       6) Choose events
+                       7) Show booked events
+                       8) View wallet details
+                       9) Exit""");
         int answer = input.nextInt();
         switch (answer){
             case 1:
@@ -169,10 +179,19 @@ public class Attendee extends User implements HasID {
             case 6:
                 this.chooseEvent();
                 break;
+            case 7:
+                this.showBookedevents();
+                break;
+            case 8:
+                this.viewWalletdetails();
+                break;
             default:
                 return;
         }
         attendeeInterface();
+    }
+    public void viewWalletdetails() {
+        System.out.println("Wallet Details: " + balance);
     }
 
 
