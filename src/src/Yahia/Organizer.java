@@ -82,7 +82,6 @@ public class Organizer extends User {
         }
         String choiceS = "n";
         int choiceI;
-        while(choiceS == "N" || choiceS == "n") {
             for (int i = 0; i < Database.readAll(new Room()).length; i++) {
 
                 System.out.println("Please choose a room from these available rooms:\n");
@@ -92,11 +91,15 @@ public class Organizer extends User {
             System.out.println("Are you sure you want to choose room number (" + choiceI + ")");
             System.out.println("Choose (Y/N)");
             choiceS = input.next();
+        if (choiceS == "N" || choiceS == "n"){
+            rentRoom(slot);
         }
+        else if (choiceS == "Y" || choiceS == "y"){
         System.out.println("Congrats, You now have rented the room");
-        //roomArrayFiltered[choiceI].reserveSlot(slot);
-        //The "reserveSlot() method didn't use to have two parameters.... What is this event parameter?
-
+        roomArrayFiltered[choiceI].reserveSlot(slot);}
+        else {
+            System.out.println("INVALID INPUT!! Please re-choose your room again");
+        }
 
 
         //search for target room id
