@@ -19,7 +19,6 @@ public class Admin extends User{
     //Attributes
     private String role;
     private String workingHours;
-    private String ID;
 
 
     //Constructors//
@@ -103,24 +102,6 @@ public class Admin extends User{
         System.out.println(Arrays.toString(Database.readAll(new Category())));
     }
 
-
-    @Override
-    public String toString(){
-        return "Admin{" +
-                "email='" + this.email + '\'' +
-                ", username='" + this.username + '\'' +
-                ", role='" + getRole() + '\'' +
-                ", workingHours='" + getWorkingHours() + '\'' +
-                ", contactNo='" + this.contactNo + '\'' +
-                '}';
-    }
-
-    public boolean equals(Object o){
-        if (o instanceof Admin){
-            return (this.role.equals(((Admin) o).getRole()) && (this.workingHours.equals(((Admin) o).getWorkingHours())));
-        }
-        else return false;
-    }
     public void adminInterface(){
         int choice;
         Scanner input = new Scanner(System.in);
@@ -162,4 +143,23 @@ public class Admin extends User{
 
         }
     }
+
+    @Override
+    public String toString(){
+        return "Admin{" +
+                "email='" + this.email + '\'' +
+                ", username='" + this.username + '\'' +
+                ", role='" + getRole() + '\'' +
+                ", workingHours='" + getWorkingHours() + '\'' +
+                ", contactNo='" + this.contactNo + '\'' +
+                '}';
+    }
+
+    public boolean equals(Object o){
+        if (o instanceof Admin){
+            return (this.role.equals(((Admin) o).getRole()) && (this.workingHours.equals(((Admin) o).getWorkingHours())));
+        }
+        else return false;
+    }
+
 }
