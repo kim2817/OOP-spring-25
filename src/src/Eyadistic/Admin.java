@@ -90,13 +90,13 @@ public class Admin extends User{
 
 
     // CRUD
-    private void createCat(User obj) {
+    private void createCat() {
         Database.create(this);
     }
-    private void updateCat(User obj){
+    private void updateCat(){
         Database.update(this);
     }
-    private void deleteCat(User obj){
+    private void deleteCat(){
         Database.delete(this);
     }
     public static void listAllCategories(){
@@ -112,12 +112,6 @@ public class Admin extends User{
                 ", role='" + getRole() + '\'' +
                 ", workingHours='" + getWorkingHours() + '\'' +
                 ", contactNo='" + this.contactNo + '\'' +
-                ", password='" +  this.password + '\'' +
-                ", dateOfBirth=" + this.dateOfBirth +
-                ", address='" + this.address + '\'' +
-                ", balance=" + this.balance +
-                ", gen=" + this.gen + '\'' +
-                ", ID='" + getID() + '\'' +
                 '}';
     }
 
@@ -130,7 +124,7 @@ public class Admin extends User{
     public void adminInterface(){
         int choice;
         Scanner input = new Scanner(System.in);
-        System.out.println("Welcome Mr.Admin\n Please choose an option of the following");
+        System.out.println("\n Please choose an option of the following");
         System.out.println("1) Add room\n 2) View events\n 3) View organizers\n 4) View Attendee\n CRUD:\n 5) Create Category\n 6)Delete Category\n 7) Update Category\n 8) List all Categories");
         switch(input.nextInt()){
             case 1:
@@ -147,6 +141,25 @@ public class Admin extends User{
                 addRooms(o, roomName, Roomcapacity, rentprice);
                 System.out.println("Room is succesfully added. YIPEEE!!");
                 break;
+            case 2:
+                viewEvents();
+                break;
+            case 3:
+                viewOrganizers();
+                break;
+            case 4:
+                viewAttendee();
+                break;
+            case 5:
+                createCat();
+                break;
+            case 6:
+                deleteCat();
+                break;
+            case 7:
+                updateCat();
+                break;
+
         }
     }
 }
