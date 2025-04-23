@@ -150,7 +150,7 @@ public class Organizer extends User {
                 "List All Events (1)\n"
                 + "Manage Event details (2)\n" +
                 "View Specific event details (3)\n"+
-                "Rent room (4)\n"+
+                "Create Event (4)\n"+
                 "List available rooms (5)");
 
         int choice = cin.nextInt();
