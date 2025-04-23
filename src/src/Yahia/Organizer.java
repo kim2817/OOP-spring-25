@@ -63,7 +63,7 @@ public class Organizer extends User {
     }
 
     //we somehow need to get the room ID that is related to this room's ID
-    public void rentRoom(DateTime slot){
+    public Room rentRoom(DateTime slot, Event event){
         Scanner input = new Scanner(System.in);
 
         Object[] Temp = Database.readAll(new Room());
@@ -81,7 +81,7 @@ public class Organizer extends User {
             }
         }
         String choiceS = "n";
-        int choiceI;
+        int choiceI = 0;
         while(choiceS == "N" || choiceS == "n") {
             for (int i = 0; i < Database.readAll(new Room()).length; i++) {
 
@@ -94,9 +94,8 @@ public class Organizer extends User {
             choiceS = input.next();
         }
         System.out.println("Congrats, You now have rented the room");
-        //roomArrayFiltered[choiceI].reserveSlot(slot);
-        //The "reserveSlot() method didn't use to have two parameters.... What is this event parameter?
-
+        roomArrayFiltered[choiceI].reserveSlot(slot,event);
+        return roomArrayFiltered[choiceI];
 
 
         //search for target room id
@@ -105,7 +104,6 @@ public class Organizer extends User {
         //print price
         //at last print are you sure you want to rent room (targetRoomID) for the slots (slotChosen) for (room[targetRoomID])$
         //if yes then call room setter with targetRoomID and change its isAvailable
-        input.close();
     }
 
     public void create(){
@@ -169,18 +167,7 @@ public class Organizer extends User {
                 viewEventStats();
                 break;
             case 4:
-                DateTime date2 = new DateTime();
-                System.out.println("Choose a time slot: \n"+"MORNING (1)\n"+
-                        "AFTERNOON (2)\n"+
-                        "EVENING (3)");
-                date2.setTime(TimeSlot.translate(cin.nextInt()));
-                System.out.println("Enter day:");
-                date2.setDay(cin.nextInt());
-                System.out.println("Enter month:");
-                date2.setMonth(cin.nextInt());
-                System.out.println("Enter year:");
-                date2.setYear(cin.nextInt());
-                rentRoom(date2);
+                Event.createEvent(this);
                 break;
             case 5:
                 DateTime date = new DateTime();

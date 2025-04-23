@@ -17,8 +17,8 @@ public class DateTime {
         this.year = year;
         this.time = time;
     }
-    public DateTime(String DoB){
-        this(Integer.parseInt(DoB.substring(0,2)),Integer.parseInt(DoB.substring(3,5)),Integer.parseInt(DoB.substring(6)));
+    public DateTime(String S){
+        this(Integer.parseInt(S.substring(0,2)),Integer.parseInt(S.substring(3,5)),Integer.parseInt(S.substring(6)));
     }
     public static boolean checkFormat(String s){
         if(s.length() != 10) return false;

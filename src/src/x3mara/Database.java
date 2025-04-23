@@ -99,7 +99,7 @@ public class Database {
                     create(new Category(in.next()));
                     break;
                 case "Event":
-                    create(new Event(in.next(),(Category)random(new Category()),(Room)random(new Room()),(Organizer)random(new Organizer()),in.nextDouble(),in.nextDouble(),new DateTime()));
+                    create(new Event(in.next(),(Category)random(new Category()),(Room)random(new Room()),(Organizer)random(new Organizer()),in.nextDouble(),new DateTime()));
             }
             s = in.next();
         }

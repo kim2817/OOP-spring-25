@@ -28,7 +28,7 @@ public class Event implements HasID {
 
     //argument constructor
     public Event(String eventName, Category eventCat, Room eventRoom, Organizer eventOrg ,
-                      double ticketPrice, double eventDuration, DateTime eventDate){
+                      double ticketPrice, DateTime eventDate){
 
         //a unique username is set using nano time
         this.eventID= "E"+System.nanoTime();
@@ -79,7 +79,7 @@ public class Event implements HasID {
     //CRUD
     static Scanner input = new Scanner(System.in);
     public void update(){Database.update(this);}
-    private void createEvent(User obj) {
+    public static void createEvent(User obj) {
         System.out.println("please enter the new event name using underscores instead of spaces:");
         String eventName=input.next();
         Object[] T = Database.readAll(new Category());
@@ -93,22 +93,41 @@ public class Event implements HasID {
         System.out.println("enter a number corresponding to your category of choice");
         int choice = input.nextInt();
         Category cat= catArr[choice-1];
-        //Room room= Organizer.rentRoom();
         System.out.println("please enter ticket price");
         double ticketPrice = input.nextDouble();
         if(ticketPrice<0){
             throw new InputMismatchException("Input should be inbounds.");
         }
-        //pls event date I will cry
-
-
-
-
-
-
-// eventName, cat, room, this.eventOrg, ticketPrice
-        Database.create(new Event());
+        System.out.print("enter date event (in dd/mm/yyyy): ");
+        String dateOfEvent;
+        do{
+            dateOfEvent = input.next();
+        }while(!DateTime.checkFormat(dateOfEvent));
+        DateTime slot = new DateTime(dateOfEvent);
+        System.out.println("choose time slot (0 -> , 1 ->, 2 ->): ");
+        int slotChoice = input.nextInt();
+        switch (slotChoice){
+            case 0:
+                slot.setTime(TimeSlot.MORNING);
+                break;
+            case 1:
+                slot.setTime(TimeSlot.AFTERNOON);
+                break;
+            case 2:
+                slot.setTime(TimeSlot.EVENING);
+                break;
+            default:
+                throw new RuntimeException("incorrect choice");
+        }
+        Event newEvent = new Event(eventName,cat,null,(Organizer)obj,ticketPrice,slot);
+        Room room = ((Organizer)obj).rentRoom(slot,newEvent);
+        Database.create(newEvent);
     }
+
+    public void setEventRoom(Room eventRoom) {
+        this.eventRoom = eventRoom;
+    }
+
     public void updateEvent(){
 
         String[] options = new String[] {"Event name", "Event Category", "Ticket Price ", "Exit"};
