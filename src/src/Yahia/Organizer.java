@@ -81,9 +81,9 @@ public class Organizer extends User {
         String choiceS = "n";
         int choiceI = 0;
         while(choiceS == "N" || choiceS == "n") {
+            System.out.println("Please choose a room from these available rooms:\n");
             for (int i = 0; i < Database.readAll(new Room()).length; i++) {
 
-                System.out.println("Please choose a room from these available rooms:\n");
                 System.out.println("(" + i + ")" + " Room ID: " + roomArrayFiltered[i].getID() + "   Room name: " + roomArrayFiltered[i].getRoomName() + "   Room Capacity: " + roomArrayFiltered[i].getRoomCapacity() + "   Rent price: " + roomArrayFiltered[i].getRentPrice());
             }
             choiceI = input.nextInt();
