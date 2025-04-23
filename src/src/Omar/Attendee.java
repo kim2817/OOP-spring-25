@@ -76,6 +76,10 @@ public class Attendee extends User implements HasID {
         for(int i=0;i<3;i++){
             int temp = input.nextInt();
             temp = temp-1;
+            if (temp < 0 || temp >= options.length) {
+                throw new InvalidCategoryindex("CHOOSE THE RIGHT INDEX NEXT TIME");
+            }
+
             interest[i] = (Category) Database.read(options[temp].getID());
         }
         ArrayList<Event> tempEvents = new ArrayList<>();
@@ -125,7 +129,7 @@ public class Attendee extends User implements HasID {
         temppurchased = (Event) Database.read(eventID);
         double price = temppurchased.getTicketPrice();
         double total = price * noOfTickets;
-        if(total < 0){
+        if(noOfTickets < 0){
             throw new NotPostiveAmount("number of tickers is 0");
         }
         if (!balance.isSufficient(total)){
