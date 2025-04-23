@@ -77,6 +77,7 @@ public class Admin extends User{
     }
 
     public void viewEvents(){
+
         System.out.println(Arrays.toString(Database.readAll(new Event())));
     }
 
@@ -91,8 +92,8 @@ public class Admin extends User{
 
 
     // CRUD
-    private void createCat() {
-        Database.create(this);
+    private void createCat(Category o) {
+        Database.create(o);
     }
     private void updateCat(){
         Database.update(this);
