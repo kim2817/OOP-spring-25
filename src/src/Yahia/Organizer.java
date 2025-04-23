@@ -136,7 +136,6 @@ public class Organizer extends User {
         for(int i = 0 ; i<numberOfFiltered; i++){
             System.out.println(eventArrayFiltered[i]);
         }
-
     }
 
     public void showAvailableRooms(DateTime slot) {
@@ -175,7 +174,8 @@ public class Organizer extends User {
                 "View Specific event details (3)\n"+
                 "Create Event (4)\n"+
                 "List available rooms (5)\n" +
-                "View Wallet Details (6)\n");
+                "View Wallet Details (6)\n" +
+                "List Organized Events (7)");
 
         int choice = cin.nextInt();
         switch (choice){
@@ -209,7 +209,7 @@ public class Organizer extends User {
                 System.out.println(this.wallet);
                 break;
             case 7:
-
+                listOrganizedEvents();
                 break;
             default :
                 return;
