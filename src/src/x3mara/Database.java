@@ -93,7 +93,7 @@ public class Database {
                     create(new Organizer(in.next(),in.next(),in.next(),in.next(),new DateTime(in.next()),in.next(),in.nextDouble(),(in.nextBoolean()? Gender.MALE : Gender.FEMALE)));
                     break;
                 case "Admin":
-                    create(new Admin(in.next(),in.next(),in.next(),in.next(),new DateTime(in.next()),in.next(),(in.nextBoolean()? Gender.MALE : Gender.FEMALE),in.next(),in.next(),in.nextDouble()));
+                    create(new Admin(in.next(),in.next(),in.next(),in.next(),new DateTime(in.next()),in.next(),(in.nextBoolean()? Gender.MALE : Gender.FEMALE),in.next(),in.next()));
                     break;
                 case "Category":
                     create(new Category(in.next()));
