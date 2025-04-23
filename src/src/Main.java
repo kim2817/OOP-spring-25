@@ -61,7 +61,7 @@ public class Main {
         System.out.print("Choose gender (true for MALE and false for female): ");
         Gender gender = in.nextBoolean()?Gender.MALE:Gender.FEMALE;
         if(classChoice == 1){ // organizer
-            Database.create(new Organizer(email,username,contactNo,password,new DateTime(DoB),address,0.0,gender,new Schedule()));
+            Database.create(new Organizer(email,username,contactNo,password,new DateTime(DoB),address,0.0,gender));
         }
         else if(classChoice == 0){ // attendee
             Database.create(new Attendee(email,username,contactNo,password,new DateTime(DoB),address,gender,0,"Default City",0.0));
@@ -102,6 +102,7 @@ public class Main {
     }
     public static void main(String[] args){
         Database.scanInput(new File("DataToInput.txt"));
+        System.out.println("The space button is forbidden. Don't use it.");
         screen1();
     }
 }
