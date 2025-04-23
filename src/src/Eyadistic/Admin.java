@@ -101,7 +101,7 @@ public class Admin extends User{
         int choice;
         Scanner input = new Scanner(System.in);
         System.out.println("\n Please choose an option of the following");
-        System.out.println(" 1) Add room\n 2) View events\n 3) View organizers\n 4) View Attendee\n\n CRUD:\n 5) Create Category\n 6) Delete Category\n 7) Update Category\n 8) List all Categories");
+        System.out.println(" 1) Add room\n 2) View events\n 3) View organizers\n 4) View Attendee\n\n CRUD:\n 5) Create Category\n 6) Update Category\n 7) Delete Category\n 8) List all Categories\n\n 9) Exit");
         switch(input.nextInt()){
             case 1:
                 Room o = new Room();
@@ -130,7 +130,7 @@ public class Admin extends User{
                 Category.addCatToDatabase(this);
                 break;
             case 6:
-                Category[] T = (Category[]) Database.readAll(new Category());
+                Object[] T = Database.readAll(new Category());
                 Category[] options = new Category[T.length];
                 for(int i=0;i<T.length;i++){
                     options[i] = (Category)T[i];
@@ -142,7 +142,7 @@ public class Admin extends User{
                 options[input.nextInt()].updateCatInDatabase(this);
                 break;
             case 7:
-                Category[] S = (Category[]) Database.readAll(new Category());
+                Object[] S = Database.readAll(new Category());
                 Category[] optionss = new Category[S.length];
                 for(int i=0;i<S.length;i++){
                     optionss[i] = (Category)S[i];
@@ -153,6 +153,16 @@ public class Admin extends User{
                 }
                 optionss[input.nextInt()].deleteCatFromDatabase(this);
                 break;
+            case 8:
+                Object[] SS = Database.readAll(new Category());
+                Category[] categories = new Category[SS.length];
+                for(int i=0;i<SS.length;i++){
+                    categories[i] = (Category)SS[i];
+                }
+                System.out.println(Arrays.toString(categories));
+                break;
+            case 9:
+                return;
         }
         adminInterface();
     }
