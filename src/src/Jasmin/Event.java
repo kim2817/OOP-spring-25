@@ -66,10 +66,10 @@ public class Event implements HasID {
     public void setEventDate(DateTime eventDate){
         this.eventDate=eventDate;
     }
-    public boolean isthereEnough(int nOfTickets){
+    public boolean isThereEnough(int nOfTickets){
         return eventAttendees + nOfTickets <= eventRoomCap;
     }
-    public void AddAttendee(int nOfTickets){
+    public void addAttendee(int nOfTickets){
         eventAttendees += nOfTickets;
     }
 
@@ -194,6 +194,7 @@ public class Event implements HasID {
 
         return s;
     }
+
     public boolean equals(Event event){return(this.eventID.equals(event.eventID));}
 
 }

@@ -102,6 +102,7 @@ public class Main {
     }
     public static void main(String[] args){
         Database.scanInput(new File("DataToInput.txt"));
+        System.out.println("The space button is forbidden. Don't use it.");
         screen1();
     }
 }

@@ -74,7 +74,7 @@ public class Organizer extends User {
         Room[] roomArrayFiltered = new Room[numberOfFiltered];
         for(int i = 0; i < (Database.readAll((new Room()))).length; i++){
             if(roomArray[i].isAvailable(slot)){
-                roomArrayFiltered[numberOfFiltered] = roomArray[i];
+                roomArrayFiltered[numberOfFiltered-1] = roomArray[i];
                 numberOfFiltered++;
             }
         }
@@ -118,6 +118,27 @@ public class Organizer extends User {
         System.out.println(Arrays.toString(Database.readAll(new Event())));
     }
 
+    public void listOrganizedEvents(){
+
+        Object[] T = Database.readAll((new Event()));
+        Event[] eventArray = new Event[T.length];
+        for(int i=0;i<T.length;i++){
+            eventArray[i] = (Event)T[i];
+        }
+        int numberOfFiltered = 1;
+        Event[] eventArrayFiltered = new Event[numberOfFiltered];
+        for (int i = 0; i < (Database.readAll((new Room()))).length; i++) {
+            if (eventArray[i].getEventOrg() == this) {
+                eventArrayFiltered[numberOfFiltered - 1] = eventArray[i];
+                numberOfFiltered++;
+            }
+        }
+        for(int i = 0 ; i<numberOfFiltered; i++){
+            System.out.println(eventArrayFiltered[i]);
+        }
+
+    }
+
     public void showAvailableRooms(DateTime slot) {
         Object[] T = Database.readAll((new Room()));
         Room[] roomArray = new Room[T.length];
@@ -128,9 +149,12 @@ public class Organizer extends User {
         Room[] roomArrayFiltered = new Room[numberOfFiltered];
         for (int i = 0; i < (Database.readAll((new Room()))).length; i++) {
             if (roomArray[i].isAvailable(slot)) {
+                roomArrayFiltered[numberOfFiltered - 1] = roomArray[i];
                 numberOfFiltered++;
-                roomArrayFiltered[i] = roomArray[i];
             }
+        }
+        for(int i = 0 ; i<numberOfFiltered; i++){
+            System.out.println(roomArrayFiltered[i]);
         }
     }
 
@@ -143,15 +167,15 @@ public class Organizer extends User {
     System.out.println("Organizer Dashboard\n" +
             "Username: "+ this.username +
             "\nEmail: " + this.email +
-            "\nPassword: " + this.password +
             "\nContact Info:" + this.contactNo);
 
         System.out.println("Choose a function\n" +
                 "List All Events (1)\n"
                 + "Manage Event details (2)\n" +
                 "View Specific event details (3)\n"+
-                "Rent room (4)\n"+
-                "List available rooms (5)");
+                "Create Event (4)\n"+
+                "List available rooms (5)\n" +
+                "View Wallet Details (6)\n");
 
         int choice = cin.nextInt();
         switch (choice){
@@ -180,6 +204,12 @@ public class Organizer extends User {
                 System.out.println("Enter year:");
                 date.setYear(cin.nextInt());
                 showAvailableRooms(date);
+                break;
+            case 6:
+                System.out.println(this.wallet);
+                break;
+            case 7:
+
                 break;
             default :
                 return;
