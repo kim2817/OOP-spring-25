@@ -2,8 +2,12 @@ package Yahia;
 
 import java.util.Date;
 
-import Karma.DateTime;
+import Eyadistic.*;
+import Karma.*;
+import Omar.*;
+import Yahia.*;
 import x3mara.*;
+import Jasmin.*;
 
 abstract public class User implements HasID {
     protected String email;
@@ -13,6 +17,7 @@ abstract public class User implements HasID {
     protected DateTime dateOfBirth;
     protected String address;
     protected double balance;
+    protected Wallet wallet = new Wallet(balance);
     protected Gender gen;
     protected String ID;
 
