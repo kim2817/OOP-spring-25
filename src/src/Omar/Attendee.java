@@ -1,11 +1,8 @@
 package Omar;
 import Yahia.Gender;
-import com.sun.tools.javac.Main;
 import x3mara.HasID;
 import Yahia.User;
-
 import java.util.Arrays;
-
 import Karma.*;
 import x3mara.*;
 import Jasmin.*;
@@ -40,10 +37,6 @@ public class Attendee extends User implements HasID {
         this.balance = new Wallet(walletBalance);
     }
 
-    @Override
-    public String getID() {
-        return ID;
-    }
 
     public int getAge() {
         return age;
@@ -62,7 +55,7 @@ public class Attendee extends User implements HasID {
     }
 
 
-    public void chooseInterest() {
+    public void ShowInterest() {
         System.out.println("Please enter 3 Category:");
         Scanner input = new Scanner(System.in);
         Object[] T = Database.readAll(new Category());
@@ -85,9 +78,9 @@ public class Attendee extends User implements HasID {
         ArrayList<Event> tempEvents = new ArrayList<>();
         for(int  i = 0; i<3 ;i++){
 
-            Event [] ughx2 = interest[i].getEvents().toArray(new Event[0]);
-            for(int j =0;j< ughx2.length;j++){
-                tempEvents.add(ughx2[j]);
+            Event [] tempeventsarray = interest[i].getEvents().toArray(new Event[0]);
+            for(int j =0;j< tempeventsarray.length;j++){
+                tempEvents.add(tempeventsarray[j]);
             }
         }
         for (Event e:tempEvents) {
@@ -125,8 +118,7 @@ public class Attendee extends User implements HasID {
     }
 
     public void buyTickets(int noOfTickets, String eventID) {
-        Event temppurchased = new Event();
-        temppurchased = (Event) Database.read(eventID);
+        Event temppurchased = (Event) Database.read(eventID);
         double price = temppurchased.getTicketPrice();
         double total = price * noOfTickets;
         if(noOfTickets < 0){
@@ -143,22 +135,18 @@ public class Attendee extends User implements HasID {
 
 
     }
-
-    @Override
-    public String toString() {
-        return  "Attendee[age=" + age + ", city=" + city + ", balance=" + balance.getBalance() + ", DoB: " + dateOfBirth + "]";
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o instanceof Attendee) {
-            return this.age == ((Attendee) o).age && this.city.equals(((Attendee) o).city);
-        } else return false;
-    }
     public void attendeeInterface(){
         Scanner input = new Scanner(System.in);
-        System.out.println("Please choose one of the following option\n1) getId \n2) getBalance\n3) Deposit money\n4) get recommendation based on your interest" +
-                "\n5) Show events \n6) choose events\n7) Exit");
+        System.out.println("""
+                Please choose one of the following option
+                1) getId\s
+                2) getBalance
+                3) Deposit money
+                4) get recommendation based on your interest\
+                
+                5) Show events\s
+                6) choose events
+                7) Exit""");
         int answer = input.nextInt();
         switch (answer){
             case 1:
@@ -173,7 +161,7 @@ public class Attendee extends User implements HasID {
                 this.attendeeDeposit(deposit);
                 break;
             case 4:
-                this.chooseInterest();
+                this.ShowInterest();
                 break;
             case 5:
                 this.showEvents();
@@ -186,4 +174,23 @@ public class Attendee extends User implements HasID {
         }
         attendeeInterface();
     }
+
+
+
+    @Override
+    public String toString() {
+        return  "Attendee[age=" + age + ", city=" + city + ", balance=" + balance.getBalance() + ", DoB: " + dateOfBirth + "]";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Attendee) {
+            return this.age == ((Attendee) o).age && this.city.equals(((Attendee) o).city);
+        } else return false;
+    }
+    @Override
+    public String getID() {
+        return ID;
+    }
+
 }
