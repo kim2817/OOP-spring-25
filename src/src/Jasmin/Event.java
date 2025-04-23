@@ -63,6 +63,9 @@ public class Event implements HasID {
             this.ticketPrice=ticketPrice;
         }
     }
+    public void setEventRoom(Room eventRoom) {
+        this.eventRoom = eventRoom;
+    }
     public void setEventDate(DateTime eventDate){
         this.eventDate=eventDate;
     }
@@ -101,7 +104,7 @@ public class Event implements HasID {
             dateOfEvent = input.next();
         }while(!DateTime.checkFormat(dateOfEvent));
         DateTime slot = new DateTime(dateOfEvent);
-        System.out.println("choose time slot (0 -> , 1 ->, 2 ->): ");
+        System.out.println("choose time slot (0 -> Morning , 1 -> Afternoon  , 2 ->Evening): ");
         int slotChoice = input.nextInt();
         switch (slotChoice){
             case 0:
@@ -118,12 +121,10 @@ public class Event implements HasID {
         }
         Event newEvent = new Event(eventName,cat,null,(Organizer)obj,ticketPrice,slot);
         Room room = ((Organizer)obj).rentRoom(slot,newEvent);
+        newEvent.setEventRoom (room);
         Database.create(newEvent);
     }
 
-    public void setEventRoom(Room eventRoom) {
-        this.eventRoom = eventRoom;
-    }
 
     public void updateEvent(){
 
@@ -167,7 +168,6 @@ public class Event implements HasID {
             case 4:
                 break;
         }
-
         update();
     }
     private void deleteEvent(User obj){

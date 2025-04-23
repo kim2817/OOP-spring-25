@@ -91,7 +91,7 @@ public class Room implements HasID{
                 break;
         }
     }
-    public void delete(){
+    public void delete(Admin admin){
         Database.delete(this);
     }
     static public void listRooms(){
