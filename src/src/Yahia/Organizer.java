@@ -9,12 +9,11 @@ import x3mara.*;
 
 
 public class Organizer extends User {
-    private Schedule schedule;
     public Organizer(){
     ID = "O" + System.nanoTime();
     }
 
-    public Organizer(String email, String username, String contactNo, String password, DateTime dateOfBirth, String address, double balance, Gender gen, Schedule schedule) {
+    public Organizer(String email, String username, String contactNo, String password, DateTime dateOfBirth, String address, double balance, Gender gen) {
         
         this.email = email;
         this.username = username;
@@ -24,7 +23,6 @@ public class Organizer extends User {
         this.address = address;
         this.balance = balance;
         this.gen = gen;
-        this.schedule = schedule;
         ID = "O" + System.nanoTime();
     }
     public String getContactInfo() {
