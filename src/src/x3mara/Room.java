@@ -71,7 +71,7 @@ public class Room implements HasID{
         String location = in.next();
         Database.create(new Room(roomName,capacity,rentPrice,location));
     }
-    public void update(){
+    public void update(Admin admin){
         String[] options = new String[]{"Name","Capacity","Rent Price"};
         Scanner in = new Scanner(System.in);
         System.out.println("Choose an option:");

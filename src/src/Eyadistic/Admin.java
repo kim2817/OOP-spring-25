@@ -40,9 +40,6 @@ public class Admin extends User{
     }
 
 
-
-
-
     //Setters and getters
     public String getRole() {return role;}
     public String getWorkingHours() {
@@ -151,12 +148,12 @@ public class Admin extends User{
                 options[input.nextInt()].updateCatInDatabase(this);
                 break;
             case 7:
+                System.out.println("Please choose a category to delete\n");
                 Object[] S = Database.readAll(new Category());
                 Category[] options2 = new Category[S.length];
                 for(int i=0;i<S.length;i++){
                     options2[i] = (Category)S[i];
                 }
-                System.out.println("Please choose a category to update");
                 for (int i=0;i< options2.length;i++){
                     System.out.println("(" + (i+1) + ")" + "Category name: " + options2[i].getCatName() + "   Category event: " + options2[i].getEvents());
                 }
@@ -174,11 +171,11 @@ public class Admin extends User{
                 for(int i=0;i<Q.length;i++){
                     options3[i] = (Room)Q[i];
                 }
-                System.out.println("Please choose a room to update");
+                System.out.println("Please choose a room to update: ");
                 for (int i=0;i<options3.length;i++){
                     System.out.println("(" + (i+1) + ")" + "Room name: " + options3[i].getRoomName() + "   Room ID: " + options3[i].getID());
                 }
-                options3[input.nextInt()].delete(this);
+                options3[input.nextInt()-1].update(this);
                 break;
 
             case 11:
@@ -187,11 +184,11 @@ public class Admin extends User{
                 for(int i=0;i<W.length;i++){
                     options4[i] = (Room)W[i];
                 }
-                System.out.println("Please choose a room to update");
+                System.out.println("Please choose a room to delete: ");
                 for (int i=0;i<options4.length;i++){
                     System.out.println("(" + (i+1) + ")" + "Room name: " + options4[i].getRoomName() + "   Room ID: " + options4[i].getID());
                 }
-                options4[input.nextInt()].delete(this);
+                options4[input.nextInt()-1].delete(this);
                 break;
 
             case 12:
