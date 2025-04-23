@@ -71,7 +71,7 @@ public class Organizer extends User {
         }
 
         int numberOfFiltered = 1;
-        Room[] roomArrayFiltered = new Room[numberOfFiltered];
+        Room[] roomArrayFiltered = new Room[1000];
         for(int i = 0; i < (Database.readAll((new Room()))).length; i++){
             if(roomArray[i].isAvailable(slot)){
                 roomArrayFiltered[numberOfFiltered-1] = roomArray[i];
@@ -82,7 +82,7 @@ public class Organizer extends User {
         int choiceI = 0;
         while(choiceS == "N" || choiceS == "n") {
             System.out.println("Please choose a room from these available rooms:\n");
-            for (int i = 0; i < Database.readAll(new Room()).length; i++) {
+            for (int i = 0; i < numberOfFiltered; i++) {
 
                 System.out.println("(" + i + ")" + " Room ID: " + roomArrayFiltered[i].getID() + "   Room name: " + roomArrayFiltered[i].getRoomName() + "   Room Capacity: " + roomArrayFiltered[i].getRoomCapacity() + "   Rent price: " + roomArrayFiltered[i].getRentPrice());
             }
@@ -126,7 +126,7 @@ public class Organizer extends User {
             eventArray[i] = (Event)T[i];
         }
         int numberOfFiltered = 1;
-        Event[] eventArrayFiltered = new Event[numberOfFiltered];
+        Event[] eventArrayFiltered = new Event[1000];
         for (int i = 0; i < (Database.readAll((new Room()))).length; i++) {
             if (eventArray[i].getEventOrg() == this) {
                 eventArrayFiltered[numberOfFiltered - 1] = eventArray[i];
@@ -145,7 +145,7 @@ public class Organizer extends User {
             roomArray[i] = (Room)T[i];
         }
         int numberOfFiltered = 1;
-        Room[] roomArrayFiltered = new Room[numberOfFiltered];
+        Room[] roomArrayFiltered = new Room[1000];
         for (int i = 0; i < (Database.readAll((new Room()))).length; i++) {
             if (roomArray[i].isAvailable(slot)) {
                 roomArrayFiltered[numberOfFiltered - 1] = roomArray[i];
