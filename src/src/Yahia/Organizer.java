@@ -74,7 +74,7 @@ public class Organizer extends User {
         Room[] roomArrayFiltered = new Room[numberOfFiltered];
         for(int i = 0; i < (Database.readAll((new Room()))).length; i++){
             if(roomArray[i].isAvailable(slot)){
-                roomArrayFiltered[numberOfFiltered] = roomArray[i];
+                roomArrayFiltered[numberOfFiltered-1] = roomArray[i];
                 numberOfFiltered++;
             }
         }
