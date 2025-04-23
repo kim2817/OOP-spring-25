@@ -64,7 +64,7 @@ public class Main {
             Database.create(new Organizer(email,username,contactNo,password,new DateTime(DoB),address,0.0,gender,new Schedule()));
         }
         else if(classChoice == 0){ // attendee
-            Database.create(new Attendee(email,username,contactNo,password,new DateTime(DoB),address,gender,0,"Default City",new int[0][0],0.0));
+            Database.create(new Attendee(email,username,contactNo,password,new DateTime(DoB),address,gender,0,"Default City",0.0));
         }
         else throw new RuntimeException("Unexpected Class Choice.");
         System.out.println("Registered Successfully");
