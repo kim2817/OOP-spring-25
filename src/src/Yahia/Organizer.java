@@ -229,8 +229,6 @@ public class Organizer extends User {
                 ", username='" + username + '\'' +
                 ", contactNo='" + contactNo + '\'' +
                 ", dateOfBirth=" + dateOfBirth +
-                ", address='" + address + '\'' +
-                ", balance=" + balance + '\'' +
                 ", gen=" + gen + '\'' +
                 ", ID='" + ID + '\'' +
                 '}';
