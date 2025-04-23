@@ -90,7 +90,7 @@ public class Database {
                     create(new Attendee(in.next(),in.next(),in.next(),in.next(),null,in.next(),(in.nextBoolean()? Gender.MALE : Gender.FEMALE),in.nextInt(),in.next(),in.nextDouble()));
                     break;
                 case "Organizer":
-                    create(new Organizer(in.next(),in.next(),in.next(),in.next(),null,in.next(),in.nextDouble(),(in.nextBoolean()? Gender.MALE : Gender.FEMALE),new Schedule()));
+                    create(new Organizer(in.next(),in.next(),in.next(),in.next(),null,in.next(),in.nextDouble(),(in.nextBoolean()? Gender.MALE : Gender.FEMALE)));
                     break;
                 case "Admin":
                     create(new Admin(in.next(),in.next(),in.next(),in.next(),null,in.next(),(in.nextBoolean()? Gender.MALE : Gender.FEMALE),in.next(),in.next(),in.nextDouble()));
