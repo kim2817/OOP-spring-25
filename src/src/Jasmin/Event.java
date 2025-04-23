@@ -127,7 +127,11 @@ public class Event implements HasID {
                 break;
             case 2:
                 System.out.println("please enter the new event cat");
-                Category[] catArr = (Category[]) Database.readAll(new Category());
+                Object[] T = Database.readAll(new Category());
+                Category[] catArr = new Category[T.length];
+                for(int i=0;i<T.length;i++){
+                    catArr[i] = (Category)T[i];
+                }
                 for(int i=0;i<catArr.length;i++){
                     System.out.println((i+1) + ") " + catArr[i]);
                 }
