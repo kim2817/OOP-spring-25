@@ -93,7 +93,7 @@ public class Organizer extends User {
             System.out.println("Choose (Y/N)");
             choiceS = input.next();
         }
-        System.out.println("Congrats, You now have rented the room");
+        System.out.println("Congrats, You now have rented room (" + choiceI  + ")");
         roomArrayFiltered[choiceI].reserveSlot(slot,event);
         return roomArrayFiltered[choiceI];
 
