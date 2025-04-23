@@ -125,7 +125,7 @@ public class Admin extends User{
         int choice;
         Scanner input = new Scanner(System.in);
         System.out.println("\n Please choose an option of the following");
-        System.out.println("1) Add room\n 2) View events\n 3) View organizers\n 4) View Attendee\n CRUD:\n 5) Create Category\n 6)Delete Category\n 7) Update Category\n 8) List all Categories");
+        System.out.println(" 1) Add room\n 2) View events\n 3) View organizers\n 4) View Attendee\n\n CRUD:\n 5) Create Category\n 6) Delete Category\n 7) Update Category\n 8) List all Categories");
         switch(input.nextInt()){
             case 1:
                 Room o = new Room();
