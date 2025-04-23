@@ -77,8 +77,20 @@ public class Admin extends User{
     }
 
     public void viewEvents(){
+        Scanner input = new Scanner(System.in);
+        Event[] E = (Event[]) Database.readAll(new Event());
+        Event[] options = new Event[E.length];
+        for(int i=0;i<E.length;i++){
+            options[i] = (Event)E[i];
+        }
+        System.out.println("Please choose a category to update");
+        for (int i=0;i< options.length;i++){
+            System.out.println("(" + i + ")" + "Event name: " + options[i].getEventName() + "   Event ID: " + options[i].getID());
+        }
+        System.out.println(Arrays.toString(Database.readAll(options[input.nextInt()])));
 
-        System.out.println(Arrays.toString(Database.readAll(new Event())));
+
+        input.close();
     }
 
     public void viewOrganizers(){
