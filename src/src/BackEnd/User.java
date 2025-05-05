@@ -1,13 +1,4 @@
-package Yahia;
-
-import java.util.Date;
-
-import Eyadistic.*;
-import Karma.*;
-import Omar.*;
-import Yahia.*;
-import x3mara.*;
-import Jasmin.*;
+package BackEnd;
 
 abstract public class User implements HasID {
     protected String email;
@@ -16,8 +7,6 @@ abstract public class User implements HasID {
     protected String password;
     protected DateTime dateOfBirth;
     protected String address;
-    protected double balance;
-    protected Wallet wallet = new Wallet(balance);
     protected Gender gen;
     protected String ID;
 
@@ -41,9 +30,6 @@ abstract public class User implements HasID {
     public DateTime getDateOfBirth() {
         return dateOfBirth;
     }
-    public double getBalance() {
-        return balance;
-    }
     public String getAddress() {
         return address;
     }
@@ -65,9 +51,6 @@ abstract public class User implements HasID {
     }
     public void setPassword(String password) {
         this.password = password;
-    }
-    public void setBalance(double balance) {
-        this.balance = balance;
     }
     public void setAddress(String address) {
         this.address = address;

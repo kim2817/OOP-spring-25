@@ -1,4 +1,4 @@
-package Karma;
+package BackEnd;
 
 public class AccessDenied extends RuntimeException {
     public AccessDenied(String message) {

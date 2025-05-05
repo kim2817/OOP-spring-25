@@ -1,11 +1,6 @@
-package Omar;
-import Yahia.Gender;
-import x3mara.HasID;
-import Yahia.User;
+package BackEnd;
 import java.util.Arrays;
-import Karma.*;
-import x3mara.*;
-import Jasmin.*;
+
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -24,7 +19,7 @@ public class Attendee extends User implements HasID {
 
     public Attendee(String email, String username, String contactNo, String password,
                     DateTime dateOfBirth, String address, Gender gen,
-                    int age, String city,  double walletBalance) {
+                    int age, String city, double walletBalance) {
         this.email = email;
         this.username = username;
         this.contactNo = contactNo;
@@ -92,7 +87,7 @@ public class Attendee extends User implements HasID {
     public void showEvents() {
         System.out.println(Arrays.toString(Database.readAll(new Event())));
     }
-    public void showBookedevents() {
+    public void showBookedEvents() {
         if (bookedEvents.isEmpty()) {
             System.out.println("No events booked yet.");
         } else {
@@ -180,17 +175,17 @@ public class Attendee extends User implements HasID {
                 this.chooseEvent();
                 break;
             case 7:
-                this.showBookedevents();
+                this.showBookedEvents();
                 break;
             case 8:
-                this.viewWalletdetails();
+                this.viewWalletDetails();
                 break;
             default:
                 return;
         }
         attendeeInterface();
     }
-    public void viewWalletdetails() {
+    public void viewWalletDetails() {
         System.out.println("Wallet Details: " + balance);
     }
 

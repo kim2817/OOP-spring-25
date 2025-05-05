@@ -1,12 +1,6 @@
-import Eyadistic.*;
-import Karma.*;
-import Omar.*;
-import Yahia.*;
-import x3mara.*;
-import Jasmin.*;
+import BackEnd.*;
 
 import java.io.File;
-import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 

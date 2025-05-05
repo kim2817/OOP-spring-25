@@ -1,18 +1,8 @@
-package x3mara;
-
-import Eyadistic.Admin;
-import Jasmin.Event;
-import Karma.Category;
-import Karma.DateTime;
-import Omar.Attendee;
-import Yahia.Organizer;
-import Yahia.Gender;
-import Yahia.User;
+package BackEnd;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -93,7 +83,7 @@ public class Database {
                     create(new Organizer(in.next(),in.next(),in.next(),in.next(),new DateTime(in.next()),in.next(),in.nextDouble(),(in.nextBoolean()? Gender.MALE : Gender.FEMALE)));
                     break;
                 case "Admin":
-                    create(new Admin(in.next(),in.next(),in.next(),in.next(),new DateTime(in.next()),in.next(),(in.nextBoolean()? Gender.MALE : Gender.FEMALE),in.next(),in.next(),in.nextDouble()));
+                    create(new Admin(in.next(),in.next(),in.next(),in.next(),new DateTime(in.next()),in.next(),(in.nextBoolean()? Gender.MALE : Gender.FEMALE),in.next(),in.next()));
                     break;
                 case "Category":
                     create(new Category(in.next()));

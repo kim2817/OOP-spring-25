@@ -1,4 +1,4 @@
-package x3mara;
+package BackEnd;
 
 public class Wallet implements HasID {
     private final String walletID;
