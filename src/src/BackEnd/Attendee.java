@@ -1,11 +1,6 @@
-package Omar;
-import Yahia.Gender;
-import x3mara.HasID;
-import Yahia.User;
+package BackEnd;
 import java.util.Arrays;
-import Karma.*;
-import x3mara.*;
-import Jasmin.*;
+
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -24,7 +19,7 @@ public class Attendee extends User implements HasID {
 
     public Attendee(String email, String username, String contactNo, String password,
                     DateTime dateOfBirth, String address, Gender gen,
-                    int age, String city,  double walletBalance) {
+                    int age, String city, double walletBalance) {
         this.email = email;
         this.username = username;
         this.contactNo = contactNo;

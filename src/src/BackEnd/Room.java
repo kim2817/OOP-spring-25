@@ -1,14 +1,9 @@
-package x3mara;
-
-import Eyadistic.Admin;
-import Jasmin.Event;
-import Karma.DateTime;
-import Yahia.User;
+package BackEnd;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Room implements HasID{
+public class Room implements HasID {
     private final String roomID;
     private String roomName;
     private int roomCapacity;

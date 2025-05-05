@@ -1,18 +1,8 @@
-package x3mara;
-
-import Eyadistic.Admin;
-import Jasmin.Event;
-import Karma.Category;
-import Karma.DateTime;
-import Omar.Attendee;
-import Yahia.Organizer;
-import Yahia.Gender;
-import Yahia.User;
+package BackEnd;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Scanner;
 

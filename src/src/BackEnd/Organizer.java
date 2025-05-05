@@ -1,11 +1,7 @@
-package Yahia;
+package BackEnd;
 
 import java.util.Arrays;
 import java.util.Scanner;
-
-import Jasmin.*;
-import Karma.*;
-import x3mara.*;
 
 
 public class Organizer extends User {

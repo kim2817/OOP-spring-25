@@ -1,13 +1,4 @@
-package Yahia;
-
-import java.util.Date;
-
-import Eyadistic.*;
-import Karma.*;
-import Omar.*;
-import Yahia.*;
-import x3mara.*;
-import Jasmin.*;
+package BackEnd;
 
 abstract public class User implements HasID {
     protected String email;

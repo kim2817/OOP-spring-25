@@ -1,9 +1,6 @@
-package x3mara;
+package BackEnd;
 
 import java.util.HashMap;
-
-import Jasmin.Event;
-import Karma.DateTime;
 
 public class Schedule {
     private HashMap<DateTime,Event> hashMap;

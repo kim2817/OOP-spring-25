@@ -1,16 +1,6 @@
-package Eyadistic;
+package BackEnd;
 import java.util.Arrays;
 
-import Karma.DateTime;
-import Yahia.Organizer;
-import Yahia.User;
-import Omar.Attendee;
-import Yahia.Gender;
-import x3mara.*;
-import Jasmin.Event;
-import Karma.Category;
-
-import java.util.Date;
 import java.util.Scanner;
 
 

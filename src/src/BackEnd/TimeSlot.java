@@ -1,4 +1,4 @@
-package x3mara;
+package BackEnd;
 
 public enum TimeSlot{
     MORNING,
