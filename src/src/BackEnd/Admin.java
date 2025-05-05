@@ -19,10 +19,8 @@ public class Admin extends User{
                  DateTime dateOfBirth, String address, Gender gen, String role, String workingHours) {
         this.email = email;
         this.username = username;
-        this.contactNo = contactNo;
         this.password = password;
         this.dateOfBirth = dateOfBirth;
-        this.address = address;
         this.gen = gen;
         this.ID = "a" + System.nanoTime();
         this.workingHours = workingHours;
@@ -88,7 +86,6 @@ public class Admin extends User{
 
 
     // CRUD
-
 
     public void adminInterface(){
         int choice;
@@ -195,7 +192,6 @@ public class Admin extends User{
                 ", username='" + this.username + '\'' +
                 ", role='" + getRole() + '\'' +
                 ", workingHours='" + getWorkingHours() + '\'' +
-                ", contactNo='" + this.contactNo + '\'' +
                 '}';
     }
 
