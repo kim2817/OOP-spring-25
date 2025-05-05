@@ -5,11 +5,11 @@ import java.util.Scanner;
 
 
 public class Organizer extends User {
+    private Wallet balance;
     public Organizer(){
     ID = "O" + System.nanoTime();
     }
-
-    public Organizer(String email, String username, String contactNo, String password, DateTime dateOfBirth, String address, double balance, Gender gen) {
+    public Organizer(String email, String username, String contactNo, String password, DateTime dateOfBirth, String address, double walletBalance, Gender gen) {
         
         this.email = email;
         this.username = username;
@@ -17,7 +17,7 @@ public class Organizer extends User {
         this.password = password;
         this.dateOfBirth = dateOfBirth;
         this.address = address;
-        this.balance = balance;
+        this.balance = new Wallet(walletBalance);
         this.gen = gen;
         ID = "O" + System.nanoTime();
     }
@@ -202,7 +202,7 @@ public class Organizer extends User {
                 showAvailableRooms(date);
                 break;
             case 6:
-                System.out.println(this.wallet);
+                this.viewWalletDetails();
                 break;
             case 7:
                 listOrganizedEvents();
@@ -212,6 +212,10 @@ public class Organizer extends User {
         }
         organizerInterface();
     }
+    public void viewWalletDetails() {
+        System.out.println("Wallet Details: " + balance);
+    }
+
 
     @Override
     public String getID(){

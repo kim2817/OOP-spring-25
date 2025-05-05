@@ -9,7 +9,6 @@ public class Admin extends User{
     //Attributes
     private String role;
     private String workingHours;
-    private Wallet balance;
 
 
 
@@ -17,7 +16,7 @@ public class Admin extends User{
     public Admin(){}
 
     public Admin(String email, String username, String contactNo, String password,
-                 DateTime dateOfBirth, String address, Gender gen, String role, String workingHours, double walletBalance) {
+                 DateTime dateOfBirth, String address, Gender gen, String role, String workingHours) {
         this.email = email;
         this.username = username;
         this.contactNo = contactNo;
@@ -28,11 +27,7 @@ public class Admin extends User{
         this.ID = "a" + System.nanoTime();
         this.workingHours = workingHours;
         this.role = role;
-        this.balance = new Wallet(walletBalance);
     }
-
-
-
 
 
     //Setters and getters
@@ -53,7 +48,6 @@ public class Admin extends User{
     public void setID(String ID) {
         this.ID = "a" + System.nanoTime();
     }
-    public void setBalance(Wallet balance) {this.balance = balance;}
 
 
     //Methods
@@ -68,14 +62,14 @@ public class Admin extends User{
 
     public void viewEvents(){
         Scanner input = new Scanner(System.in);
-        Event[] E = (Event[]) Database.readAll(new Event());
+        Object[] E = Database.readAll(new Event());
         Event[] options = new Event[E.length];
         for(int i=0;i<E.length;i++){
             options[i] = (Event)E[i];
         }
-        System.out.println("Please choose a category to update");
+        System.out.println("Please choose a category to view for details: ");
         for (int i=0;i< options.length;i++){
-            System.out.println("(" + i + ")" + "Event name: " + options[i].getEventName() + "   Event ID: " + options[i].getID());
+            System.out.println("(" + (i+1) + ")" + "Event name: " + options[i].getEventName() + "   Event ID: " + options[i].getID());
         }
         System.out.println(Arrays.toString(Database.readAll(options[input.nextInt()])));
 
@@ -95,9 +89,6 @@ public class Admin extends User{
 
     // CRUD
 
-    public static void listAllCategories(){
-        System.out.println(Arrays.toString(Database.readAll(new Category())));
-    }
 
     public void adminInterface(){
         int choice;
@@ -117,7 +108,7 @@ public class Admin extends User{
                 System.out.println("Please set rent price");
                 rentprice = input.nextDouble();
                 addRooms(o, roomName, Roomcapacity, rentprice);
-                System.out.println("Room "+ roomName + "succesfully added.");
+                System.out.println("Room "+ roomName + " succesfully added.");
                 break;
             case 2:
                 viewEvents();
@@ -132,60 +123,61 @@ public class Admin extends User{
                 Category.addCatToDatabase(this);
                 break;
             case 6:
-                Category[] T = (Category[]) Database.readAll(new Category());
+                Object[] T = Database.readAll(new Category());
                 Category[] options = new Category[T.length];
                 for(int i=0;i<T.length;i++){
                     options[i] = (Category)T[i];
                 }
                 System.out.println("Please choose a category to update");
                 for (int i=0;i< options.length;i++){
-                    System.out.println("(" + i + ")" + "Category name: " + options[i].getCatName() + "   Category event: " + options[i].getEvents());
+                    System.out.println("(" + (i+1) + ")" + "Category name: " + options[i].getCatName() + "   Category event: " + options[i].getEvents());
                 }
                 options[input.nextInt()].updateCatInDatabase(this);
                 break;
             case 7:
-                Category[] S = (Category[]) Database.readAll(new Category());
+                System.out.println("Please choose a category to delete\n");
+                Object[] S = Database.readAll(new Category());
                 Category[] options2 = new Category[S.length];
                 for(int i=0;i<S.length;i++){
                     options2[i] = (Category)S[i];
                 }
-                System.out.println("Please choose a category to update");
                 for (int i=0;i< options2.length;i++){
-                    System.out.println("(" + i + ")" + "Category name: " + options2[i].getCatName() + "   Category event: " + options2[i].getEvents());
+                    System.out.println("(" + (i+1) + ")" + "Category name: " + options2[i].getCatName() + "   Category event: " + options2[i].getEvents());
                 }
                 options2[input.nextInt()].deleteCatFromDatabase(this);
                 break;
             case 8:
-                listAllCategories();
+                Category.listAllCategories();
                 break;
             case 9:
                 Room.createRoom(this);
                 break;
             case 10:
-                Room[] Q = (Room[]) Database.readAll(new Room());
+                Object[] Q = Database.readAll(new Room());
                 Room[] options3 = new Room[Q.length];
                 for(int i=0;i<Q.length;i++){
                     options3[i] = (Room)Q[i];
                 }
-                System.out.println("Please choose a room to update");
+                System.out.println("Please choose a room to update: ");
                 for (int i=0;i<options3.length;i++){
-                    System.out.println("(" + i + ")" + "Room name: " + options3[i].getRoomName() + "   Room ID: " + options3[i].getID());
+                    System.out.println("(" + (i+1) + ")" + "Room name: " + options3[i].getRoomName() + "   Room ID: " + options3[i].getID());
                 }
-                options3[input.nextInt()].delete(this);
+                options3[input.nextInt()-1].update(this);
                 break;
 
             case 11:
-                Room[] W = (Room[]) Database.readAll(new Room());
+                Object[] W = Database.readAll(new Room());
                 Room[] options4 = new Room[W.length];
                 for(int i=0;i<W.length;i++){
                     options4[i] = (Room)W[i];
                 }
-                System.out.println("Please choose a room to update");
+                System.out.println("Please choose a room to delete: ");
                 for (int i=0;i<options4.length;i++){
-                    System.out.println("(" + i + ")" + "Room name: " + options4[i].getRoomName() + "   Room ID: " + options4[i].getID());
+                    System.out.println("(" + (i+1) + ")" + "Room name: " + options4[i].getRoomName() + "   Room ID: " + options4[i].getID());
                 }
-                options4[input.nextInt()].delete(this);
+                options4[input.nextInt()-1].delete(this);
                 break;
+
             case 12:
                 Room.listRooms();
                 break;

@@ -87,7 +87,7 @@ public class Attendee extends User implements HasID {
     public void showEvents() {
         System.out.println(Arrays.toString(Database.readAll(new Event())));
     }
-    public void showBookedevents() {
+    public void showBookedEvents() {
         if (bookedEvents.isEmpty()) {
             System.out.println("No events booked yet.");
         } else {
@@ -175,17 +175,17 @@ public class Attendee extends User implements HasID {
                 this.chooseEvent();
                 break;
             case 7:
-                this.showBookedevents();
+                this.showBookedEvents();
                 break;
             case 8:
-                this.viewWalletdetails();
+                this.viewWalletDetails();
                 break;
             default:
                 return;
         }
         attendeeInterface();
     }
-    public void viewWalletdetails() {
+    public void viewWalletDetails() {
         System.out.println("Wallet Details: " + balance);
     }
 
