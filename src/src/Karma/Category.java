@@ -17,8 +17,6 @@ public class Category implements HasID {
     public static int totCats = 0; // stores total number of categories;
     private ArrayList<Event> events = new ArrayList<>();// stores events under each category;
 
-
-
     Scanner input = new Scanner(System.in);
 
     //constructors
@@ -75,11 +73,10 @@ public class Category implements HasID {
             if(Objects.equals(name, catArr[i].catName)){
                 throw new AlreadyExists("This Category Already Exists");
             }
-
-
         }
         Database.create(new Category(name));
     }
+
     public void updateCatInDatabase(User obj){
         ValidateCatAccess(obj);
         System.out.println("What would you like to change?");
