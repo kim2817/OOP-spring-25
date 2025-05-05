@@ -105,7 +105,7 @@ public class Attendee extends User implements HasID {
         }
         System.out.println("Please select an event:");
         for (int i = 0; i < options.length; i++) {
-            System.out.println((i + 1) + ") ID: " + options[i]);
+            System.out.println((i + 1) + ")" + options[i].AttendeeToString());
         }
         try{
             int temp = input.nextInt();
@@ -116,7 +116,7 @@ public class Attendee extends User implements HasID {
             int count = input.nextInt();
             buyTickets(count, chosenEvent.getID());
         }catch (Exception ex){
-            System.out.println("Something wrong happened here -_-");
+            System.out.println("Something wrong happened here -_-"+ ex.getMessage());
         }
     }
 

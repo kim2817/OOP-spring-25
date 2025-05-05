@@ -179,7 +179,15 @@ public class Event implements HasID {
         System.out.println(Database.read(this.eventID));
     }
 
+    public String AttendeeToString(){
+        String s;
+        s="\nEvent name: "+ eventName + "\nEvent Category:"+ eventCat.getCatName() +
+                "\nEvent Room:"+ eventRoom.getRoomName() + "\nTicket Price:"+
+                ticketPrice + "\nNumber of tickets remaining:"+ (int)(eventRoomCap-eventAttendees) +
+                " \nEvent Date(dd/mm/yyyy):" + eventDate.getDay()+"/"+eventDate.getMonth()+"/"+ eventDate.getYear() + "\n\n";
 
+        return s;
+    }
     @Override
     public String toString(){
         String s;
