@@ -15,7 +15,7 @@ public class Event implements HasID {
     private int eventRoomCap;
     private int eventAttendees=0;
 
-//comment bc i need to pull
+
 //Constructors
     //no arg constructor
     public Event(){this.eventID= "E"+System.nanoTime();}
@@ -63,6 +63,8 @@ public class Event implements HasID {
     public void setEventDate(DateTime eventDate){
         this.eventDate=eventDate;
     }
+
+
     public boolean isThereEnough(int nOfTickets){
         return eventAttendees + nOfTickets <= eventRoomCap;
     }
